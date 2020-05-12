@@ -35,3 +35,17 @@ function dateValidation(fechaNac) {
     
     return error;
 }
+
+function ageValidation(fechaNac) {
+    
+    var date = new Date(fechaNac);
+    var now = new Date();
+    if(now.getFullYear()-date.getFullYear()<5){
+        console.error("Paciente no válido");
+        var error = "&emsp; La edad mínima es de 5 años;
+    } else {
+        var error = "";
+    }
+    
+    return error;
+}
