@@ -15,16 +15,16 @@ EXECUTE crear_clinica('Profident Clinic','Carmona','123456789','N','Asunción','
 EXECUTE crear_clinica('Clinica','Tocina','749214739','N','Aguas Santas','6789');
 EXECUTE crear_clinica('nombreclinica','Cantillana','000111555','N','Rodrigo','0129');
 --inserción de pacientes
-EXECUTE crear_paciente('12345678C','23/04/90','H',65);
-EXECUTE crear_paciente('12345678M','12/12/62','M',66);
-EXECUTE crear_paciente('12341278B','01/05/00','H',67);
-EXECUTE crear_paciente('32345678X','11/01/99','H',68);
-EXECUTE crear_paciente('12342348Z','22/11/92','H',69);
-EXECUTE crear_paciente('12395372T','09/09/99','M',70);
-EXECUTE crear_paciente('74924739S','28/04/39','M',71);
-EXECUTE crear_paciente('97345983G','12/03/89','M',72);
-EXECUTE crear_paciente('32587459K','10/06/94','H',73);
-EXECUTE crear_paciente('23459789F','03/04/56','H',73);
+EXECUTE crear_paciente('12345678C','23/04/90','H',1);
+EXECUTE crear_paciente('12345678M','12/12/62','M',2);
+EXECUTE crear_paciente('12341278B','01/05/00','H',3);
+EXECUTE crear_paciente('32345678X','11/01/99','H',4);
+EXECUTE crear_paciente('12342348Z','22/11/92','H',5);
+EXECUTE crear_paciente('12395372T','09/09/99','M',6);
+EXECUTE crear_paciente('74924739S','28/04/39','M',7);
+EXECUTE crear_paciente('97345983G','12/03/89','M',8);
+EXECUTE crear_paciente('32587459K','10/06/94','H',9);
+EXECUTE crear_paciente('23459789F','03/04/56','H',10);
 --insercion de facturas
 EXECUTE crear_factura(null,'30/06/20','09/05/20',350);
 EXECUTE crear_factura('12/02/19','12/03/19','05/02/19',500);
@@ -39,17 +39,17 @@ EXECUTE crear_factura('07/02/20','19/02/20','30/01/20',775);
 EXECUTE crear_factura(null,'30/07/20','09/05/20',900);
 EXECUTE crear_factura(null,'30/07/20','09/05/20',12345);
 --inserción de encargos
-EXECUTE crear_encargo('10/01/20','17/03/20','acciones realizadas',75,65);
-EXECUTE crear_encargo('20/02/20','23/05/20','acciones realizadas',76,66);
-EXECUTE crear_encargo('14/11/19','17/01/20','acciones realizadas',77,67);
-EXECUTE crear_encargo('10/05/20',null,'acciones realizadas',78,68);
-EXECUTE crear_encargo('23/07/19','05/10/19','acciones realizadas',79,69);
-EXECUTE crear_encargo('29/09/19','27/10/19','acciones realizadas',80,70);
-EXECUTE crear_encargo('17/04/20',null,'acciones realizadas',81,71);
-EXECUTE crear_encargo('22/02/19','25/04/19','acciones realizadas',82,72);
-EXECUTE crear_encargo('28/05/19','17/07/19','acciones realizadas',83,73);
-EXECUTE crear_encargo('23/03/20',null,'acciones realizadas',76,74);
-EXECUTE crear_encargo('14/08/19','30/10/19','acciones realizadas',80,75);
+EXECUTE crear_encargo('10/01/20','17/03/20','acciones realizadas',1,1);
+EXECUTE crear_encargo('20/02/20','23/05/20','acciones realizadas',2,2);
+EXECUTE crear_encargo('14/11/19','17/01/20','acciones realizadas',3,3);
+EXECUTE crear_encargo('10/05/20',null,'acciones realizadas',4,4);
+EXECUTE crear_encargo('23/07/19','05/10/19','acciones realizadas',5,5);
+EXECUTE crear_encargo('29/09/19','27/10/19','acciones realizadas',6,6);
+EXECUTE crear_encargo('17/04/20',null,'acciones realizadas',7,7);
+EXECUTE crear_encargo('22/02/19','25/04/19','acciones realizadas',8,8);
+EXECUTE crear_encargo('28/05/19','17/07/19','acciones realizadas',9,9);
+EXECUTE crear_encargo('23/03/20',null,'acciones realizadas',10,10);
+EXECUTE crear_encargo('14/08/19','30/10/19','acciones realizadas',11,11);
 --inserción de proveedores
 EXECUTE crear_proveedor('nombre1','Sevilla','123456789');
 EXECUTE crear_proveedor('nombre2','Cantillana','987654321');

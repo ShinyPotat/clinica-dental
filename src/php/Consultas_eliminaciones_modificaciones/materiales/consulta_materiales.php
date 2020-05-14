@@ -40,11 +40,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
+    <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
 </head>
 <body>
+
+    <a href="../../../html/log.html" ><img class="imagen" src="../../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
+
+    <div class="block">
+        <a href="../../../html/about-us.html" class="acerca">Acerca de nosotros</a>
+        <!-- Estos bloques definen las id que se usan para el js de la hora -->
+        <div id="box">
+            <div id="box-date"></div>
+            <div id="box-time"></div>
+        </div>
+        
+        <img class="calendario" src="../../../../images/calendario.png" width="1%" height="11%">
+        <img class="reloj" src="../../../../images/reloj.png" width="1%" height="11%">
+        
+        <img class="usuario" src="../../../../images/user.png" width="1.5%" height="13%">
+        
+        <img class="flechaA" src="../../../images/flechaA.png" width="20" height="20">
+        
+        <select class="botonUsuario">
+            <option value="1">Usuario</option>
+            <option value="2">Opcion 2</option>
+            <option value="3">Opcion 3</option>
+        </select>
+    </div>
+    <a href="../../../php/formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
+    <a href= "../../../php/formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
+    <a href="../../../php/formularios/form_alta_proveedor.php" class="botonNuevoProveedor">Nuevo Proveedor</a>
+    <a href="#" class="botonPedidos">Pedidos</a>
+    <a href= "#" class="botonMateriales">Materiales</a>
+    <a href="#" class="botonProveedores">Proveedores</a>
+    <script src="../../../js/hora.js"></script>
+    <a href="../../../html/accesorapido.html" class="buttonAtras">«</a> 
+    <p class="volver">Volver</p>
+    
     <main>
         <nav>
-            <div>           <!-- enlaces a las paginas (1234567...)  -->
+            <div class="enlaces">           <!-- enlaces a las paginas (1234567...)  -->
                 <?php
                 for($pagina=1; $pagina<=$total_paginas; $pagina++){
                     if($pagina == $pagina_seleccionada){	?>
@@ -54,7 +89,7 @@
             <?php }} ?>
             </div>            <!-- fin enlaces -->
             
-            <form method="get" action="consulta_materiales.php">        <!-- formulario para indicar numero de elemento en 1 magina quieres -->
+            <form class="formulario" method="get" action="consulta_materiales.php">        <!-- formulario para indicar numero de elemento en 1 magina quieres -->
                 <input id="PAG_NUMM" name="PAG_NUMM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
                 Mostrando 
                 <input id="PAG_TAMM" name="PAG_TAMM" type="number" 
@@ -64,14 +99,17 @@
                 <input type="submit" value="Cambiar"/>
             </form>                                                        <!-- fin de formulario -->
         </nav>
-        <table>                  <!-- comienzo de la tabla -->
+        <table class="blueTable">                  <!-- comienzo de la tabla -->
+            <thead>
             <tr>                        <!-- primera linea de la tabla -->
                 <th>nombre</th>
                 <th>categoria</th>
                 <th>stock</th>
                 <th>stockMinimo</th>
                 <th>stockCritico</th>
+                <th>Opciones</th>
             </tr>
+            </thead>
             <?php
                 foreach($filas as $fila){
             ?>
