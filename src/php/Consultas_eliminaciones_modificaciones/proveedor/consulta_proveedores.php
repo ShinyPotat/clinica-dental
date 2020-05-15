@@ -2,14 +2,14 @@
     session_start();
 
 	require_once("../../gestionBD.php");
-	require_once("gestionarMateriales.php");
+	require_once("gestionarProveedor.php");
 	
-	if (isset($_SESSION["material"])){
-		$material = $_SESSION["material"];
-		unset($_SESSION["material"]);
+	if (isset($_SESSION["proveedor"])){
+		$proveedor = $_SESSION["proveedor"];
+		unset($_SESSION["proveedor"]);
     }
     
-    if (isset($_SESSION["PAG_MAT"])) $paginacion = $_SESSION["PAG_MAT"]; 
+    if (isset($_SESSION["PAG_PRO"])) $paginacion = $_SESSION["PAG_PRO"]; 
 		$pagina_seleccionada = isset($_GET["PAG_NUMM"])? (int)$_GET["PAG_NUMM"]:
 													(isset($paginacion)? (int)$paginacion["PAG_NUMM"]: 1);
 		$pag_tam = isset($_GET["PAG_TAMM"])? (int)$_GET["PAG_TAMM"]:
@@ -17,10 +17,10 @@
 	if ($pagina_seleccionada < 1) $pagina_seleccionada = 1;
 	if ($pag_tam < 1) $pag_tam = 10;
 	
-	unset($_SESSION["PAG_MAT"]);
+	unset($_SESSION["PAG_PRO"]);
 
 	$conexion = crearConexionBD();
-    //$filas = consultarTodosMateriales($conexion);
+    //$filas = consultarTodosProveedores($conexion);
     
     $total_registros = total_consulta($conexion);
 	$total_paginas = (int) ($total_registros / $pag_tam);
@@ -28,7 +28,7 @@
 	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
 	$paginacion["PAG_NUMM"] = $pagina_seleccionada;
 	$paginacion["PAG_TAMM"] = $pag_tam;
-	$_SESSION["PAG_MAT"] = $paginacion;
+	$_SESSION["PAG_PRO"] = $paginacion;
 	
 	$filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
 
@@ -40,12 +40,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
-    <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
+    <link rel="stylesheet" href="../../../css/consultaMateriales.css">
 </head>
 <body>
-
+<body>
     <a href="../../../html/log.html" ><img class="imagen" src="../../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
-
+   
     <div class="block">
         <a href="../../../html/about-us.html" class="acerca">Acerca de nosotros</a>
         <!-- Estos bloques definen las id que se usan para el js de la hora -->
@@ -67,6 +67,7 @@
             <option value="3">Opcion 3</option>
         </select>
     </div>
+
     <a href="../../../php/formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
     <a href= "../../../php/formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
     <a href="../../../php/formularios/form_alta_proveedor.php" class="botonNuevoProveedor">Nuevo Proveedor</a>
@@ -76,7 +77,7 @@
     <script src="../../../js/hora.js"></script>
     <a href="../../../html/accesorapido.html" class="buttonAtras">«</a> 
     <p class="volver">Volver</p>
-    
+
     <main>
         <nav>
             <div class="enlaces">           <!-- enlaces a las paginas (1234567...)  -->
@@ -85,11 +86,11 @@
                     if($pagina == $pagina_seleccionada){	?>
                         <span><?php echo $pagina;?></span>
                     <?php }else{ ?>
-                        <a href="consulta_materiales.php?PAG_NUMM=<?php echo $pagina; ?> &PAG_TAMM=<?php echo $pag_tam; ?>"><?php echo $pagina ?> </a>
+                        <a href="consulta_proveedores.php?PAG_NUMM=<?php echo $pagina; ?> &PAG_TAMM=<?php echo $pag_tam; ?>"><?php echo $pagina ?> </a>
             <?php }} ?>
             </div>            <!-- fin enlaces -->
-            
-            <form class="formulario" method="get" action="consulta_materiales.php">        <!-- formulario para indicar numero de elemento en 1 magina quieres -->
+
+            <form class="formulario" method="get" action="consulta_proveedores.php">        <!-- formulario para indicar numero de elemento en 1 magina quieres -->
                 <input id="PAG_NUMM" name="PAG_NUMM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
                 Mostrando 
                 <input id="PAG_TAMM" name="PAG_TAMM" type="number" 
@@ -99,14 +100,13 @@
                 <input type="submit" value="Cambiar"/>
             </form>                                                        <!-- fin de formulario -->
         </nav>
+
         <table class="blueTable">                  <!-- comienzo de la tabla -->
             <thead>
             <tr>                        <!-- primera linea de la tabla -->
                 <th>nombre</th>
-                <th>categoria</th>
-                <th>stock</th>
-                <th>stockMinimo</th>
-                <th>stockCritico</th>
+                <th>localizacion</th>
+                <th>Teléfono</th>
                 <th>Opciones</th>
             </tr>
             </thead>
@@ -115,35 +115,31 @@
             ?>
 
             <article>
-                <form method="post" action="controlador_materiales.php">
+                <form method="post" action="controlador_proveedores.php">
                     <div>           <!-- datos de la tabla-->
                         <div>
-                            <input id="OID_M" name="OID_M" type="hidden" value="<?php echo $fila["OID_M"]; ?>">
+                            <input id="OID_PR" name="OID_PR" type="hidden" value="<?php echo $fila["OID_PR"]; ?>">
                             <input id="NOMBRE" name="NOMBRE" type="hidden" required value="<?php echo $fila["NOMBRE"];?>">
-                            <input name="CATEGORIA" id="CATEGORIA" type= "hidden" required value="<?php echo $fila["CATEGORIA"];?>">
-                            <input id="UNIDAD" name="UNIDAD" type="hidden" required value="<?php echo $fila["UNIDAD"];?>">
+                            <input name="LOCALIZACION" id="LOCALIZACION" type= "hidden" required value="<?php echo $fila["LOCALIZACIÓN"];?>">
+                            <input id="TLF_CONTACTO" name="TLF_CONTACTO" type="hidden" required value="<?php echo $fila["TLF_CONTACTO"];?>">
                             <?php
-                                if(isset($material) and ($material["OID_M"] == $fila["OID_M"])){ ?>
+                                if(isset($proveedor) and ($proveedor["OID_PR"] == $fila["OID_PR"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                        <td><?php echo $fila["NOMBRE"];?></td>
-                                        <td><?php echo $fila["CATEGORIA"];?></td>
-                                        <td><input id="STOCK" name="STOCK" type="number" value="<?php echo $fila["STOCK"];?>"></td>
-                                        <td><input id="STOCK_MIN" name="STOCK_MIN" type="number" value="<?php echo $fila["STOCK_MIN"];?>"></td>
-                                        <td><input id="STOCK_CRITICO" name="STOCK_CRITICO" type="number" value="<?php echo $fila["STOCK_CRITICO"];?>"></td>
+                                    <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
+                                    <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
+                                    <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
                         <?php }else{ ?>
                                     <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"];?>">
                                     <tr>
                                         <td><?php echo $fila["NOMBRE"];?></td>              <!-- columnas -->
-                                        <td><?php echo $fila["CATEGORIA"];?></td>
-                                        <td><?php echo $fila["STOCK"];?></td>
-                                        <td><?php echo $fila["STOCK_MIN"];?></td>
-                                        <td><?php echo $fila["STOCK_CRITICO"];?></td>
+                                        <td><?php echo $fila["LOCALIZACIÓN"];?></td>
+                                        <td><?php echo $fila["TLF_CONTACTO"];?></td>
                         <?php } ?>
                         </div>          
                                         <div>       <!-- columna de los botones -->
                                             <td>
                                                 <?php 
-                                                if (isset($material) and ($material["OID_M"] == $fila["OID_M"])) { ?>
+                                                if (isset($proveedor) and ($proveedor["OID_PR"] == $proveedor["OID_PR"])) { ?>
                                                     <button id="Guardar" name="Guardar" type="submit">Guardar</button>
                                         <?php }else{ ?>
                                                     <button id="Editar" name="Editar" type="submit">Editar</button>
@@ -156,7 +152,7 @@
                     </div>              <!-- fin de datos de la tabla -->
                 </form>
             </article>
-                    <?php } ?>
+            <?php }?>
         </table>
     </main>
 </body>

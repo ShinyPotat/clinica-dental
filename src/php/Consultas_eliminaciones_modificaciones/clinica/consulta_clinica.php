@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="../../../css/consultaMateriales.css">
 </head>
 <body>
+<body>
     <a href="../../../html/log.html" ><img class="imagen" src="../../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
    
     <div class="block">
