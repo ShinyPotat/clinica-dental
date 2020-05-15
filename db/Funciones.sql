@@ -306,6 +306,26 @@ BEGIN
     UPDATE Materiales SET stock_critico=w_stock_critico WHERE oid_m=w_oid_m;
 END;
 /
+
+--Modificar clinica
+CREATE OR REPLACE PROCEDURE modifica_clinica(
+    w_oid_c IN clinicas.oid_c%TYPE,
+    w_nombre IN clinicas.nombre%TYPE,
+    w_localización IN clinicas.localización%TYPE,
+    w_tlf_contacto IN clinicas.tlf_contacto%TYPE,
+    w_moroso IN clinicas.moroso%TYPE,
+    w_nombre_dueño IN clinicas.nombre_dueño%TYPE,
+    w_num_colegiado IN clinicas.num_colegiado%TYPE
+)IS
+BEGIN
+    UPDATE clinicas SET nombre=w_nombre WHERE oid_c=w_oid_c;
+    UPDATE clinicas SET localización=w_localización WHERE oid_c=w_oid_c;
+    UPDATE clinicas SET tlf_contacto=w_tlf_contacto WHERE oid_c=w_oid_c;
+    UPDATE clinicas SET moroso=w_moroso WHERE oid_c=w_oid_c;
+    UPDATE clinicas SET nombre_dueño=w_nombre_dueño WHERE oid_c=w_oid_c;
+    UPDATE clinicas SET num_colegiado=w_num_colegiado WHERE oid_c=w_oid_c;
+END;
+/
 --FUNCION ASSERT_EQUALS
 CREATE OR REPLACE FUNCTION ASSERT_EQUALS(
     salida BOOLEAN,
