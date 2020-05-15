@@ -45,14 +45,13 @@
         }
     }
 
-    function modificar_clinica($conexion, $oidClinica, $nombre, $localizacion, $tlf, $moroso, $nombre_due, $num_col){
+    function modificar_clinica($conexion, $oidClinica, $nombre, $localizacion, $tlf, $nombre_due, $num_col){
         try {
-            $stmt = $conexion->prepare('CALL modificar_clinica(:oidClinica,:nombre,:localizacion,:tlf,:moroso,:nombre_due,:num_col)');
+            $stmt = $conexion->prepare('CALL modifica_clinica(:oidClinica,:nombre,:localizacion,:tlf,:nombre_due,:num_col)');
             $stmt->bindParam(':oidClinica', $oidClinica);
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':localizacion', $localizacion);
             $stmt->bindParam(':tlf', $tlf);
-            $stmt->bindParam(':moroso', $moroso);
             $stmt->bindParam(':nombre_due', $nombre_due);
             $stmt->bindParam(':num_col', $num_col);
             $stmt->execute();

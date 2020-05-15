@@ -5,18 +5,18 @@
         $clinica = $_SESSION["clinica"];
         unset($_SESSION["clinica"]);
 
-        require_once("../gestionBD.php");
+        require_once("../../gestionBD.php");
         require_once("gestionar_clinica.php");
 
         $conexion = crearConexionBD();
-        $excepcion = quitar_material($conexion,$clinica["OID_C"]);
+        $excepcion = quitar_clinica($conexion,$clinica["OID_C"]);
 
         cerrarConexionBD($conexion);
 
         if ($excepcion<>"") {
-            $_SESSION["exception"] = $excepcion;
+            $_SESSION["excepcion"] = $excepcion;
             $_SESSION["destino"] = "consulta_clinica.php";
-            Header("Location: exception.php");
+            Header("Location: excepcion.php");
         } else {
             Header("Location: consulta_clinica.php");
         }

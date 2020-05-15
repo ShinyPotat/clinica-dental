@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once("../gestionBD.php");
+    require_once("../../gestionBD.php");
     require_once("gestionar_clinica.php");
 
     if (isset($_SESSION["clinica"])) {
@@ -47,7 +47,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de clínicas</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../../../css/consultaMateriales.css">
 </head>
 <body>
     <a href="../../../html/log.html" ><img class="imagen" src="../../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
@@ -125,22 +125,14 @@
                                         <div>
                                             <div>
                                                 <input type="hidden" name="OID_C" id="OID_C" value="<?php echo $fila["OID_C"];?>">
-                                                <input type="hidden" name="NOMBRE" id="NOMBRE" required value="<?php echo $fila["NOMBRE"];?>">
-                                                <input type="hidden" name="LOCALIZACIÓN" id="LOCALIZACIÓN" required value="<?php echo $fila["LOCALIZACIÓN"];?>">
-                                                <input type="hidden" name="TLF_CONTACTO" id="TLF_CONTACTO" required value="<?php echo $fila["TLF_CONTACTO"];?>">
                                                 <input type="hidden" name="MOROSO" id="MOROSO" required value="<?php echo $fila["MOROSO"];?>">
-                                                <input type="hidden" name="NOMBRE_DUEÑO" id="NOMBRE_DUEÑO" required value="<?php echo $fila["NOMBRE_DUEÑO"];?>">
-                                                <input type="hidden" name="NUM_COLEGIADO" id="NUM_COLEGIADO" required value="<?php echo $fila["NUM_COLEGIADO"];?>">
                                                 <?php
                                                     if (isset($clinica) and ($clinica["OID_C"] == $fila["OID_C"])) { ?>
                                                         <tr>
                                                             <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
                                                             <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
                                                             <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
-                                                            <td>
-                                                                <input type="radio" name="MOROSO" id="MOROSO" value="<?php echo $fila["MOROSO"];?>">Sí
-                                                                <input type="radio" name="MOROSO" id="MOROSO" value="<?php echo $fila["MOROSO"];?>">No
-                                                            </td>
+                                                            <td><?php echo $fila["MOROSO"];?></td>
                                                             <td><input type="text" name="NOMBRE_DUEÑO" id="NOMBRE_DUEÑO" value="<?php echo $fila["NOMBRE_DUEÑO"];?>"></td>
                                                             <td><input type="text" name="NUM_COLEGIADO" id="NUM_COLEGIADO" value="<?php echo $fila["NUM_COLEGIADO"];?>"></td>
                                               <?php } else { ?>
