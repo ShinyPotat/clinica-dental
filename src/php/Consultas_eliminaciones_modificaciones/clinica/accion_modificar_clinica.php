@@ -9,7 +9,7 @@
         require_once("gestionar_clinica.php");
 
         $conexion = crearConexionBD();
-        $excepcion = modificar_clinica($conexion,$clinica["OID_C"],$clinica["LOCALIZACIÓN"],$clinica["TLF_CONTACTO"],$clinica["NOMBRE_DUEÑO"],$clinica["NUM_COLEGIADO"]);
+        $excepcion = modificar_clinica($conexion,$clinica["OID_C"],$clinica["NOMBRE"],$clinica["LOCALIZACIÓN"],$clinica["TLF_CONTACTO"],$clinica["NOMBRE_DUEÑO"],$clinica["NUM_COLEGIADO"]);
 
         cerrarConexionBD($conexion);
 
