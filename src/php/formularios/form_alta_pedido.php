@@ -64,8 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p><span class="error">&emsp;* campo requerido</span></p>
         <p>
         &emsp;
-        Fecha de solicitud: &emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" id="fechaSolicitud" name="fechaSolicitud" value="<?php echo $fechaSolicitud;?>">
-        <span class="error"> <?php echo $fechaSolicitudErr;?></span>
+        Fecha de solicitud: &emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" id="fechaSolicitud" name="fechaSolicitud" value="<?php echo $fechaSolicitud;?>"
+                                            oninput="document.getElementById('errorSolicitud').innerHTML = solicitudValidation(document.getElementById('fechaSolicitud').value)">
+        <span id="errorSolicitud" class="error"> <?php echo $fechaSolicitudErr;?></span>
         </p>
         &emsp;
         Fecha de de entrega:&emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" id="fechaEntrega" name="fechaEntrega" value="<?php echo $fechaEntrega;?>"
