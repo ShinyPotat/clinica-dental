@@ -23,3 +23,16 @@ function dateValidation(entrada,entrega) {
 
     return error;
 }
+
+function entradaValidation(fechaEntrada) {
+    var today = new Date();
+    fechaEntrada = new Date(fechaEntrada);
+
+    if(dates.compare(fechaEntrada,today) == 1){
+        console.error("Error con la fecha");
+        var error = "Fecha mayor al dia de hoy";
+    }else{
+        var error = "";
+    }
+    return error;
+}
