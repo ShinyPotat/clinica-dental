@@ -1,0 +1,87 @@
+<?php
+    function consultarTodasFacturas($conexion){
+        $consulta = "SELECT * FROM FACTURAS ORDER BY OID_F";
+        return $conexion->query($consulta);
+    }
+
+    function total_consulta($conexion){
+	    try {
+	    	$total_consulta = "SELECT COUNT(*) AS TOTAL FROM FACTURAS";
+
+	    	$stmt = $conexion->query($total_consulta);
+	    	$result = $stmt->fetch();
+	    	$total = $result['TOTAL'];
+	    	return  $total;
+	    }
+	    catch ( PDOException $e ) {
+	    	/*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+	    }
+    } 
+
+    function consulta_paginada( $conn, $pag_num, $pag_size ){
+	    try {
+	    	$primera = ( $pag_num - 1 ) * $pag_size + 1;
+	    	$ultima  = $pag_num * $pag_size;
+	    	$consulta_paginada = 
+	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM FACTURAS ORDER BY OID_F ) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
+
+	    	$stmt = $conn->prepare( $consulta_paginada );
+	    	$stmt->bindParam( ':primera', $primera );
+	    	$stmt->bindParam( ':ultima',  $ultima  );
+	    	$stmt->execute();
+	    	return $stmt;
+	    }	
+	    catch ( PDOException $e ) {
+	    	/*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+	    }
+    } 
+
+    function quitar_factura($conexion,$oidFactura){
+        try{
+            $stmt=$conexion->prepare('CALL eliminar_factura(:oidFactura)');
+            $stmt->bindParam(':OidFactura',$oidFactura);
+            $stmt->execute();
+            return "";
+        }catch(PDOException $e) {
+            /*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+        }
+    }
+
+    function modificarfactura($conexion,$oidFactura,$fecha_cobro,$fecha_vencimiento,$fecha_factura){
+        try{
+            $stmt=$conexion->prepare('CALL Modifica_factura(:oidFactura,:fecha_cobro,:fecha_vencimiento,:fecha_factura)');
+            $stmt->bindParam(':oidFactura',$oidMaterial);
+            $stmt->bindParam(':fecha_cobro',$fecha_cobro);
+            $stmt->bindParam(':fecha_vencimiento',$fecha_vencimiento);
+            $stmt->bindParam(':fecha_factura',$fecha_factura);
+            $stmt->execute();
+            return "";
+        }catch(PDOException $e) {
+            /*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+        }
+    }
+
+    function crear_Factura($conexion,$fecha_cobro,$fecha_vencimiento,$fecha_factura){
+        try{
+            $stmt=$conexion->prepare('CALL crear_Factura(:fecha_cobro,:fecha_vencimiento,:fecha_factura)');
+            $stmt->bindParam(':fecha_cobro',$fecha_cobro);
+            $stmt->bindParam(':fecha_vencimiento',$fecha_vencimiento);
+            $stmt->bindParam(':fecha_factura',$fecha_factura);
+            $stmt->execute();
+            return "";
+        }catch(PDOException $e) {
+            /*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+        }
+    }
+
+?>
