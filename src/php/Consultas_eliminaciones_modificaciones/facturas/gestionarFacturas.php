@@ -53,13 +53,14 @@
         }
     }
 
-    function modificarfactura($conexion,$oidFactura,$fecha_cobro,$fecha_vencimiento,$fecha_factura){
+    function modificar_factura($conexion,$oidFactura,$fecha_cobro,$fecha_vencimiento,$fecha_factura,$precio_total){
         try{
-            $stmt=$conexion->prepare('CALL Modifica_factura(:oidFactura,:fecha_cobro,:fecha_vencimiento,:fecha_factura)');
+            $stmt=$conexion->prepare('CALL Modifica_factura(:oidFactura,:fecha_cobro,:fecha_vencimiento,:fecha_factura,:precio_total)');
             $stmt->bindParam(':oidFactura',$oidMaterial);
             $stmt->bindParam(':fecha_cobro',$fecha_cobro);
             $stmt->bindParam(':fecha_vencimiento',$fecha_vencimiento);
             $stmt->bindParam(':fecha_factura',$fecha_factura);
+            $stmt->bindParam(':precio_total',$precio_total);
             $stmt->execute();
             return "";
         }catch(PDOException $e) {
@@ -69,12 +70,13 @@
         }
     }
 
-    function crear_Factura($conexion,$fecha_cobro,$fecha_vencimiento,$fecha_factura){
+    function crear_Factura($conexion,$fecha_cobro,$fecha_vencimiento,$fecha_factura,$precio_total){
         try{
-            $stmt=$conexion->prepare('CALL crear_Factura(:fecha_cobro,:fecha_vencimiento,:fecha_factura)');
+            $stmt=$conexion->prepare('CALL crear_Factura(:fecha_cobro,:fecha_vencimiento,:fecha_factura,:precio_total)');
             $stmt->bindParam(':fecha_cobro',$fecha_cobro);
             $stmt->bindParam(':fecha_vencimiento',$fecha_vencimiento);
             $stmt->bindParam(':fecha_factura',$fecha_factura);
+            $stmt->bindParam(':precio_total',$precio_total);
             $stmt->execute();
             return "";
         }catch(PDOException $e) {

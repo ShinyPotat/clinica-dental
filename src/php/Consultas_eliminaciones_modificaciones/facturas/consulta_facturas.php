@@ -39,7 +39,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
-    <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
+    <link rel="stylesheet", type="text/css", href="../../../css/consultaFacturas.css">
 </head>
 <body>
 
@@ -66,12 +66,10 @@
             <option value="3">Opcion 3</option>
         </select>
     </div>
-    <a href="../../../php/formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
-    <a href= "../../../php/formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
-    <a href="../../../php/formularios/form_alta_proveedor.php" class="botonNuevoProveedor">Nuevo Proveedor</a>
-    <a href="#" class="botonPedidos">Pedidos</a>
-    <a href= "../materiales/consulta_materiales.php" class="botonMateriales">Materiales</a>
-    <a href="../proveedor/consulta_proveedores.php" class="botonProveedores">Proveedores</a>
+    
+    <a href= "../../../php/formularios/form_alta_facturas.php" class="botonNuevaFactura">Nueva factura</a>
+    <a href= "../materiales/consulta_facturas.php" class="botonFactura">Facturas</a>
+    
     <script src="../../../js/hora.js"></script>
     <a href="../../../html/accesorapido.html" class="buttonAtras">«</a> 
     <p class="volver">Volver</p>
@@ -120,24 +118,27 @@
                             <input id="FECHA_COBRO" name="FECHA_COBRO" type="hidden" required value="<?php echo $fila["FECHA_COBRO"];?>">
                             <input name="FECHA_VENCIMIENTO" id="FECHA_VENCIMIENTO" type= "hidden" required value="<?php echo $fila["FECHA_VENCIMIENTO"];?>">
                             <input id="FECHA_FACTURA" name="FECHA_FACTURA" type="hidden" required value="<?php echo $fila["FECHA_FACTURA"];?>">
+                            <input id="PRECIO_TOTAL" name="PRECIO_TOTAL" type="hidden" required value="<?php echo $fila["PRECIO_TOTAL"];?>">
                             <?php
-                                if(isset($material) and ($material["OID_F"] == $fila["OID_F"])){ ?>
+                                if(isset($factura) and ($factura["OID_F"] == $fila["OID_F"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                        <td><input id="FECHA_COBRO" name="FECHA_COBRO" type="number" value="<?php echo $fila["FECHA_COBRO"];?>"></td>
-                                        <td><input id="FECHA_VENCIMIENTO" name="FECHA_VENCIMIENTO" type="number" value="<?php echo $fila["FECHA_VENCIMIENTO"];?>"></td>
-                                        <td><input id="FECHA_FACTURA" name="FECHA_FACTURA" type="number" value="<?php echo $fila["FECHA_FACTURA"];?>"></td>
+                                        <td><input id="FECHA_COBRO" name="FECHA_COBRO" type="date" value="<?php echo $fila["FECHA_COBRO"];?>"></td>
+                                        <td><input id="FECHA_VENCIMIENTO" name="FECHA_VENCIMIENTO" type="date" value="<?php echo $fila["FECHA_VENCIMIENTO"];?>"></td>
+                                        <td><input id="FECHA_FACTURA" name="FECHA_FACTURA" type="date" value="<?php echo $fila["FECHA_FACTURA"];?>"></td>
+                                        <td><input id="PRECIO_TOTAL" name="PRECIO_TOTAL" type="number" value="<?php echo $fila["PRECIO_TOTAL"];?>"></td>
                         <?php }else{ ?>
                                     <input id="FECHA_FACTURA" name="FECHA_FACTURA" type="hidden" value="<?php echo $fila["FECHA_FACTURA"];?>">
                                     <tr>
                                         <td><?php echo $fila["FECHA_COBRO"];?></td>              <!-- columnas -->
                                         <td><?php echo $fila["FECHA_VENCIMIENTO"];?></td>
                                         <td><?php echo $fila["FECHA_FACTURA"];?></td>
+                                        <td><?php echo $fila["PRECIO_TOTAL"];?></td>
                         <?php } ?>
                         </div>          
                                         <div>       <!-- columna de los botones -->
                                             <td>
                                                 <?php 
-                                                if (isset($material) and ($material["OID_F"] == $fila["OID_F"])) { ?>
+                                                if (isset($factura) and ($factura["OID_F"] == $fila["OID_F"])) { ?>
                                                     <button id="Guardar" name="Guardar" type="submit">Guardar</button>
                                         <?php }else{ ?>
                                                     <button id="Editar" name="Editar" type="submit">Editar</button>

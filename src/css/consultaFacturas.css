@@ -1,0 +1,246 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(#0f866d, #1390e4);
+    font-family: 'Times New Roman', Times, serif;
+   
+
+}
+.block{
+    height: 20%;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+    
+}
+.imagen{
+    position: absolute;
+    z-index: 1;
+    left:3%;
+    max-width: 100%;
+    height: auto;
+    
+}
+.calendario{
+    position: absolute;
+    left: 80.5%;
+    top: 14%;
+    max-width: 100%;
+    height: auto;
+
+}
+.reloj{
+    position: absolute;
+    left: 94%;
+    top:16%;
+    max-width: 100%;
+    height: auto;
+}
+.usuario{
+    position: absolute;
+    left: 85%;
+    top:48%;
+    max-width: 100%;
+    height: auto;
+    
+}
+.flechaA{
+    position: absolute;
+    left: 95.7%;
+    top:8%;
+    cursor: pointer;
+    visibility: hidden;
+    
+}
+.botonUsuario{
+    background:    #ffffff;
+    border:        1% solid #2b86da;
+    border-radius: 1%;
+    padding:       0.5% 2%;
+    font:          normal bold 0.8vw/1 "Open Sans", sans-serif;
+    text-align:    right;
+    text-decoration: none;
+    position: absolute;
+    left: 87.5%;
+    top: 43%;
+    max-width: 100%;
+    height: auto;
+}
+.acerca{
+    color: turquoise;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 0.8vw;
+    position: absolute;
+    left: 74%;
+    top: 50%;
+    text-decoration: none;
+    max-width: 100%;
+    height: auto;
+}
+#box {
+    font-family: 'Arial', sans-serif;
+    position: absolute;
+    font-weight: bold;
+    font-size: 0.8vw;
+    left: 75%;
+    top:14%;
+    max-width: 100%;
+    height: auto;
+  }
+
+#box-date {
+    margin: 4% 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+#box-date span {
+    color: #848d95;
+    font-size: 80%;
+    max-width: 100%;
+    height: auto;
+  
+}
+  
+#box-time {
+    color: #848d95;
+    font-size: 120%;
+    display: block;
+    position: fixed;
+    left: 88%;
+    top: 3%;
+    max-width: 100%;
+    height: auto;
+  }
+  
+span.hm-time, span.s-time {
+    padding: 8% 7%;
+    border-radius: 1%;
+  }
+  
+  /* Aquí se cambia el color de fondo de las horas y los minutos */
+span.hm-time {
+    background: #24AADD;
+    color: #FFF;
+  }
+  
+  /* Aquí se cambia el color de fondo de los segundos */
+span.s-time {
+    background: #E5E5E5;
+  }
+  
+span.f-time {
+    font-size: 0.8vw;
+  }
+.botonNuevaFactura {
+    background-color:#ffffff;
+	border-radius:40%;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:1vw;
+	padding:1% 1%;
+	text-decoration:none;
+    position: absolute;
+    top:23%;
+    left:5%;
+    
+    }
+.buttonAtras {
+    background-color:#413c3c;
+	border-radius:40%;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1vw;
+	padding:2% 3%;
+	text-decoration:none;
+    position: absolute;
+    top: 80%;
+    left: 5%;
+}
+.volver{
+    color:black;
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 1vw;
+    position: absolute;
+    left: 7%;
+    top: 90%;
+}
+
+table.blueTable {
+    border: 1px solid #1C6EA4;
+    width: 70%;
+    height: 40%;
+    background-color: white;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    position: absolute;
+    top:33%;
+    left:20%;
+  }
+  /*Lineas separadoras entre los campos */
+  table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+  }
+  /*Tamaño de la letra en cada campo*/
+  table.blueTable td {
+    font-size: 0.8vw;
+  }
+  /*Para ir alternando el color entro los campos(se va seleccionando con even)*/
+  table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.blueTable thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+.formulario{
+    position: absolute;
+    top:25%;
+    left: 50%;
+    z-index: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8vw;
+    font-style: bold;
+    color: white;
+
+}
+.enlaces{
+    position: absolute;
+    top:25%;
+    left:67%;
+    color: white;
+}
+.botonFactura{
+    background-color:#ffffff;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:1vw;
+	padding:1% 4%;
+	text-decoration:none;
+    position: absolute;
+    top:40%;
+    left:5%;
+}
+
