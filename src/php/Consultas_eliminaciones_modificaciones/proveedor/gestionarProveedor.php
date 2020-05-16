@@ -55,10 +55,10 @@
 
     function modificar_proveedor($conexion,$oidProveedor,$nombre,$localizacion,$tlf_contacto){
         try{
-            $stmt=$conexion->prepare('CALL Modifica_proveedor(:oidProveedor,:nombre,:localizacion,:tlf_contacto)');
+            $stmt=$conexion->prepare('CALL modifica_proveedor(:oidProveedor,:nombre,:localización,:tlf_contacto)');
             $stmt->bindParam(':oidProveedor',$oidProveedor);
             $stmt->bindParam(':nombre',$nombre);
-            $stmt->bindParam(':localizacion',$localizacion);
+            $stmt->bindParam(':localización',$localizacion);
             $stmt->bindParam(':tlf_contacto',$tlf_contacto);
             $stmt->execute();
             return "";
