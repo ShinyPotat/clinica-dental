@@ -97,7 +97,7 @@ CREATE table materiales(
     stock        int CHECK (stock >= 0),
     stock_min    int CHECK (stock_min >= 0),
     stock_critico int CHECK (stock_critico >= 0),
-    unidad        varchar2(10),
+    unidad        varchar2(20),
     Primary Key(OID_M)
 );
  

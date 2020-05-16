@@ -69,4 +69,22 @@
         }
     }
 
+    function crear_material($conexion,$nombre,$categoria,$stock,$stockMinimo,$stockCritico,$unidad){
+        try{
+            $stmt=$conexion->prepare('CALL crear_material(:nombre,:categoria,:stock,:stockMinimo,:stockCritico,:unidad)');
+            $stmt->bindParam(':nombre',$nombre);
+            $stmt->bindParam(':categoria',$categoria);
+            $stmt->bindParam(':stock',$stock);
+            $stmt->bindParam(':stockMinimo',$stockMinimo);
+            $stmt->bindParam(':stockCritico',$stockCritico);
+            $stmt->bindParam(':unidad',$unidad);
+            $stmt->execute();
+            return "";
+        }catch(PDOException $e) {
+            /*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+        }
+    }
+
 ?>

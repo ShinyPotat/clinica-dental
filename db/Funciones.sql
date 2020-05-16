@@ -13,8 +13,6 @@ BEGIN
 END;
 /
 
-execute insertar_usuario('javi','pacheco','pachecomarquez@gmail.com','shiny','jamau','clinica');
-
 --insertar clinica
 CREATE OR REPLACE PROCEDURE crear_clinica (
     w_nombre IN Clinicas.nombre%TYPE,
@@ -324,6 +322,37 @@ BEGIN
     UPDATE clinicas SET num_colegiado=w_num_colegiado WHERE oid_c=w_oid_c;
 END;
 /
+
+--Modificar factura
+CREATE OR REPLACE PROCEDURE modifica_clinica(
+    w_oid_f IN facturas.oid_f%TYPE,
+    w_fecha_cobro IN facturas.fecha_cobro%TYPE,
+    w_fecha_vencimiento IN facturas.fecha_vencimiento%TYPE,
+    w_fecha_factura IN facturas.fecha_factura%TYPE,
+    w_precio_total IN facturas.precio_total%TYPE,
+)IS
+BEGIN
+    UPDATE facturas SET fecha_cobro=w_fecha_cobro WHERE oid_f=w_oid_f;
+    UPDATE facturas SET fecha_vencimiento=w_fecha_vencimiento WHERE oid_f=w_oid_f;
+    UPDATE facturas SET fecha_factura=w_fecha_factura WHERE oid_f=w_oid_f;
+    UPDATE facturas SET precio_total=w_precio_total WHERE oid_f=w_oid_f;
+END;
+/
+
+--Modificar proveedores
+CREATE OR REPLACE PROCEDURE modifica_clinica(
+    w_oid_pr IN proveedores.oid_pr%TYPE,
+    w_nombre IN proveedores.nombre%TYPE,
+    w_localización IN proveedore.localización%TYPE,
+    w_tlf_contacto IN proveedores.tlf_contacto%TYPE,
+)IS
+BEGIN
+    UPDATE clinicas SET nombre=w_nombre WHERE oid_pr=w_oid_pr;
+    UPDATE clinicas SET localización=w_localización WHERE oid_pr=w_oid_pr;
+    UPDATE clinicas SET tlf_contacto=w_tlf_contacto WHERE oid_pr=w_oid_pr;
+END;
+/
+
 --FUNCION ASSERT_EQUALS
 CREATE OR REPLACE FUNCTION ASSERT_EQUALS(
     salida BOOLEAN,

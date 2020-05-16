@@ -9,8 +9,8 @@
 
     <body>
     <?php 
-    $nameErr = $categoriaErr = $stockInicialErr = $stockMinErr = $stockCritErr = "";
-    $name = $categoria = $stockInicial = $stockMin = $stockCrit = "";
+    $nameErr = $categoriaErr = $stockInicialErr = $stockMinErr = $stockCritErr = $unidadErr = "";
+    $name = $categoria = $stockInicial = $stockMin = $stockCrit = $unidad = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["name"])) {
@@ -54,6 +54,14 @@
               $stockCritErr = "El valor debe de ser mayor o igual que 0";
             }
           }
+          if (empty($_POST["unidad"])) {
+            $unidadErr = "";
+          } else {
+            $unidad = test_input($_POST["unidad"]);
+            if ($_POST["unidad"] < 0) {
+              $unidadErr = "errror de unidad";
+            }
+          }
         
         function test_input($data) {
             $data = trim($data);
@@ -84,8 +92,9 @@
             <option value="3">Opcion 3</option>
         </select>
     </div>
+    <!-- esto es php echo htmlspecialchars($_SERVER["../materiales/accion_alta_material.php"]); -->
     <div class="bloque">
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+      <form method="post" action="../Consultas_eliminaciones_modificaciones/materiales/accion_alta_material.php">  
           <p><span class="error">&emsp;* campo requerido</span></p>
                 
                     <p>
@@ -124,6 +133,11 @@
                         Stock Crítico*: &emsp;<input required placeholder="Stock Crítico" type="number" name="stockCrit" id="stockCrit" value="<?php echo $stockCrit;?>" min="0">
                         <span id="errorStockCrit" class="error"> <?php echo $stockCritErr;?></span> 
                     </p>
+                    <p>
+                        &emsp;
+                        unidad*: &emsp;<input required placeholder="unidad" type="text" name="unidad" id="unidad" value="<?php echo $unidad;?>" >
+                        <span id="errorStockCrit" class="error"> <?php echo $stockCritErr;?></span> 
+                    </p>
                 <input type="submit" name="submit" value="Enviar" class="enviar">
                 <a href="../../html/listaInventarioPedidos.html" class="buttonAtras">Atrás</a>
             </form>
@@ -139,6 +153,8 @@
                 echo $stockMin;
                 echo "<br>";
                 echo $stockCrit;
+                echo "<br>";
+                echo $unidad;
                 echo "<br>";
 
                 ?>
