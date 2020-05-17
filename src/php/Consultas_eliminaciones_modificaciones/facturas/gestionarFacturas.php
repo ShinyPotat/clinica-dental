@@ -53,13 +53,17 @@
         }
     }
 
+    function getFechaFormateada($fecha){
+		return date('d/m/Y', strtotime($fecha));
+	}
+
     function modificar_factura($conexion,$oidFactura,$fecha_cobro,$fecha_vencimiento,$fecha_factura,$precio_total){
         try{
             $stmt=$conexion->prepare('CALL Modifica_factura(:oidFactura,:fecha_cobro,:fecha_vencimiento,:fecha_factura,:precio_total)');
             $stmt->bindParam(':oidFactura',$oidMaterial);
-            $stmt->bindParam(':fecha_cobro',$fecha_cobro);
-            $stmt->bindParam(':fecha_vencimiento',$fecha_vencimiento);
-            $stmt->bindParam(':fecha_factura',$fecha_factura);
+            $stmt->bindParam(':fecha_cobro',getFechaFormateada($fecha_cobro));
+            $stmt->bindParam(':fecha_vencimiento',getFechaFormateada($fecha_vencimiento));
+            $stmt->bindParam(':fecha_factura',getFechaFormateada($fecha_factura));
             $stmt->bindParam(':precio_total',$precio_total);
             $stmt->execute();
             return "";
