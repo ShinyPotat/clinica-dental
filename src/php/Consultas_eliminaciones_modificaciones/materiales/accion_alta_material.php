@@ -6,19 +6,18 @@
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_REQUEST["name"])) {
-        $material = $_SESSION["name"];
-        $material = $_REQUEST["categoria"];
-        $material = $_REQUEST["stockInicial"];
-        $material = $_REQUEST["stockMin"];
-        $material = $_REQUEST["stockCrit"];
-        $material = $_REQUEST["unidad"];
+        $material["name"] = $_REQUEST["name"];
+        $material["categoria"] = $_REQUEST["categoria"];
+        $material["stockInicial"] = $_REQUEST["stockInicial"];
+        $material["stockMin"] = $_REQUEST["stockMin"];
+        $material[["stockCrit"]] = $_REQUEST["stockCrit"];
+        $material["unidad"] = $_REQUEST["unidad"];
 		$_SESSION["material"] = null;
 		$_SESSION["errores"] = null;
 	}
 	else{
         Header("Location: ../formularios/form_alta_material.php");
-    } 
-			
+	} 
 
 	$conexion = crearConexionBD(); 
 

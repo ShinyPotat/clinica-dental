@@ -15,7 +15,7 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/biblio.css" />
+	<link rel="stylesheet" type="text/css" href="" />
 	<title>Clínica Dental: ¡Se ha producido un problema!</title>
 </head>
 <body>	
@@ -26,7 +26,7 @@
 		<p>Ocurrió un problema durante el procesado de los datos. Pulse <a href="<?php echo $destino ?>">aquí</a> para volver a la página principal.</p>
 		<?php } else { ?>
 		<p>Ocurrió un problema para acceder a la base de datos. </p>
-		<?php } ?>
+		<?php }?>
 	</div>
 	
 	<div class='excepcion'>	
