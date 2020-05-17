@@ -1,0 +1,101 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(#0f866d, #1390e4);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.bloque{
+    border-radius: 4%  4%  4%  4%;
+    -moz-border-radius:  4%  4%  4%  4%;
+    -webkit-border-radius:  4%  4%  4%  4%;
+    width: 23%;
+    height: 50%;
+    border: 5px solid #ffffff;
+    position: absolute;
+    top: 25%;
+    left: 37%;
+    background-color:#87CEEB;
+    max-width: 100%;
+}
+.logo{
+    position: absolute;
+    top:36%;
+    left: 3%;
+    height: auto;
+    max-width: 100%;
+    width:33%;
+}
+.mascota{
+    position: absolute;
+    height: auto;
+    max-width: 100%;
+    width: 25%;
+    left: 64%;
+    top:26%;
+}
+.encabezado{
+    color: white;
+    font-style: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2vw;
+    margin-left: 17%;
+
+}
+.user{
+    width: 50%;
+    padding: 3% 4%;
+    margin-left: 20%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.pass{
+    width: 50%;
+    padding: 3% 4%;
+    margin-top: 5%;
+    margin-left: 20%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+    width: 50%;
+    padding: 3% 4%;
+    margin-top: 5%;
+    background-color: #87CEEB;
+    margin-left: 20%;
+    display: inline-block;
+    border: 3% solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-style: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1vw;
+    margin-left: 20%;
+  }
+.newUser{
+    position: absolute;
+    top:80%;
+    left:16%
+}
+.usuario{
+    position: absolute;
+    top:28%;
+    left:10%;
+    width: 7%;
+    height: auto;
+}
+.rest{
+    position: absolute;
+    top:45%;
+    left:10%;
+    width: 7%;
+    height: auto;
+}
+  
