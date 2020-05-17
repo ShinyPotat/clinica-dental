@@ -135,7 +135,7 @@
                     </p>
                     <p>
                         &emsp;
-                        unidad*: &emsp;<input required placeholder="unidad" type="text" name="unidad" id="unidad" value="<?php echo $unidad;?>" >
+                        Unidad*: &emsp;<input required placeholder="unidad" type="text" name="unidad" id="unidad" value="<?php echo $unidad;?>" >
                         <span id="errorStockCrit" class="error"> <?php echo $stockCritErr;?></span> 
                     </p>
                 <input type="submit" name="submit" value="Enviar" class="enviar">
