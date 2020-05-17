@@ -107,6 +107,7 @@
                 <th>stock</th>
                 <th>stockMinimo</th>
                 <th>stockCritico</th>
+                <th>unidad</th>
                 <th>Opciones</th>
             </tr>
             </thead>
@@ -130,6 +131,7 @@
                                         <td><input id="STOCK" name="STOCK" type="number" value="<?php echo $fila["STOCK"];?>"></td>
                                         <td><input id="STOCK_MIN" name="STOCK_MIN" type="number" value="<?php echo $fila["STOCK_MIN"];?>"></td>
                                         <td><input id="STOCK_CRITICO" name="STOCK_CRITICO" type="number" value="<?php echo $fila["STOCK_CRITICO"];?>"></td>
+                                        <td><?php echo $fila["UNIDAD"];?></td>
                         <?php }else{ ?>
                                     <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"];?>">
                                     <tr>
@@ -138,6 +140,7 @@
                                         <td><?php echo $fila["STOCK"];?></td>
                                         <td><?php echo $fila["STOCK_MIN"];?></td>
                                         <td><?php echo $fila["STOCK_CRITICO"];?></td>
+                                        <td><?php echo $fila["UNIDAD"];?></td>
                         <?php } ?>
                         </div>          
                                         <div>       <!-- columna de los botones -->
