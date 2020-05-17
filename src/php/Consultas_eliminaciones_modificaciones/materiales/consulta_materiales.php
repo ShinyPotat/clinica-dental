@@ -41,6 +41,7 @@
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
     <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
+    
 </head>
 <body>
 
@@ -147,11 +148,11 @@
                                             <td>
                                                 <?php 
                                                 if (isset($material) and ($material["OID_M"] == $fila["OID_M"])) { ?>
-                                                    <button id="Guardar" name="Guardar" type="submit">Guardar</button>
+                                                    <button class="consulta" id="Guardar" name="Guardar" type="submit"><img src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/16/Save-as-icon.png" alt="x" />Guardar</button>
                                         <?php }else{ ?>
-                                                    <button id="Editar" name="Editar" type="submit">Editar</button>
+                                                    <button class="consulta" id="Editar" name="Editar" type="submit"><img src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/16/edit-icon.png" alt="x" />Editar</button>
                                         <?php } ?>
-                                                <button id="Borrar" name="Borrar" type="submit">Borrar
+                                                <button class="consulta" id="Borrar" name="Borrar" type="submit"><img src="https://aurea.es/demos/ico/delete.gif" alt="x" />Borrar
                                                 </button>
                                             </td>
                                         </div>   <!-- fin de columna de botones -->
