@@ -10,7 +10,7 @@
         $material["categoria"] = $_REQUEST["categoria"];
         $material["stockInicial"] = $_REQUEST["stockInicial"];
         $material["stockMin"] = $_REQUEST["stockMin"];
-        $material[["stockCrit"]] = $_REQUEST["stockCrit"];
+        $material["stockCrit"] = $_REQUEST["stockCrit"];
         $material["unidad"] = $_REQUEST["unidad"];
 		$_SESSION["material"] = null;
 		$_SESSION["errores"] = null;
