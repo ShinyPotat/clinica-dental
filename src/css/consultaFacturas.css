@@ -244,3 +244,14 @@ table.blueTable {
     left:5%;
 }
 
+.consulta {
+	font: 700 1em Tahoma, Arial, Verdana, sans-serif;
+	color: #fff; background-color: #59B0E5;
+	border: 1px solid #0074a5;
+	border-top: 1px solid #004370;
+	border-left: 1px solid #004370;
+    cursor: pointer;
+    width: auto;
+	overflow: visible; 
+	padding: 3px 8px 2px 6px; 
+}
