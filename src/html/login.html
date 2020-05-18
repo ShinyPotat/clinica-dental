@@ -3,15 +3,16 @@
     <head>
         <meta charset="UTF-8" lang="es">
         <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="../css/formulario.css">
+        <link rel="stylesheet" type="text/css" href="../css/login.css">
     </head>
     <body>
 
-        <header>
-            <a href="inicio.html"><img src="../../images/logo.png" width="150" height="80" alt="logo.png"></a>
-        </header>
+        
+    <img src="../../images/logo.png" class="logo"  >
+    <img src="../../images/mascota.png" class="mascota">
+        
 
-        <div class="propiedades">
+    <!--<div class="propiedades">
             <form action="" method="get">
                 <fieldset>
                     <legend>Usuario</legend>
@@ -27,8 +28,19 @@
 
         <div class="mascota">
             <footer>
-                <img src="../../images/mascota.png" alt="mascota.png" width="80" height="80"> 
+                 
             </footer>
+        </div>-->
+        <div class=bloque>
+            <form action="" method="get">
+                <p class="encabezado">Inicio de sesión</p>
+                <input id="user" class="user" type="text" placeholder="Nombre de Usuario" required></p>
+                <img src="../../images/user.png" class="usuario">
+                <input id="pass" class="pass" type="password" placeholder="Contraseña" minlength="8" required></p>
+                <img src="../../images/restringido.png" class="rest">
+                <input type="submit" name="logear" value="Acceder">
+            </form>
+            <a href="../php/user-register/form-register.php" class="newUser">¿Nuevo usuario? Crea una cuenta nueva</a>
         </div>
 
     </body>

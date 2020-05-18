@@ -60,4 +60,22 @@
             return $e->getMessage();
         }
     }
+
+    function crear_clinica($conexion,$nombre,$localizacion,$tlf_contacto,$moroso,$nombre_dueño,$num_colegiado){
+        try{
+            $stmt=$conexion->prepare('CALL crear_clinica(:nombre,:localizacion,:tlf_contacto,:moroso,:nombre_dueño,:num_colegiado)');
+            $stmt->bindParam(':nombre',$nombre);
+            $stmt->bindParam(':localizacion',$localizacion);
+            $stmt->bindParam(':tlf_contacto',$tlf_contacto);
+            $stmt->bindParam(':moroso',$moroso);
+            $stmt->bindParam(':nombre_dueño',$nombre_dueño);
+            $stmt->bindParam(':num_colegiado',$num_colegiado);
+            $stmt->execute();
+            return "";
+        }catch(PDOException $e) {
+            /*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+        }
+    }
 ?>
