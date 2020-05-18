@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
     </div>
     <div class="bloque">
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+      <form method="post" action="../Consultas_eliminaciones_modificaciones/proveedor/accion_alta_proveedor.php">  
           <p><span class="error">&emsp;* campo requerido</span></p>
         <p>
           &emsp;

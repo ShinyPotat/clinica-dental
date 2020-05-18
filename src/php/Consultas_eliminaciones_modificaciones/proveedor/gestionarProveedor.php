@@ -69,4 +69,18 @@
         }
     }
 
+    function crear_proveedor($conexion,$nombre,$Localizacion,$phone){
+        try{
+            $stmt=$conexion->prepare('CALL crear_proveedor(:nombre,:Localizacion,:phone)');
+            $stmt->bindParam(':nombre',$nombre);
+            $stmt->bindParam(':Localizacion',$Localizacion);
+            $stmt->bindParam(':phone',$phone);
+            $stmt->execute();
+            return "";
+        }catch(PDOException $e) {
+            /*$_SESSION['excepcion'] = $e->GetMessage();
+            header("Location: excepcion.php");*/
+            return $e->getMessage();
+        }
+    }
 ?>
