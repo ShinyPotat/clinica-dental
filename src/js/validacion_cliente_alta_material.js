@@ -15,6 +15,17 @@ function lettersValidation(name) {
     return error;
 }
 
+function critValidation(stockMin,stockCrit) {
+    
+    if (stockMin<stockCrit) {
+        console.error("El stock crítico debe ser menor que el stock mínimo");
+        var error = "El stock crítico debe ser menor que el stock mínimo";
+    } else {
+        var error = "";        
+    }
+    return error;
+}
+
 /*function consultaStock(){
     var stock = document.getElementById("stock").value;
     var min = document.getElementById("stockMin").value;

@@ -130,13 +130,14 @@
                     </p>
                     <p>
                         &emsp;
-                        Stock Crítico*: &emsp;<input required placeholder="Stock Crítico" type="number" name="stockCrit" id="stockCrit" value="<?php echo $stockCrit;?>" min="0">
+                        Stock Crítico*: &emsp;<input required placeholder="Stock Crítico" type="number" name="stockCrit" id="stockCrit" value="<?php echo $stockCrit;?>" min="0"
+                                                      oninput="document.getElementById('errorStockCrit').innerHTML = critValidation(document.getElementById('stockMin').value,document.getElementById('stockCrit').value)">
                         <span id="errorStockCrit" class="error"> <?php echo $stockCritErr;?></span> 
                     </p>
                     <p>
                         &emsp;
                         Unidad*: &emsp;<input required placeholder="unidad" type="text" name="unidad" id="unidad" value="<?php echo $unidad;?>" >
-                        <span id="errorStockCrit" class="error"> <?php echo $stockCritErr;?></span> 
+                        <span id="errorUnidad" class="error"> <?php echo $stockCritErr;?></span> 
                     </p>
                 <input type="submit" name="submit" value="Enviar" class="enviar">
                 <a href="../../html/listaInventarioPedidos.html" class="buttonAtras">Atrás</a>
