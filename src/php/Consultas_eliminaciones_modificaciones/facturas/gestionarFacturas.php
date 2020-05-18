@@ -77,9 +77,9 @@
     function crear_Factura($conexion,$fecha_cobro,$fecha_vencimiento,$fecha_factura,$precio_total){
         try{
             $stmt=$conexion->prepare('CALL crear_Factura(:fecha_cobro,:fecha_vencimiento,:fecha_factura,:precio_total)');
-            $stmt->bindParam(':fecha_cobro',$fecha_cobro);
-            $stmt->bindParam(':fecha_vencimiento',$fecha_vencimiento);
-            $stmt->bindParam(':fecha_factura',$fecha_factura);
+            $stmt->bindParam(':fecha_cobro',getFechaFormateada($fecha_cobro));
+            $stmt->bindParam(':fecha_vencimiento',getFechaFormateada($fecha_vencimiento));
+            $stmt->bindParam(':fecha_factura',getFechaFormateada($fecha_factura));
             $stmt->bindParam(':precio_total',$precio_total);
             $stmt->execute();
             return "";

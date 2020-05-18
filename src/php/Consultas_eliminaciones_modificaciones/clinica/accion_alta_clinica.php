@@ -22,13 +22,13 @@
 
 	$conexion = crearConexionBD(); 
 
-    crear_clinica($conexion, $clinica["name"], $clinica["local"], $clinica["phone"], $clinica["moroso"], $clinica["nameD"], $clinica["nCol"]);
+    $excepcion = crear_clinica($conexion, $clinica["name"], $clinica["local"], $clinica["phone"], $clinica["moroso"], $clinica["nameD"], $clinica["nCol"]);
 
     // SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 	if($excepcion<>""){
 		$_SESSION["excepcion"] = $excepcion;
 		$_SESSION["destino"]= "consulta_clinica.php";
-		header("Location: excepcion.php");
+		header("Location: ../../excepcion.php");
 	}else{
 		// EN OTRO CASO, VOLVER A "CONSULTA_MATERIALES.PHP"
 	    header("Location: consulta_clinica.php");
