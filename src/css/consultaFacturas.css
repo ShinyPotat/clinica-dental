@@ -192,6 +192,7 @@ table.blueTable {
     position: absolute;
     top:33%;
     left:20%;
+    margin-bottom: 5%;
   }
   /*Lineas separadoras entre los campos */
   table.blueTable td, table.blueTable th {

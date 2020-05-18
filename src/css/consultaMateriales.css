@@ -216,15 +216,16 @@ span.f-time {
 
 table.blueTable {
     border: 1px solid #1C6EA4;
-    width: 70%;
-    height: 40%;
     background-color: white;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     position: absolute;
+    margin-bottom: 5%;
     top:33%;
     left:20%;
+    height: 40%;
+    width: 70%;
   }
   /*Lineas separadoras entre los campos */
   table.blueTable td, table.blueTable th {
