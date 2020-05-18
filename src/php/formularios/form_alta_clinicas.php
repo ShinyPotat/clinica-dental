@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
     </div>
     <div class="bloque">
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+        <form method="post" action="../Consultas_eliminaciones_modificaciones/clinica/accion_alta_clinica.php">  
           <p><span class="error"> &emsp;* campo requerido</span></p>
       <p>
         &emsp;
@@ -114,11 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                          onkeyup="document.getElementById('errorNum').innerHTML = numberValidation(document.getElementById('phone').value);">
       <span id="errorNum" class="error"> <?php echo $phoneErr;?></span>
       </p>
-      &emsp;
-      Moroso:
-        <input type="radio" name="moroso" class = moroso<?php if (isset($moroso) && $moroso=="Si") echo "checked";?> value="Si" required>Sí
-        <input type="radio" name="moroso" class = moroso<?php if (isset($moroso) && $moroso=="No") echo "checked";?> value="No" >No
-        <span class="error">* <?php echo $morosoErr;?></span>
+          <input id="moroso" name ="moroso" type="hidden" value="N">
       <br><p>
       &emsp;
       Nombre Dueño: &emsp;<input placeholder="Nombre del dueño" class="nameD" type="text" id="nameD" name="nameD" value="<?php echo $nameD;?>"

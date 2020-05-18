@@ -6,7 +6,7 @@
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_SESSION["Ffactura"])) {
-		$nuevoUsuario = $_SESSION["Ffactura"];
+		$nuevaFactura = $_SESSION["Ffactura"];
 		$_SESSION["Ffactura"] = null;
 		$_SESSION["errores"] = null;
 	}
@@ -17,7 +17,7 @@
 
 	$conexion = crearConexionBD(); 
 
-    alta_usuario($conexion, $nuevoUsuario);
+    alta_usuario($conexion, $nuevaFactura);
 
     // SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 	if($excepcion<>""){
