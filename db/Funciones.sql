@@ -353,17 +353,31 @@ BEGIN
 END;
 /
 
---Modificar proveedores
+--Modificar paciente
 CREATE OR REPLACE PROCEDURE modifica_paciente(
     w_oid_pc IN Pacientes.oid_pc%TYPE,
     w_dni IN Pacientes.dni%TYPE,
     w_fecha_nacimiento IN Pacientes.fecha_nacimiento%TYPE,
-    w_sexo IN Pacientes.sexo%TYPE
+    w_sexo IN Pacientes.e_sexo%TYPE
 )IS
 BEGIN
     UPDATE Pacientes SET dni=w_dni WHERE oid_pc=w_oid_pc;
     UPDATE Pacientes SET fecha_nacimiento=w_fecha_nacimiento WHERE oid_pc=w_oid_pc;
-    UPDATE Pacientes SET sexo=w_sexo WHERE oid_pc=w_oid_pc;
+    UPDATE Pacientes SET e_sexo=w_sexo WHERE oid_pc=w_oid_pc;
+END;
+/
+
+--Modificar encargo
+CREATE OR REPLACE PROCEDURE modifica_encargo(
+    w_oid_e IN encargos.oid_e%TYPE,
+    w_fecha_entrada IN encargos.fecha_entrada%TYPE,
+    w_fecha_entrega IN encargos.fecha_entrega%TYPE,
+    w_Acciones IN encargos.Acciones%TYPE
+)IS
+BEGIN
+    UPDATE encargo SET dni=w_fecha_entrada WHERE oid_e=w_oid_e;
+    UPDATE encargo SET fecha_entrega=w_fecha_entrega WHERE oid_e=w_oid_e;
+    UPDATE encargo SET Acciones=w_Acciones WHERE oid_e=w_oid_e;
 END;
 /
 

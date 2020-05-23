@@ -47,12 +47,16 @@
         }
     }
 
+    function getFechaFormateada($fecha){
+		return date('d/m/Y', strtotime($fecha));
+	}
+
     function modificar_paciente($conexion,$oidPaciente,$DNI,$fechaNacimiento,$Sexo){
         try{
             $stmt=$conexion->prepare('CALL modifica_paciente(:oidPaciente,:DNI,:fechaNacimiento,:Sexo)');
             $stmt->bindParam(':oidMaterial',$oidPaciente);
             $stmt->bindParam(':DNI',$DNI);
-            $stmt->bindParam(':fechaNacimiento',$fechaNacimiento);
+            $stmt->bindParam(':fechaNacimiento',getFechaFormateada($fechaNacimiento));
             $stmt->bindParam(':Sexo',$Sexo);
             $stmt->execute();
             return "";
@@ -65,7 +69,7 @@
         try{
             $stmt=$conexion->prepare('CALL crear_paciente(:DNI,:fecha_nacimiento,:sexo,:oid_c)');
             $stmt->bindParam(':DNI',$DNI);
-            $stmt->bindParam(':fecha_nacimiento',$fecha_nacimiento);
+            $stmt->bindParam(':fecha_nacimiento',getFechaFormateada($fecha_nacimiento));
             $stmt->bindParam(':sexo',$sexo);
             $stmt->bindParam(':oid_c',$oid_c);
             $stmt->execute();
