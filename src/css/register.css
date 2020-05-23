@@ -12,7 +12,8 @@ body{
     -moz-border-radius:  4%  4%  4%  4%;
     -webkit-border-radius:  4%  4%  4%  4%;
     width: 23%;
-    height: 50%;
+    height: auto;
+    padding: 2% 0%;
     border: 5px solid #ffffff;
     position: absolute;
     top: 25%;
@@ -41,24 +42,28 @@ body{
     font-style: bold;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 2vw;
-    margin-left: 17%;
+    position: absolute;
+    top:24%;
+    left:44%;
+    z-index: 1;
+
 
 }
 .user{
+    max-width: 100%;
     width: 50%;
-    padding: 3% 4%;
+    height: auto;
+    padding: 2% 9%;
     margin-left: 20%;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    max-width: 100%;
-    height: auto;
 }
 .pass{
+    max-width: 100%;
     width: 50%;
-    padding: 3% 4%;
-    margin-top: 5%;
+    padding: 2% 3%;
     margin-left: 20%;
     display: inline-block;
     border: 1px solid #ccc;
@@ -68,7 +73,7 @@ body{
 input[type=submit] {
     width: 50%;
     padding: 3% 4%;
-    margin-top: 5%;
+    margin-top: 1%;
     background-color: #87CEEB;
     margin-left: 20%;
     display: inline-block;
@@ -79,30 +84,71 @@ input[type=submit] {
     font-style: bold;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 1vw;
-    margin-left: 20%;
-    max-width: 100%;
-    height: auto;
   }
 .newUser{
     position: absolute;
-    top:75%;
-    left:13%
+    top:94%;
+    left:23%
+
 }
 .usuario{
     position: absolute;
-    top:28%;
-    left:10%;
+    top:20.5%;
+    left:8%;
+    width: 7%;
+    height: auto;
+}
+.apellido{
+    position: absolute;
+    top:30.5%;
+    left:8%;
+    max-width: 100%;
+    width: 7%;
+    height: auto;  
+}
+.correo{
+    position: absolute;
+    top:45.5%;
+    left:8%;
+    max-width: 100%;
+    width: 7%;
+    height: auto;  
+}
+.usuario2{
+    position: absolute;
+    top:55%;
+    left:8%;
+    max-width: 100%;
     width: 7%;
     height: auto;
 }
 .rest{
     position: absolute;
-    top:45%;
-    left:10%;
+    top:63%;
+    left:8%;
+    max-width: 100%;
     width: 7%;
     height: auto;
 }
-.texto{
-    font-size: 1vw;
+.correcto{
+    position: absolute;
+    top:74%;
+    left:4%;
+    max-width: 100%;
+    width: 4%;
+    height: auto;
+}
+.contraseña{
+    position: absolute;
+    top:72%;
+    left:8%;
+    max-width: 100%;
+    width: 7%;
+    height: auto;
 }
   
+.formulario{
+    margin-top: 15%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8vw;
+}
