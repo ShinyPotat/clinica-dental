@@ -28,7 +28,7 @@
 		$_SESSION["destino"]= "consulta_facturas.php";
 		header("Location: ../../excepcion.php");
 	}else{
-		// EN OTRO CASO, VOLVER A "CONSULTA_MATERIALES.PHP"
+		// EN OTRO CASO, VOLVER A "CONSULTA_FACTURAS.PHP"
 		header("Location: consulta_facturas.php");
 	}
 

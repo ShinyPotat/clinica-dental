@@ -10,7 +10,7 @@
 		
 		// CREAR LA CONEXIÓN A LA BASE DE DATOS
 		$conexion = crearConexionBD();
-		// INVOCAR "QUITAR_TITULO"
+		// INVOCAR "QUITAR_FACTURA"
 		$excepcion=quitar_factura($conexion,$factura["OID_F"]);
 		// CERRAR LA CONEXIÓN
 		cerrarConexionBD($conexion);
@@ -19,9 +19,9 @@
 		if($excepcion<>""){
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"]= "consulta_facturas.php";
-			header("Location: excepcion.php");
+			header("Location: ../../excepcion.php");
 		}else{
-		// EN OTRO CASO, VOLVER A "CONSULTA_MATERIALES.PHP"
+		// EN OTRO CASO, VOLVER A "CONSULTA_FACTURAS.PHP"
         header("Location: consulta_facturas.php");
 		}
 

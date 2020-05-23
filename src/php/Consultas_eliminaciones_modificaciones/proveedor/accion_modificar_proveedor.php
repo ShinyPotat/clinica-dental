@@ -10,7 +10,7 @@
 		
 		// CREAR LA CONEXIÓN A LA BASE DE DATOS
 		$conexion = crearConexionBD();
-		// INVOCAR "MODIFICAR_MATERIAL" EN GESTIONMATERIAL
+		// INVOCAR "MODIFICAR_PROVEEDOR" EN GESTIONPROVEEDOR
 		$excepcion = modificar_proveedor($conexion,$proveedor["OID_PR"],$proveedor["NOMBRE"],$proveedor["LOCALIZACIÓN"],$proveedor["TLF_CONTACTO"]);
 		// CERRAR LA CONEXIÓN
 		cerrarConexionBD($conexion);
@@ -20,7 +20,7 @@
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"]= "consulta_proveedores.php";
 			header("Location: ../../excepcion.php");
-		}else{// EN OTRO CASO, VOLVER A "CONSULTA_MATERIALES.PHP"
+		}else{// EN OTRO CASO, VOLVER A "CONSULTA_PROVEEDORES.PHP"
 			header("Location: consulta_proveedores.php");
 		}
 	} 

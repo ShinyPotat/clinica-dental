@@ -10,7 +10,7 @@
 		
 		// CREAR LA CONEXIÓN A LA BASE DE DATOS
 		$conexion = crearConexionBD();
-		// INVOCAR "MODIFICAR_MATERIAL" EN GESTIONMATERIAL
+		// INVOCAR "MODIFICAR_FACTURA" EN GESTIONFACTURA
 		$excepcion = modificar_factura($conexion,$factura["OID_F"],$factura["FECHA_COBRO"],$factura["FECHA_VENCIMIENTO"],$factura["FECHA_FACTURA"],$factura["PRECIO_TOTAL"]);
 		// CERRAR LA CONEXIÓN
 		cerrarConexionBD($conexion);
@@ -20,7 +20,7 @@
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"]= "consulta_facturas.php";
 			header("Location: ../../excepcion.php");
-		}else{// EN OTRO CASO, VOLVER A "CONSULTA_MATERIALES.PHP"
+		}else{// EN OTRO CASO, VOLVER A "CONSULTA_FACTURA.PHP"
 			header("Location: consulta_facturas.php");
 		}
 	} 

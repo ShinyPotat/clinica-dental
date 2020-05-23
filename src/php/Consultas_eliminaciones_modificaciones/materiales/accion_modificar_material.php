@@ -19,7 +19,7 @@
 		if($excepcion<>""){
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"]= "consulta_materiales.php";
-			header("Location: excepcion.php");
+			header("Location: ../../excepcion.php");
 		}else{// EN OTRO CASO, VOLVER A "CONSULTA_MATERIALES.PHP"
 			header("Location: consulta_materiales.php");
 		}

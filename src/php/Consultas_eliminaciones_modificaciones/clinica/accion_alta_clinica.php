@@ -30,7 +30,7 @@
 		$_SESSION["destino"]= "consulta_clinica.php";
 		header("Location: ../../excepcion.php");
 	}else{
-		// EN OTRO CASO, VOLVER A "CONSULTA_MATERIALES.PHP"
+		// EN OTRO CASO, VOLVER A "CONSULTA_CLINICAS.PHP"
 	    header("Location: consulta_clinica.php");
 	}
 

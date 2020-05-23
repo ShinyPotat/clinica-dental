@@ -353,6 +353,20 @@ BEGIN
 END;
 /
 
+--Modificar proveedores
+CREATE OR REPLACE PROCEDURE modifica_paciente(
+    w_oid_pc IN Pacientes.oid_pc%TYPE,
+    w_dni IN Pacientes.dni%TYPE,
+    w_fecha_nacimiento IN Pacientes.fecha_nacimiento%TYPE,
+    w_sexo IN Pacientes.sexo%TYPE
+)IS
+BEGIN
+    UPDATE Pacientes SET dni=w_dni WHERE oid_pc=w_oid_pc;
+    UPDATE Pacientes SET fecha_nacimiento=w_fecha_nacimiento WHERE oid_pc=w_oid_pc;
+    UPDATE Pacientes SET sexo=w_sexo WHERE oid_pc=w_oid_pc;
+END;
+/
+
 --FUNCION ASSERT_EQUALS
 CREATE OR REPLACE FUNCTION ASSERT_EQUALS(
     salida BOOLEAN,
