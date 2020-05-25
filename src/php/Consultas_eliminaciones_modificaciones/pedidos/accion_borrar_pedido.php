@@ -1,31 +1,31 @@
 <?php	
 	session_start();	
 	
-	if (isset($_SESSION["factura"])) {
-		$factura = $_SESSION["factura"];
-		unset($_SESSION["factura"]);
+	if (isset($_SESSION["pedido"])) {
+		$pedido = $_SESSION["pedido"];
+		unset($_SESSION["pedido"]);
 		
 		require_once("../../gestionBD.php");
-		require_once("gestionarFacturas.php");
+		require_once("gestionarPedidos.php");
 		
 		// CREAR LA CONEXIÓN A LA BASE DE DATOS
 		$conexion = crearConexionBD();
-		// INVOCAR "QUITAR_FACTURA"
-		$excepcion=quitar_factura($conexion,$factura["OID_F"]);
+		// INVOCAR "QUITAR_PEDIDO"
+		$excepcion=quitar_pedido($conexion,$pedido["OID_PD"]);
 		// CERRAR LA CONEXIÓN
 		cerrarConexionBD($conexion);
 		
 		// SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 		if($excepcion<>""){
 			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"]= "Consultas_eliminaciones_modificaciones/facturas/consulta_facturas.php";
+			$_SESSION["destino"]= "Consultas_eliminaciones_modificaciones/pedidos/consulta_pedidos.php";
 			header("Location: ../../excepcion.php");
 		}else{
-		// EN OTRO CASO, VOLVER A "CONSULTA_FACTURAS.PHP"
-        header("Location: consulta_facturas.php");
+		// EN OTRO CASO, VOLVER A "CONSULTA_PEDIDOS.PHP"
+		header("Location: consulta_pedidos.php");
 		}
 
 	}
 	else // Se ha tratado de acceder directamente a este PHP 
-		Header("Location: consulta_facturas.php"); 
+		Header("Location: consulta_pedidos.php"); 
 ?>

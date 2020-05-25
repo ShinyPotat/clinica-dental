@@ -64,7 +64,7 @@ function test_input($data) {
         </select>
     </div>
     <div class="bloque">
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+      <form method="post" action="../Consultas_eliminaciones_modificaciones/pacientes/accion_alta_paciente.php">  
         <p><span class="error">&emsp;* campo requerido</span></p>
       <p>
       &emsp;
@@ -82,6 +82,22 @@ function test_input($data) {
         <input type="radio" name="sexo" <?php if (isset($sexo) && $sexo=="Hombre") echo "checked";?> value="H">Hombre
         <input type="radio" name="sexo" <?php if (isset($sexo) && $sexo=="Mujer") echo "checked";?> value="M">Mujer
         <span class="error"> <?php echo $sexoErr;?></span>
+      </p>
+      <p>
+        <?php 
+            require_once("../gestionBD.php");
+            $conexion = crearConexionBD();
+            $query = "SELECT OID_C, Nombre FROM Clinicas ORDER BY Nombre ASC";
+            $clinicas = $conexion->query($query);
+        ?>
+        <div>Clinica: <select id="clinicaP" name="clinicaP">
+            <option value="">Seleccionar clinica</option>
+            <?php foreach($clinicas as $fila){ ?>
+              <option value="<?php echo $fila["OID_C"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>
+
+            <?php } ?>
+          </select>
+        </div>
       </p><br>
       &emsp;
         <input type="submit" name="submit" value="Enviar" class="enviar">

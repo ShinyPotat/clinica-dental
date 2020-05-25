@@ -54,7 +54,7 @@
     function modificar_paciente($conexion,$oidPaciente,$DNI,$fechaNacimiento,$Sexo){
         try{
             $stmt=$conexion->prepare('CALL modifica_paciente(:oidPaciente,:DNI,:fechaNacimiento,:Sexo)');
-            $stmt->bindParam(':oidMaterial',$oidPaciente);
+            $stmt->bindParam(':oidPaciente',$oidPaciente);
             $stmt->bindParam(':DNI',$DNI);
             $stmt->bindParam(':fechaNacimiento',getFechaFormateada($fechaNacimiento));
             $stmt->bindParam(':Sexo',$Sexo);

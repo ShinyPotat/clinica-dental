@@ -18,7 +18,7 @@
 		// SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 		if($excepcion<>""){
 			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"]= "consulta_encargos.php";
+			$_SESSION["destino"]= "Consultas_eliminaciones_modificaciones/encargos/consulta_encargos.php";
 			header("Location: ../../excepcion.php");
 		}else{// EN OTRO CASO, VOLVER A "CONSULTA_ENCARGOS.PHP"
 			header("Location: consulta_encargos.php");
