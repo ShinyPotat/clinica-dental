@@ -89,6 +89,7 @@ function test_input($data) {
             $conexion = crearConexionBD();
             $query = "SELECT OID_C, Nombre FROM Clinicas ORDER BY Nombre ASC";
             $clinicas = $conexion->query($query);
+            cerrarConexionBD($conexion);
         ?>
         <div>Clinica: <select id="clinicaP" name="clinicaP">
             <option value="">Seleccionar clinica</option>
