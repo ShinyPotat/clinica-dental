@@ -5,7 +5,7 @@
 		$encargo["OID_E"] = $_REQUEST["OID_E"];
 		$encargo["FECHA_ENTRADA"] = $_REQUEST["FECHA_ENTRADA"];
 		$encargo["FECHA_ENTREGA"] = $_REQUEST["FECHA_ENTREGA"];
-		$encargo["Acciones"] = $_REQUEST["Acciones"];
+		$encargo["Acciones"] = $_REQUEST["ACCIONES"];
 		$encargo["OID_PC"] = $_REQUEST["OID_PC"];
         $encargo["OID_F"] = $_REQUEST["OID_F"];
 		

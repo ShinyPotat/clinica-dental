@@ -124,13 +124,13 @@
                                     <tr>                        <!-- filas de la tabla -->
                                         <td><input id="FECHA_ENTRADA" name="FECHA_ENTRADA" type="date" value="<?php echo $fila["FECHA_ENTRADA"];?>"></td>
                                         <td><input id="FECHA_ENTREGA" name="FECHA_ENTREGA" type="date" value="<?php echo $fila["FECHA_ENTREGA"];?>"></td>
-                                        <td><input id="Acciones" name="Acciones" type="text" value="<?php echo $fila["Acciones"];?>"></td>
+                                        <td><input id="ACCIONES" name="ACCIONES" type="text" value="<?php echo $fila["ACCIONES"];?>"></td>
                         <?php }else{ ?>
                                     <input id="FECHA_ENTRADA" name="FECHA_ENTRADA" type="hidden" value="<?php echo $fila["FECHA_ENTRADA"];?>">
                                     <tr>
                                         <td><?php echo $fila["FECHA_ENTRADA"];?></td>              <!-- columnas -->
                                         <td><?php echo $fila["FECHA_ENTREGA"];?></td>
-                                        <td><?php echo $fila["Acciones"];?></td>
+                                        <td><?php echo $fila["ACCIONES"];?></td>
                         <?php } ?>
                         </div>          
                                         <div>       <!-- columna de los botones -->
