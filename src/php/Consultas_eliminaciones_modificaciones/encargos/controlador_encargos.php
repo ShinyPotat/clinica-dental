@@ -11,7 +11,7 @@
 		
 		$_SESSION["encargo"] = $encargo;
 			
-		if (isset($_REQUEST["Editar"])) Header("Location: consulta_encargo.php"); 
+		if (isset($_REQUEST["Editar"])) Header("Location: consulta_encargos.php"); 
 		else if (isset($_REQUEST["Guardar"])) Header("Location: accion_modificar_encargo.php");
 		else if (isset($_REQUEST["Borrar"])) Header("Location: accion_borrar_encargo.php"); 
 	}

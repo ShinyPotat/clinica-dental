@@ -375,11 +375,13 @@ CREATE OR REPLACE PROCEDURE modifica_encargo(
     w_Acciones IN encargos.Acciones%TYPE
 )IS
 BEGIN
-    UPDATE encargo SET dni=w_fecha_entrada WHERE oid_e=w_oid_e;
-    UPDATE encargo SET fecha_entrega=w_fecha_entrega WHERE oid_e=w_oid_e;
-    UPDATE encargo SET Acciones=w_Acciones WHERE oid_e=w_oid_e;
+    UPDATE encargos SET fecha_entrada=w_fecha_entrada WHERE oid_e=w_oid_e;
+    UPDATE encargos SET fecha_entrega=w_fecha_entrega WHERE oid_e=w_oid_e;
+    UPDATE encargos SET Acciones=w_Acciones WHERE oid_e=w_oid_e;
 END;
 /
+
+CALL Modifica_encargo(54,'20/05/2020','24/05/2020','accion modificada en sql 2.0')
 
 --FUNCION ASSERT_EQUALS
 CREATE OR REPLACE FUNCTION ASSERT_EQUALS(

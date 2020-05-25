@@ -50,10 +50,10 @@
     function getFechaFormateada($fecha){
 		return date('d/m/Y', strtotime($fecha));
 	}
-
+    
     function modificar_encargo($conexion,$oidEncargo,$fecha_entrada,$fecha_entrega,$Acciones){
         try{
-            $stmt=$conexion->prepare('CALL Modifica_encargo(:oidMEncargo,:fecha_entrada,:fecha_entrega,:Acciones)');
+            $stmt=$conexion->prepare('CALL Modifica_encargo(:oidEncargo,:fecha_entrada,:fecha_entrega,:Acciones)');
             $stmt->bindParam(':oidEncargo',$oidEncargo);
             $stmt->bindParam(':fecha_entrada',getFechaFormateada($fecha_entrada));
             $stmt->bindParam(':fecha_entrega',getFechaFormateada($fecha_entrega));
