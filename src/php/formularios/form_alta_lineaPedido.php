@@ -9,6 +9,9 @@
 <body>  
 
 <?php
+if(!isset($_SESSION["login"])){
+  header("../login.php");
+}
 $cantidadErr = $costeErr = "";
 $cantidad = $coste = "";
 

@@ -1,6 +1,10 @@
 <?php
     session_start();
 
+    if(!isset($_SESSION["login"])){
+        header("../login.php");
+    }
+
 	require_once("../../gestionBD.php");
 	require_once("gestionarFacturas.php");
 	

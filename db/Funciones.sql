@@ -381,7 +381,17 @@ BEGIN
 END;
 /
 
-CALL Modifica_encargo(54,'20/05/2020','24/05/2020','accion modificada en sql 2.0')
+--Modificar pedido
+CREATE OR REPLACE PROCEDURE modifica_pedido(
+    w_oid_pd IN pedidos.oid_pd%TYPE,
+    w_fecha_solicitud IN pedidos.fecha_solicitud%TYPE,
+    w_fecha_entrega IN pedidos.fecha_entrega%TYPE
+)IS
+BEGIN
+    UPDATE pedidos SET fecha_solicitud=w_fecha_solicitud WHERE oid_pd=w_oid_pd;
+    UPDATE pedidos SET fecha_entrega=w_fecha_entrega WHERE oid_pd=w_oid_pd;
+END;
+/
 
 --FUNCION ASSERT_EQUALS
 CREATE OR REPLACE FUNCTION ASSERT_EQUALS(

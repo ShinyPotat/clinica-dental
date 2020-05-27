@@ -1,21 +1,20 @@
 <?php
 
-function alta_usuario($conexion,$usuario) {
+function alta_usuario($conexion,$nombre,$apellidos,$email,$usuario,$pass,$perfil) {
 
 	//NOMBRE,APELLIDOS,EMAIL,USER,PASS,PERFIL
 	try{
 		$stmt = $conexion->prepare("CALL INSERTAR_USUARIO(:nombre,:apellidos,:email,:usuario,:pass,:perfil)");
-		$stmt->bindParam(':nombre',$usuario['name']);
-		$stmt->bindParam(':apellidos',$usuario['lastname']);
-        $stmt->bindParam(':email',$usuario['correo']);
-        $stmt->bindParam(':usuario',$usuario['user']);
-		$stmt->bindParam(':pass',$usuario['pass']);
-		$stmt->bindParam(':perfil',$usuario['perfil']);
+		$stmt->bindParam(":nombre",$nombre);
+		$stmt->bindParam(":apellidos",$apellidos);
+        $stmt->bindParam(':email',$email);
+        $stmt->bindParam(":usuario",$usuario);
+		$stmt->bindParam(":pass",$pass);
+		$stmt->bindParam(":perfil",$perfil);
 		$stmt->execute();
-		return true;
+		return "";
 	}catch(PDOException $e){
-		//echo $e->getMessage();
-		return false;
+		return $e->getMessage();
 	}
 }
 

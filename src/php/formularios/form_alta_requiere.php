@@ -9,6 +9,9 @@
 <body>  
 
 <?php
+if(!isset($_SESSION["login"])){
+  header("../login.php");
+}
 $cantidadErr = "";
 $cantidad =  "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

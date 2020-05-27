@@ -15,7 +15,7 @@
 		$_SESSION["errores"] = null;
 	}
 	else{
-        Header("Location: ../formularios/form_alta_encargo.php");
+        Header("Location: ../../formularios/form_alta_encargo.php");
 	} 
 			
 

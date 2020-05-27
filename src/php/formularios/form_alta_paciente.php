@@ -9,6 +9,9 @@
 <body>  
 
 <?php
+if(!isset($_SESSION["login"])){
+  header("../login.php");
+}
 $dniErr = $fechaNacimientoErr = $sexoErr ="";
 $dni = $fechaNacimiento = $sexo = "";
 

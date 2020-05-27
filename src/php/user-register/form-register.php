@@ -1,16 +1,16 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION["formulario"])){
-        $formulario["name"]="";
-        $formulario["lastname"]="";
-        $formulario["perfil"]="clinica";
-        $formulario["correo"]="";
-        $formulario["user"]="";
-        $formulario["pass"]="";
-        $_SESSION["formulario"] = $formulario; 
+    if(!isset($_SESSION["user"])){
+        $user["name"]="";
+        $user["lastname"]="";
+        $user["perfil"]="clinica";
+        $user["correo"]="";
+        $user["user"]="";
+        $user["pass"]="";
+        $_SESSION["user"] = $user; 
     }else{
-        $formulario = $_SESSION["formulario"];
+        $user = $_SESSION["user"];
     }
 	
 	if(isset($_SESSION["errores"])){
@@ -45,22 +45,21 @@
         <p class="encabezado">Registro</p>
         <div class="bloque">
         
-            <form name="altaUsuario" action="validation-register.php" method="post" class="formulario" onsubmit="return lettersValidation(document.getElementById('name')) && lettersValidation(document.getElementById('lastname'))">
+            <form id="altaUsuario" name="altaUsuario" action="validation-register.php" method="post" class="formulario" onsubmit="return lettersValidation(document.getElementById('name')) && lettersValidation(document.getElementById('lastname'))">
                     
-                    <!--<p>NIF: <input id="NIF" name="NIF" pattern="^[09]{8}[A-Z]" placeholder="12345678X" required></p>-->
-                    <p><input id="name" class="user" name="name" type="text" value="<?php echo $formulario['name'];?>" maxlength="40" placeholder="Nombre" required></p>
+                    <p><input id="name" class="user" name="name" type="text" value="<?php echo $user['name'];?>" maxlength="40" placeholder="Nombre" required></p>
                     <img src="../../../images/user.png" class="usuario">
-                    <p><input id="lastname" name="lastname" class="user" value="<?php echo $formulario['lastname'];?>" type="text" placeholder="Apellidos" maxlength="80"></p>
+                    <p><input id="lastname" name="lastname" class="user" value="<?php echo $user['lastname'];?>" type="text" placeholder="Apellidos" maxlength="80"></p>
                     <img src="../../../images/apellido.png" class="apellido">
                     <p>&emsp;&emsp;&emsp;
-                        &emsp;&emsp;<input type="radio" id="clinica" name="perfil" <?php if($formulario['perfil']=='clinica') echo ' checked ';?> value="clinica"> Director de Clinica
-                        <input type="radio" id="proveedor" name="perfil" <?php if($formulario['perfil']=='proveedor') echo ' checked ';?> value="proveedor"> Proveedor
+                        &emsp;&emsp;<input type="radio" id="clinica" name="perfil" <?php if($user['perfil']=='clinica') echo ' checked ';?> value="clinica"> Director de Clinica
+                        <input type="radio" id="proveedor" name="perfil" <?php if($user['perfil']=='proveedor') echo ' checked ';?> value="proveedor"> Proveedor
                     </p>
-                    <p><input id="correo" class="user" name="correo" value="<?php echo $formulario['correo'];?>" type="email" placeholder="Correo electronico" required> </p>
+                    <p><input id="correo" class="user" name="correo" value="<?php echo $user['correo'];?>" type="email" placeholder="Correo electronico" required> </p>
                     <img src="../../../images/correo.png" class="correo">
-                    <p><input id="user" name="user" class="user"type="text" value="<?php echo $formulario['user'];?>" placeholder="Nombre de Usuario" required></p>
+                    <p><input id="user" name="user" class="user"type="text" value="<?php echo $user['user'];?>" placeholder="Nombre de Usuario" required></p>
                     <img src="../../../images/user.png" class="usuario2">
-                    <p><input id="pass" name="pass" class="pass" type="password" value="<?php echo $formulario['pass'];?>" placeholder="Contraseña" oninput="passwordValidation();" required></p>
+                    <p><input id="pass" name="pass" class="pass" type="password" value="<?php echo $user['pass'];?>" placeholder="Contraseña" oninput="passwordValidation();" required></p>
                     <img src="../../../images/restringido.png" class="rest">
                     <p><input id="passConf" name="passConf" class="pass" type="password" placeholder="Confirmar contraseña" oninput="passwordConfirm();" required></p>              
                     <img src="../../../images/correcto.png" class="correcto">

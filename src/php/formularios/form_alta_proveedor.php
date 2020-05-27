@@ -10,6 +10,9 @@
 <body>  
 
 <?php
+if(!isset($_SESSION["login"])){
+  header("../login.php");
+}
 $nameErr = $localErr = $phoneErr = "";
 $name = $local = $phone =  "";
 

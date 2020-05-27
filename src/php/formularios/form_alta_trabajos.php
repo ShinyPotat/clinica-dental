@@ -8,6 +8,9 @@
 <body>  
 
 <?php
+if(!isset($_SESSION["login"])){
+  header("../login.php");
+}
 $fechaFinErr = $accionesErr = "";
 $fechaFin = $acciones = "";
 

@@ -47,12 +47,16 @@
         }
     }
 
+    function getFechaFormateada($fecha){
+		return date('d/m/Y', strtotime($fecha));
+	}
+
     function modificar_pedido($conexion,$oidPedido,$fecha_solicitud,$fecha_entrega){
         try{
             $stmt=$conexion->prepare('CALL Modifica_pedido(:oidPedido,:fecha_solicitud,:fecha_entrega)');
             $stmt->bindParam(':oidPedido',$oidPedido);
-            $stmt->bindParam(':fecha_solicitud',$fecha_solicitud);
-            $stmt->bindParam(':fecha_entrega',$fecha_entrega);
+            $stmt->bindParam(':fecha_solicitud',getFechaFormateada($fecha_solicitud));
+            $stmt->bindParam(':fecha_entrega',getFechaFormateada($fecha_entrega));
             $stmt->execute();
             return "";
         }catch(PDOException $e) {
@@ -63,8 +67,8 @@
     function crear_pedido($conexion,$fecha_solicitud,$fecha_entrega){
         try{
             $stmt=$conexion->prepare('CALL crear_pedido(:fecha_solicitud,:fecha_entrega,:OID_PR,:OID_F)');
-            $stmt->bindParam(':fecha_solicitud',$fecha_solicitud);
-            $stmt->bindParam(':fecha_entrega',$fecha_entrega);
+            $stmt->bindParam(':fecha_solicitud',getFechaFormateada($fecha_solicitud));
+            $stmt->bindParam(':fecha_entrega',getFechaFormateada($fecha_entrega));
             $stmt->bindParam(':OID_PR',$OID_PR);
             $stmt->bindParam(':OID_F',$OID_F);
             $stmt->execute();

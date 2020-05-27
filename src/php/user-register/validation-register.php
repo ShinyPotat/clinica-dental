@@ -5,7 +5,7 @@ require_once 'gestion-usuario.php';
 
 session_start();
 
-if(isset($_SESSION["formulario"])){
+if(isset($_SESSION["user"])){
 	
 	$nuevoUsuario["name"] = $_REQUEST["name"];
 	$nuevoUsuario["lastname"] = $_REQUEST["lastname"];
@@ -18,8 +18,6 @@ if(isset($_SESSION["formulario"])){
 }else{
 	Header("Location: form-register.php");
 }
-	
-	$_SESSION["formulario"] = $nuevoUsuario;
 	
 	$errores = validarDatosUsuario($nuevoUsuario);
 	

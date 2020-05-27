@@ -1,5 +1,9 @@
 <?php 
 	session_start();
+
+	if(!isset($_SESSION["login"])){
+		header("login.php");
+	}
 	
 	$excepcion = $_SESSION["excepcion"];
 	unset($_SESSION["excepcion"]);

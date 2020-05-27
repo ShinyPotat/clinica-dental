@@ -8,6 +8,9 @@
 </head>
 <body>  
 <?php
+if(!isset($_SESSION["login"])){
+  header("../login.php");
+}
 $fechaEntregaErr = $fechaEntradaErr = $accionesErr ="";
 $fechaEntrega = $fechaEntrada = $acciones ="";
 
@@ -88,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <?php } ?>
             </select>
           </div>
-        </p><br>
+        </p>
         <p>
           <?php 
               require_once("../gestionBD.php");

@@ -1,13 +1,11 @@
 <?php
-	
 	session_start();
 	
 	require_once("../gestionBD.php");
-	require_once("gestion-usuario.php");
 
-	if (isset($_SESSION["nuevoUsuario"])) {
-		$nuevoUsuario = $_SESSION["nuevoUsuario"];
-		$_SESSION["nuevoUsuario"] = null;
+	if (isset($_SESSION["user"])) {
+		$nuevoUsuario = $_SESSION["user"];
+		$_SESSION["user"] = null;
 		$_SESSION["errores"] = null;
 	}
 	else{
@@ -15,7 +13,7 @@
 	}
 
 	$conexion = crearConexionBD();
-	$excepcion = alta_usuario($conexion, $nuevoUsuario["nombre"],$nuevoUsuario["apellidos"],$nuevoUsuario["perfil"],$nuevoUsuario["correo"],$nuevoUsuario["user"],$nuevoUsuario["pass"]);
+	$excepcion = alta_usuario($conexion, $nuevoUsuario);
 	cerrarConexionBD($conexion);
 
 	if($excepcion<>""){							

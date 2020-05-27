@@ -9,7 +9,9 @@
 <body>  
 
 <?php
-
+if(!isset($_SESSION["login"])){
+  header("../login.php");
+}
 $fechaSolicitudErr = $fechaEntregaErr =  "";
 $fechaSolicitud = $fechaEntrega = "";
 
@@ -60,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="bloque">
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+      <form method="post" action="../Consultas_eliminaciones_modificaciones/pedidos/accion_alta_pedido.php">  
         <p><span class="error">&emsp;* campo requerido</span></p>
         <p>
         &emsp;
@@ -74,6 +76,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                           document.getElementById('fechaSolicitud').value,
                                           document.getElementById('fechaEntrega').value);">
         <span id="errorFecha" class="error"> <?php echo $fechaEntregaErr;?></span>
+        <p>
+        <?php 
+            require_once("../gestionBD.php");
+            $conexion = crearConexionBD();
+            $query = "SELECT OID_PR, Nombre FROM Proveedores ORDER BY Nombre ASC";
+            $proveedor = $conexion->query($query);
+            cerrarConexionBD($conexion);
+        ?>
+        <div>proveedor: <select id="proveedorPD" name="proveedorPD">
+            <option value="">Seleccionar proveedor</option>
+            <?php foreach($proveedor as $fila){ ?>
+              <option value="<?php echo $fila["OID_PR"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>
+
+            <?php } ?>
+          </select>
+        </div>
+      </p>
+      <p>
+        <?php 
+            require_once("../gestionBD.php");
+            $conexion = crearConexionBD();
+            $query = "SELECT OID_F, Fecha_Factura FROM Facturas ORDER BY Fecha_Factura ASC";
+            $facturas = $conexion->query($query);
+            cerrarConexionBD($conexion);
+        ?>
+        <div>Factura: <select id="FacturaPD" name="FacturaPD">
+            <option value="">Seleccionar factura</option>
+            <?php foreach($facturas as $fila){ ?>
+              <option value="<?php echo $fila["OID_F"]; ?>"><?php echo $fila["FECHA_FACTURA"]; ?></option>
+
+            <?php } ?>
+          </select>
+        </div>
+      </p><br>
         <br>
         <input type="submit" name="submit" value="Enviar" class="enviar">
         <a href="../../html/listaInventarioPedidos.html" class="buttonAtras">Atrás</a>

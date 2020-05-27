@@ -9,6 +9,9 @@
 
     <body>
     <?php 
+    if(!isset($_SESSION["login"])){
+      header("../login.php");
+    }
     $nameErr = $categoriaErr = $stockInicialErr = $stockMinErr = $stockCritErr = $unidadErr = "";
     $name = $categoria = $stockInicial = $stockMin = $stockCrit = $unidad = "";
 

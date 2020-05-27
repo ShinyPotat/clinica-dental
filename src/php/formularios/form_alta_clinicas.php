@@ -8,6 +8,11 @@
 </head>
 <body>
 <?php 
+
+if(!isset($_SESSION["login"])){
+  header("../../html/login.html");
+}
+
 $nameErr = $localErr = $phoneErr = $morosoErr = $nameDErr = $nColErr ="";
 $name = $local = $phone = $moroso = $nameD = $nCol ="";
 
@@ -38,12 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phoneErr = "Escribe un número adecuado";
              }
         }
-    
-    if (empty($_POST["moroso"])) {
-        $morosoErr = "Es necesario marcar una opcion";
-      } else {
-        $moroso = test_input($_POST["moroso"]);
-      }
     }
 
     if (empty($_POST["nameD"])) {
@@ -115,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <span id="errorNum" class="error"> <?php echo $phoneErr;?></span>
       </p>
           <input id="moroso" name ="moroso" type="hidden" value="N">
-      <br><p>
+      <p>
       &emsp;
       Nombre Dueño: &emsp;<input placeholder="Nombre del dueño" class="nameD" type="text" id="nameD" name="nameD" value="<?php echo $nameD;?>"
                                 onkeyup="document.getElementById('errorNameD').innerHTML = lettersValidation(document.getElementById('nameD').value);">
