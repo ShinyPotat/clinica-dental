@@ -67,8 +67,8 @@
         </select>
     </div>
     
-    <a href= "../../../php/formularios/form_alta_facturas.php" class="botonNuevaFactura">Nueva factura</a>
-    <a href= "../materiales/consulta_facturas.php" class="botonFactura">Facturas</a>
+    <a href= "../../formularios/form_alta_facturas.php" class="botonNuevaFactura">Nueva factura</a>
+    <a href= "../facturas/consulta_facturas.php" class="botonFactura">Facturas</a>
     
     <script src="../../../js/hora.js"></script>
     <a href="../../../html/accesorapido.html" class="buttonAtras">«</a> 

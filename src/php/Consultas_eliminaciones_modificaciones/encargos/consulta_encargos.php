@@ -39,7 +39,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
-    <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
+    <link rel="stylesheet", type="text/css", href="../../../css/consultaEncargos.css">
     
 </head>
 <body>
@@ -67,12 +67,8 @@
             <option value="3">Opcion 3</option>
         </select>
     </div>
-    <a href="../../../php/formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
-    <a href= "../../../php/formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
-    <a href="../../../php/formularios/form_alta_proveedor.php" class="botonNuevoProveedor">Nuevo Proveedor</a>
-    <a href="#" class="botonPedidos">Pedidos</a>
-    <a href= "../materiales/consulta_materiales.php" class="botonMateriales">Materiales</a>
-    <a href="../proveedor/consulta_proveedores.php" class="botonProveedores">Proveedores</a>
+    <a href="../../formularios/form_alta_encargo.php" class="botonNuevoEncargo">Nuevo Encargo</a>
+    <a href="consulta_encargos.php" class="botonEncargos">Encargos</a>
     <script src="../../../js/hora.js"></script>
     <a href="../../../html/accesorapido.html" class="buttonAtras">«</a> 
     <p class="volver">Volver</p>

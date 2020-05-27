@@ -2,15 +2,15 @@
     session_start();
 
     require_once("../../gestionBD.php");
-    require_once("gestionar_clinica.php");
+    require_once("gestionar_producto.php");
 
-    if (isset($_SESSION["clinica"])) {
-        $clinica = $_SESSION["clinica"];
-        unset($_SESSION["clinica"]);
+    if (isset($_SESSION["producto"])) {
+        $clinica = $_SESSION["producto"];
+        unset($_SESSION["producto"]);
     }
 
-    if (isset($_SESSION["PAG_CLI"]))
-        $paginacion = $_SESSION["PAG_CLI"];
+    if (isset($_SESSION["PAG_PRO"]))
+        $paginacion = $_SESSION["PAG_PRO"];
     
     $pagina_seleccionada = isset($_GET["PAG_NUMM"])? (int)$_GET["PAG_NUMM"]:
         (isset($paginacion)? (int)$paginacion["PAG_NUMM"]: 1);
@@ -22,7 +22,7 @@
     if ($pag_tam < 1) 
         $pag_tam = 10;
 
-    unset($_SESSION["PAG_CLI"]);
+    unset($_SESSION["PAG_PRO"]);
 
     $conexion = crearConexionBD();
 
@@ -34,7 +34,7 @@
         $pagina_seleccionada = $total_paginas;
     $paginacion["PAG_NUMM"] = $pagina_seleccionada;
     $paginacion["PAG_TAMM"] = $pag_tam;
-    $_SESSION["PAG_CLI"] = $paginacion;
+    $_SESSION["PAG_PRO"] = $paginacion;
 
     $filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
 
@@ -46,7 +46,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de clínicas</title>
+    <title>Gestión de productos</title>
     <link rel="stylesheet" href="../../../css/consultaPDP.css">
 </head>
 <body>
@@ -93,13 +93,13 @@
                         if($pagina == $pagina_seleccionada){ ?>
                             <span><?php echo $pagina;?></span>
                   <?php }else{ ?>
-                            <a href="consulta_clinica.php?PAG_NUMM=<?php echo $pagina;?>&PAG_TAMM=<?php echo $pag_tam;?>"><?php echo $pagina;?></a>
+                            <a href="consulta_producto.php?PAG_NUMM=<?php echo $pagina;?>&PAG_TAMM=<?php echo $pag_tam;?>"><?php echo $pagina;?></a>
                  <?php  }
                     }
                 ?>
             </div>
 
-            <form class="formulario" action="consulta_clinica.php" method="get">
+            <form class="formulario" action="consulta_producto.php" method="get">
                     <input type="hidden" name="PAG_NUMM" id="PAG_NUMM" value="<?php echo $pagina_seleccionada;?>">
                     Mostrando
                     <input type="number" name="PAG_TAMM" id="PAG_TAMM" min="1" max="<?php echo $total_registros;?>" value="<?php echo $pag_tam;?>" autofocus="autofocus">
@@ -112,44 +112,35 @@
                     <thead>
                         <tr>
                             <th>nombre</th>
-                            <th>localizacion</th>
-                            <th>tlf_contacto</th>
-                            <th>moroso</th>
-                            <th>nombre_due</th>
-                            <th>num_coleg</th>
+                            <th>precio</th>
+                            <th>OID_E</th>
                             <th>opciones</th>
                         </tr>
                     </thead>
                     <?php foreach($filas as $fila){ ?>
                                 <article>
-                                    <form action="controlador_clinicas.php" method="post">
+                                    <form action="controlador_producto.php" method="post">
                                         <div>
                                             <div>
-                                                <input type="hidden" name="OID_C" id="OID_C" value="<?php echo $fila["OID_C"];?>">
-                                                <input type="hidden" name="MOROSO" id="MOROSO" required value="<?php echo $fila["MOROSO"];?>">
+                                                <input type="hidden" name="OID_PRO" id="OID_PRO" value="<?php echo $fila["OID_PRO"];?>">
                                                 <?php
-                                                    if (isset($clinica) and ($clinica["OID_C"] == $fila["OID_C"])) { ?>
+                                                    if (isset($producto) and ($producto["OID_PRO"] == $fila["OID_PRO"])) { ?>
                                                         <tr>
                                                             <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
-                                                            <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
-                                                            <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
-                                                            <td><?php echo $fila["MOROSO"];?></td>
-                                                            <td><input type="text" name="NOMBRE_DUEÑO" id="NOMBRE_DUEÑO" value="<?php echo $fila["NOMBRE_DUEÑO"];?>"></td>
-                                                            <td><input type="text" name="NUM_COLEGIADO" id="NUM_COLEGIADO" value="<?php echo $fila["NUM_COLEGIADO"];?>"></td>
+                                                            <td><input type="text" name="PRECIO" id="PRECIO" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
+
+
                                               <?php } else { ?>
                                                         <input type="hidden" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>">
                                                         <tr>
                                                             <td><?php echo $fila["NOMBRE"]?></td>
-                                                            <td><?php echo $fila["LOCALIZACIÓN"]?></td>
-                                                            <td><?php echo $fila["TLF_CONTACTO"]?></td>
-                                                            <td><?php echo $fila["MOROSO"]?></td>
-                                                            <td><?php echo $fila["NOMBRE_DUEÑO"]?></td>
-                                                            <td><?php echo $fila["NUM_COLEGIADO"]?></td>
+                                                            <td><?php echo $fila["PRECIO"]?></td>
+                                                            <td><?php echo $fila["OID_E"]?></td>
                                               <?php } ?>
                                             </div>
                                             <div>
                                                 <td>
-                                                    <?php if(isset($clinica) and ($clinica["OID_C"] == $fila["OID_C"])){ ?>
+                                                    <?php if(isset($producto) and ($producto["OID_P"] == $fila["OID_P"])){ ?>
                                                                 <button class="consulta" id="Guardar" name="Guardar" type="submit"><img src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/16/Save-as-icon.png" alt="x" />Guardar</button>  
                                                     <?php }else{ ?>
                                                                 <button class="consulta" id="Editar" name="Editar" type="submit"><img src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/16/edit-icon.png" alt="x" />Editar</button>

@@ -39,7 +39,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de inventario</title>
+    <title>Gestión de proveedores</title>
     <link rel="stylesheet" href="../../../css/consultaMateriales.css">
 </head>
 <body>
@@ -68,10 +68,11 @@
         </select>
     </div>
 
-    <a href="../../../php/formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
-    <a href= "../../../php/formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
-    <a href="../../../php/formularios/form_alta_proveedor.php" class="botonNuevoProveedor">Nuevo Proveedor</a>
-    <a href="#" class="botonPedidos">Pedidos</a>
+    <a href="../../formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
+    <a href= "../../formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
+    <a href="../../formularios/form_alta_proveedor.php" class="botonNuevoProveedor">Nuevo Proveedor</a>
+    
+    <a href= "../pedidos/consulta_pedidos.php" class="botonPedidos">Pedidos</a>
     <a href= "../materiales/consulta_materiales.php" class="botonMateriales">Materiales</a>
     <a href="../proveedor/consulta_proveedores.php" class="botonProveedores">Proveedores</a>
     <script src="../../../js/hora.js"></script>

@@ -39,7 +39,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Pacientes</title>
-    <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
+    <link rel="stylesheet", type="text/css", href="../../../css/consultaPDP.css">
     
 </head>
 <body>
@@ -67,12 +67,12 @@
             <option value="3">Opcion 3</option>
         </select>
     </div>
-    <a href="../../../php/formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
-    <a href= "../../../php/formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
-    <a href="../../../php/formularios/form_alta_proveedor.php" class="botonNuevoProveedor">Nuevo Proveedor</a>
-    <a href="#" class="botonPedidos">Pedidos</a>
-    <a href= "../materiales/consulta_materiales.php" class="botonMateriales">Materiales</a>
-    <a href="../proveedor/consulta_proveedores.php" class="botonProveedores">Proveedores</a>
+    <a href="../../formularios/form_alta_clinicas.php"class="botonNuevaClinica">Nueva Clinica</a>
+    <a href="../../formularios/form_alta_paciente.php" class="botonNuevoPaciente">Nuevo Paciente</a>
+    <a href="../../formularios/form_alta_producto.php" class="botonNuevoProducto">Nuevo Producto</a>
+    <a href="../clinica/consulta_clinica.php" class="botonClinicas">Clinicas</a>
+    <a href= "../pacientes/consulta_pacientes.php" class="botonPacientes">Pacientes</a>
+    <a href="../productos/consulta_producto.php" class="botonProductos">Productos</a>
     <script src="../../../js/hora.js"></script>
     <a href="../../../html/accesorapido.html" class="buttonAtras">«</a> 
     <p class="volver">Volver</p>
