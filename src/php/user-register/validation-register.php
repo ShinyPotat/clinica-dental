@@ -19,6 +19,8 @@ if(isset($_SESSION["user"])){
 	Header("Location: form-register.php");
 }
 	
+	$_SESSION['user'] = $nuevoUsuario;
+
 	$errores = validarDatosUsuario($nuevoUsuario);
 	
 	if(count($errores)>0){
@@ -52,8 +54,11 @@ function validarDatosUsuario($nuevoUsuario){
 	
 	if($nuevoUsuario["pass"]==""){
 		$errores[]="<p>La contraseña no puede estar vacía<p>";
-	}elseif(!preg_match("/[a-z]+[A-z]+[0-9]+/", $nuevoUsuario["pass"]) || strlen($nuevoUsuario["pass"]) < 8){
-		$errores[]="<p>La contraseña debe tener al menos 8 caracteres, con al menos un dígito y letras mayúsculas y minúsculas<p>";
+	}elseif(!preg_match("/[a-z]+/", $nuevoUsuario["pass"]) || 
+			!preg_match("/[A-Z]+/", $nuevoUsuario["pass"]) ||
+			!preg_match("/[0-9]+/", $nuevoUsuario["pass"]) || 
+			strlen($nuevoUsuario["pass"]) < 8){
+		$errores[]="<p>La contraseña debe tener al menos 8 caracteres, con al menos un dígito y letras mayúsculas y minúsculas<p>".$nuevoUsuario['pass'];
 	}
 	
 	if($nuevoUsuario["passConf"]!=$nuevoUsuario["pass"]){

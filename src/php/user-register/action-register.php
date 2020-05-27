@@ -5,8 +5,8 @@
 	require_once("../gestionBD.php");
 	require_once("gestion-usuario.php");
 
-	if (isset($_SESSION["nuevoUsuario"])) {
-		$nuevoUsuario = $_SESSION["nuevoUsuario"];
+	if (isset($_SESSION["user"])) {
+		$nuevoUsuario = $_SESSION["user"];
 		$_SESSION["nuevoUsuario"] = null;
 		$_SESSION["errores"] = null;
 	}
@@ -15,7 +15,7 @@
 	}
 
 	$conexion = crearConexionBD();
-	$excepcion = alta_usuario($conexion, $nuevoUsuario["nombre"],$nuevoUsuario["apellidos"],$nuevoUsuario["perfil"],$nuevoUsuario["correo"],$nuevoUsuario["user"],$nuevoUsuario["pass"]);
+	$excepcion = alta_usuario($conexion, $nuevoUsuario["name"],$nuevoUsuario["lastname"],$nuevoUsuario["correo"],$nuevoUsuario["user"],$nuevoUsuario["pass"],$nuevoUsuario["perfil"]);
 	cerrarConexionBD($conexion);
 
 	if($excepcion<>""){							
@@ -24,6 +24,6 @@
 		header("Location: ../excepcion.php");
 	} else {  
 		$_SESSION['login'] = $nuevoUsuario;
-		header("../accesorapido.php");
+		Header("Location: ../accion_login.php");
 	}
 ?>

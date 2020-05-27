@@ -7,6 +7,11 @@ body{
     font-family: 'Times New Roman', Times, serif;
 }
 
+.dev_errores{
+    padding-left: 10%;
+    color: red;
+}
+
 .bloque{
     border-radius: 4%  4%  4%  4%;
     -moz-border-radius:  4%  4%  4%  4%;

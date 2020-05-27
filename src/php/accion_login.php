@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	
-	require_once("../gestionBD.php");
+	require_once("gestionBD.php");
 
 	if (isset($_SESSION["user"])) {
 		$nuevoUsuario = $_SESSION["user"];
@@ -13,7 +13,7 @@
 	}
 
 	$conexion = crearConexionBD();
-	$excepcion = alta_usuario($conexion, $nuevoUsuario);
+	$excepcion = consultarUsuario($conexion, $nuevoUsuario);
 	cerrarConexionBD($conexion);
 
 	if($excepcion<>""){							
@@ -22,6 +22,6 @@
 		header("Location: ../excepcion.php");
 	} else {  
 		$_SESSION['login'] = $nuevoUsuario;
-		header("../accesorapido.php");
+		header("Location: ../html/accesorapido.html");
 	}
 ?>

@@ -22,7 +22,7 @@
 <html>
     <head>
         <meta charset="UTF-8" lang="es">
-        <title> Sign in</title>
+        <title>Sign in</title>
         <link rel="stylesheet" type="text/css" href="../../css/register.css">
         <script src="../../js/validacion_cliente_alta_usuario.js" type="text/javascript"></script>
     </head>
@@ -30,7 +30,7 @@
         <img src="../../../images/logo.png" class="logo"  >
         <img src="../../../images/mascota.png" class="mascota">
         
-    	<div id="dev_errores">
+    	<div class="dev_errores">
 			<?php 
 			if (isset($errores) && !empty($errores)){
 		        foreach($errores as $error){
