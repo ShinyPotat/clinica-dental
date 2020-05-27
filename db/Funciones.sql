@@ -62,12 +62,12 @@ CREATE OR REPLACE PROCEDURE crear_encargo (
     w_fecha_entrada IN encargos.fecha_entrada%TYPE,
     w_fecha_entrega IN encargos.fecha_entrega%TYPE,
     w_acciones IN encargos.Acciones%TYPE,
-    w_oid_pc IN encargos.oid_pc%TYPE,
-    w_oid_f IN encargos.oid_f%TYPE
+    w_oid_pc IN encargos.OID_PC%TYPE,
+    w_oid_f IN encargos.OID_F%TYPE
     
 ) IS
 BEGIN 
-INSERT INTO Encargos (fecha_entrada,fecha_entrega,acciones,oid_pc,oid_f)
+INSERT INTO Encargos (fecha_entrada,fecha_entrega,Acciones,OID_PC,OID_F)
 VALUES (w_fecha_entrada,w_fecha_entrega,w_acciones,w_oid_pc,w_oid_f);
 COMMIT;
 END crear_encargo;
