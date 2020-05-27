@@ -26,6 +26,35 @@ function critValidation(stockMin,stockCrit) {
     return error;
 }
 
+function putUnitElements(categoria) {
+    /*'Alambre','Dientes','Empress','Ferula','Metal Ceramica','Metal',
+        'Resina','Revestimiento','Ceramica Zirconio'*/
+    console.log('Creando unidades para la categoria ' + categoria);
+    const unidadList = document.getElementById('unidad');
+    unidadList.innerHTML = '';
+    
+    var longitudArray = ['Alambre']; 
+    var pesoArray = ['Dientes','Empress','Metal Ceramica','Metal','Revestimiento','Ceramica Zirconio','Resina'];
+    var unidadesArray = ['Dientes','Ferula'] 
+
+    //<option value="Ceramica Zirconio">Ceramica Zirconio</option>
+    if (longitudArray.includes(categoria)) {
+        var longitudes = ['m','cm','mm'];
+        longitudes.forEach(element => {
+            unidadList.innerHTML += '<option value=\''+element+'\'>'+element+'</option>'
+        });
+    }
+    if(pesoArray.includes(categoria)){
+        var pesos = ['g','cg','mg'];
+        pesos.forEach(element => {
+            unidadList.innerHTML += '<option value=\''+element+'\'>'+element+'</option>'
+        });
+    }
+    if(unidadesArray.includes(categoria)){
+        unidadList.innerHTML += '<option value=\'Unidades\'>Unidades</option>';
+    }
+}
+
 /*function consultaStock(){
     var stock = document.getElementById("stock").value;
     var min = document.getElementById("stockMin").value;
