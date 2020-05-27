@@ -35,3 +35,23 @@ function passwordConfirm() {
     passConfirm.setCustomValidity(error);
     return error;
 }
+
+function lettersValidation(element) {
+
+    const name = element.value;
+
+    var valid = true;
+
+    var hasLetters = /^[a-zA-Z ]*$/;
+
+    valid = valid && hasLetters.test(name);
+
+    if (!valid) {
+        console.error("Nombre no válido");
+        alert("Solo puedes introducir espacios y letras en " + element.name);
+        return valid;
+    }else{
+        return valid;
+    }
+    
+}

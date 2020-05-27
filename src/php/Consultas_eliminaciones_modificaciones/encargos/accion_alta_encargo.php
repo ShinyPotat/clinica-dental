@@ -2,15 +2,15 @@
 	session_start();
 
 	require_once("../../gestionBD.php");
-	require_once("gestionarEncargo.php");
+	require_once("gestionarEncargos.php");
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-	if (isset($_REQUEST["fechaFactura"])) {
-        $encargo["fechaEntrada"] = $_REQUEST["fechaEntrada"];
-        $encargo["fechaEntrega"] = $_REQUEST["fechaEntrega"];
-        $encargo["Acciones"] = $_REQUEST["Acciones"];
-        $encargo["OID_PC"] = $_REQUEST["OID_PC"];
-        $encargo["OID_F"] = $_REQUEST["OID_F"];
+	if (isset($_REQUEST["fechaEntrada"])) {
+        $encargo["FECHAENTRADA"] = $_REQUEST["fechaEntrada"];
+        $encargo["FECHAENTREGA"] = $_REQUEST["fechaEntrega"];
+        $encargo["ACCIONES"] = $_REQUEST["Acciones"];
+        $encargo["OID_PC"] = $_REQUEST["PacienteE"];
+        $encargo["OID_F"] = $_REQUEST["FacturaE"];
 		$_SESSION["encargo"] = null;
 		$_SESSION["errores"] = null;
 	}
@@ -21,7 +21,7 @@
 
 	$conexion = crearConexionBD(); 
 
-    $excepcion = crear_encargo($conexion, $encargo["fechaEntrada"], $encargo["fechaEntrega"], $encargo["Acciones"], $encargo["OID_PC"], $encargo["OID_F"]);
+    $excepcion = crear_encargo($conexion, $encargo["FECHAENTRADA"], $encargo["FECHAENTREGA"], $encargo["ACCIONES"], $encargo["OID_PC"], $encargo["OID_F"]);
 
     // SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 	if($excepcion<>""){

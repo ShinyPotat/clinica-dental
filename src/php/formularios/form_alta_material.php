@@ -105,8 +105,7 @@
                     </p>
 
                     <label for="categoria">&emsp; Categoría:</label>
-                    <input required list="opcionesCategoria" name="categoria" id="categoria" value="<?php echo $categoria;?>">
-                    <datalist id="opcionesCategoria" >
+                    <select required name="categoria" id="categoria" oninput="putUnitElements(document.getElementById('categoria').value)" value="<?php echo $categoria;?>">
                         <option value="Alambre">Alambre</option>
                         <option value="Dientes">Dientes</option>
                         <option value="Empress">Empress</option>
@@ -116,7 +115,7 @@
                         <option value="Resina">Resina</option>
                         <option value="Revestimiento">Revestimiento</option>
                         <option value="Ceramica Zirconio">Ceramica Zirconio</option>
-                    </datalist>
+                    </select>
                     <span class="error">* <?php echo $categoriaErr;?></span>
                     <p>
                         &emsp;
@@ -136,7 +135,8 @@
                     </p>
                     <p>
                         &emsp;
-                        Unidad*: &emsp;<input required placeholder="unidad" type="text" name="unidad" id="unidad" value="<?php echo $unidad;?>" >
+                        Unidad*: &emsp;<select required name="unidad" id="unidad" value="<?php echo $unidad;?>" >
+                        </select>
                         <span id="errorUnidad" class="error"> <?php echo $stockCritErr;?></span> 
                     </p>
                 <input type="submit" name="submit" value="Enviar" class="enviar">
