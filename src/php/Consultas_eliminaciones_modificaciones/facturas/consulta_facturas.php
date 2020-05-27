@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION["login"])){
-        header("../login.php");
+        header("Location: ../../login.php");
     }
 
 	require_once("../../gestionBD.php");

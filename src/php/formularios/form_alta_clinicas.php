@@ -10,7 +10,7 @@
 <?php 
 
 if(!isset($_SESSION["login"])){
-  header("../../html/login.html");
+  header("Location: ../login.php");
 }
 
 $nameErr = $localErr = $phoneErr = $morosoErr = $nameDErr = $nColErr ="";
