@@ -45,10 +45,10 @@
         <p class="encabezado">Registro</p>
         <div class="bloque">
         
-            <form name="altaUsuario" action="validation-register.php" method="post" class="formulario">
+            <form name="altaUsuario" action="validation-register.php" method="post" class="formulario" onsubmit="return lettersValidation(document.getElementById('name')) && lettersValidation(document.getElementById('lastname'))">
                     
                     <!--<p>NIF: <input id="NIF" name="NIF" pattern="^[09]{8}[A-Z]" placeholder="12345678X" required></p>-->
-                    <p><input id="name"class="user"  name="name" type="text" value="<?php echo $formulario['name'];?>" maxlength="40" placeholder="Nombre" required></p>
+                    <p><input id="name" class="user" name="name" type="text" value="<?php echo $formulario['name'];?>" maxlength="40" placeholder="Nombre" required></p>
                     <img src="../../../images/user.png" class="usuario">
                     <p><input id="lastname" name="lastname" class="user" value="<?php echo $formulario['lastname'];?>" type="text" placeholder="Apellidos" maxlength="80"></p>
                     <img src="../../../images/apellido.png" class="apellido">
