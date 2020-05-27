@@ -12,7 +12,7 @@ function dateValidation(entrada,entrega) {
         dateEntrada = new Date();
     }
     
-    if(dates.compare(dateEntrada,dateEntrega) == -1){
+    if(dates.compare(dateEntrada,dateEntrega) == 1){
 
         var error = "<br>&emsp;La fecha de entrada debe ser antes que la fecha de entrega";
         console.error("La fecha de entrada debe ser antes que la fecha de entrega");
@@ -20,7 +20,8 @@ function dateValidation(entrada,entrega) {
     }else{
         var error = ""
     }
-
+    
+    
     return error;
 }
 

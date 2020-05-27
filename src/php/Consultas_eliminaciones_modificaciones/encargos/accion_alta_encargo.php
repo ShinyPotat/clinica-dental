@@ -5,7 +5,7 @@
 	require_once("gestionarEncargos.php");
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-	if (isset($_REQUEST["fechaFactura"])) {
+	if (isset($_REQUEST["fechaEntrada"])) {
         $encargo["FECHAENTRADA"] = $_REQUEST["fechaEntrada"];
         $encargo["FECHAENTREGA"] = $_REQUEST["fechaEntrega"];
         $encargo["ACCIONES"] = $_REQUEST["Acciones"];
