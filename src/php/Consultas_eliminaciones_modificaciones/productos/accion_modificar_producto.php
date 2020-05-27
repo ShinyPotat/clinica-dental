@@ -9,13 +9,13 @@
         require_once("gestionar_producto.php");
 
         $conexion = crearConexionBD();
-        $excepcion = modificar_producto($conexion,$producto["OID_P"],$producto["NOMBRE"],$producto["PRECIO"],$producto["OID_E"]);
+        $excepcion = modificar_producto($conexion,$producto["OID_P"],$producto["NOMBRE"],$producto["PRECIO"]);
 
         cerrarConexionBD($conexion);
 
         if ($excepcion<>""){
             $_SESSION["excepcion"] = $excepcion;
-            $_SESSION["destino"] = "Consultas_eliminaciones_modificaciones/producto/consulta_producto.php";
+            $_SESSION["destino"] = "Consultas_eliminaciones_modificaciones/productos/consulta_producto.php";
             Header("Location: ../../excepcion.php");
         }else{
             Header("Location: consulta_producto.php");

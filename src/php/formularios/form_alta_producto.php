@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="bloque">
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+      <form method="post" action="../Consultas_eliminaciones_modificaciones/productos/accion_alta_producto.php">  
           <p><span class="error">&emsp;* campo requerido</span></p>
         <p>
           &emsp;
@@ -75,10 +75,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name').value)">
           <span id="errorName" class="error"> <?php echo $nameErr;?></span>
         </p>
+        <p>
           &emsp;
           Precio*: &emsp; <input  placeholder="Precio" type="number" name="precio" id="precio" value="<?php echo $precio;?>" min="0">
           <span id="errorPrecio" class="error"> <?php echo $precioErr;?></span> 
-        <p>         
+        </p>
+        <?php 
+            require_once("../gestionBD.php");
+            $conexion = crearConexionBD();
+            $query = "SELECT OID_E, FECHA_ENTRADA FROM Encargos ORDER BY FECHA_ENTRADA ASC";
+            $encargos = $conexion->query($query);
+            cerrarConexionBD($conexion);
+        ?>
+        <div>Encargo: <select id="encargoPR" name="encargoPR">
+            <option value="">Seleccionar encargo</option>
+            <?php foreach($encargos as $fila){ ?>
+              <option value="<?php echo $fila["OID_E"]; ?>"><?php echo $fila["FECHA_ENTRADA"]; ?></option>
+
+            <?php } ?>
+          </select>
+        </div>
+      </p>
+      <p>         
         <input type="submit" name="submit" value="Enviar" class="enviar">
 	      <a href="../../html/listaPDP.html" class="buttonAtras">Atrás</a>
       </form>

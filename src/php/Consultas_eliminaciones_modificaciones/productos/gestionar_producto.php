@@ -36,7 +36,7 @@
 
     function quitar_producto($conexion, $oidProducto){
         try {
-            $stmt = $conexion->prepare('CALL quitar_producto(:oidProducto)');
+            $stmt = $conexion->prepare('CALL eliminar_producto(:oidProducto)');
             $stmt->bindParam(':oidProducto', $oidProducto);
             $stmt->execute();
             return "";
@@ -45,13 +45,12 @@
         }
     }
 
-    function modificar_producto($conexion, $oidProducto, $nombre, $precio, $oidE){
+    function modificar_producto($conexion, $oidProducto, $nombre, $precio){
         try {
-            $stmt = $conexion->prepare('CALL modificar_producto(:oidProducto,:nombre, :precio, :oidE)');
+            $stmt = $conexion->prepare('CALL modifica_producto(:oidProducto,:nombre, :precio)');
             $stmt->bindParam(':oidProducto', $oidProducto);
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':precio', $precio);
-            $stmt->bindParam(':OID_E', $OID_E);
             $stmt->execute();
             return "";
         } catch (PDOException $e) {

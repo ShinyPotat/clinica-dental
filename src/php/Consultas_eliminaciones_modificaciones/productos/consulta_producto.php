@@ -9,7 +9,7 @@
     require_once("gestionar_producto.php");
 
     if (isset($_SESSION["producto"])) {
-        $clinica = $_SESSION["producto"];
+        $producto = $_SESSION["producto"];
         unset($_SESSION["producto"]);
     }
 
@@ -117,7 +117,6 @@
                         <tr>
                             <th>nombre</th>
                             <th>precio</th>
-                            <th>OID_E</th>
                             <th>opciones</th>
                         </tr>
                     </thead>
@@ -126,20 +125,18 @@
                                     <form action="controlador_producto.php" method="post">
                                         <div>
                                             <div>
-                                                <input type="hidden" name="OID_PRO" id="OID_PRO" value="<?php echo $fila["OID_PRO"];?>">
+                                                <input type="hidden" name="OID_P" id="OID_P" value="<?php echo $fila["OID_P"];?>">
+                                                <input type="hidden" name="OID_E" id="OID_E" value="<?php echo $fila["OID_E"];?>">
                                                 <?php
-                                                    if (isset($producto) and ($producto["OID_PRO"] == $fila["OID_PRO"])) { ?>
+                                                    if (isset($producto) and ($producto["OID_P"] == $fila["OID_P"])) { ?>
                                                         <tr>
                                                             <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
-                                                            <td><input type="text" name="PRECIO" id="PRECIO" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
-
-
+                                                            <td><input type="text" name="PRECIO" id="PRECIO" value="<?php echo $fila["PRECIO"];?>"></td>
                                               <?php } else { ?>
                                                         <input type="hidden" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>">
                                                         <tr>
                                                             <td><?php echo $fila["NOMBRE"]?></td>
                                                             <td><?php echo $fila["PRECIO"]?></td>
-                                                            <td><?php echo $fila["OID_E"]?></td>
                                               <?php } ?>
                                             </div>
                                             <div>
