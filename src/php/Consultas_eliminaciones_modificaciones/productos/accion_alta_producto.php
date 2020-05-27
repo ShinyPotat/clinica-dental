@@ -5,9 +5,9 @@
 	require_once("gestionar_producto.php");
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-	if (isset($_REQUEST["nombre"])) {
-        $clinica["nombre"] = $_REQUEST["nombre"];
-        $clinica["precio"] = $_REQUEST["precio"];
+	if (isset($_REQUEST["name"])) {
+        $producto["nombre"] = $_REQUEST["name"];
+        $producto["precio"] = $_REQUEST["precio"];
 		$_SESSION["producto"] = null;
 		$_SESSION["errores"] = null;
 	}

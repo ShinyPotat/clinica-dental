@@ -2,10 +2,10 @@
     session_start();
 
     if (isset($_REQUEST["OID_P"])) {
-        $clinica["OID_P"] = $_REQUEST["OID_P"];
-        $clinica["NOMBRE"] = $_REQUEST["NOMBRE"];
-        $clinica["PRECIO"] = $_REQUEST["PRECIO"];;
-        $clinica["OID_E"] = $_REQUEST["OID_E"];
+        $producto["OID_P"] = $_REQUEST["OID_P"];
+        $producto["NOMBRE"] = $_REQUEST["NOMBRE"];
+        $producto["PRECIO"] = $_REQUEST["PRECIO"];;
+        $producto["OID_E"] = $_REQUEST["OID_E"];
         $_SESSION["producto"] = $producto;
 
         if (isset($_REQUEST["Editar"]))

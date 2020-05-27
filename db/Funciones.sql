@@ -393,6 +393,18 @@ BEGIN
 END;
 /
 
+--Modificar producto
+CREATE OR REPLACE PROCEDURE modifica_producto(
+    w_oid_p IN Productos.oid_p%TYPE,
+    w_nombre IN Productos.nombre%TYPE,
+    w_precio IN Productos.precio%TYPE
+)IS
+BEGIN
+    UPDATE Productos SET nombre=w_nombre WHERE oid_p=w_oid_p;
+    UPDATE Productos SET precio=w_precio WHERE oid_p=w_oid_p;
+END;
+/
+
 --FUNCION ASSERT_EQUALS
 CREATE OR REPLACE FUNCTION ASSERT_EQUALS(
     salida BOOLEAN,

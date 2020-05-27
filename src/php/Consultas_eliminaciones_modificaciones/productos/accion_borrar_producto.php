@@ -2,14 +2,14 @@
     session_start();
 
     if (isset($_SESSION["producto"])){
-        $clinica = $_SESSION["producto"];
+        $producto = $_SESSION["producto"];
         unset($_SESSION["producto"]);
 
         require_once("../../gestionBD.php");
         require_once("gestionar_producto.php");
 
         $conexion = crearConexionBD();
-        $excepcion = quitar_producto($conexion,$clinica["OID_P"]);
+        $excepcion = quitar_producto($conexion,$producto["OID_P"]);
 
         cerrarConexionBD($conexion);
 
