@@ -59,18 +59,19 @@ body{
     
 }
 .botonUsuario{
-    background:    #ffffff;
-    border:        1% solid #2b86da;
-    border-radius: 1%;
-    padding:       0.5% 2%;
-    font:          normal bold 0.8vw/1 "Open Sans", sans-serif;
-    text-align:    right;
-    text-decoration: none;
+    background-color:#44c;
+    border-radius:23%;
+    border:1px solid #ffffff;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:1vw;
+    padding:1% 3%;
+    text-decoration:none;
     position: absolute;
-    left: 87.5%;
-    top: 43%;
-    max-width: 100%;
-    height: auto;
+    left:87.5%;
+    top:43%;
 }
 .acerca{
     color: turquoise;

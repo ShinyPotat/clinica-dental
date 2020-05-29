@@ -14,9 +14,5 @@
         
         <img class="flechaA" src="../../../images/flechaA.png" width="20" height="20">
         
-        <select class="botonUsuario">
-            <option value="1">Usuario</option>
-            <option value="2">Opcion 2</option>
-            <option value="3">Opcion 3</option>
-        </select>
+        <a href=logaut.php class="botonUsuario">Desconectarse</a>
     </div>
