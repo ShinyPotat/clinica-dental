@@ -24,7 +24,6 @@
 	unset($_SESSION["PAG_PRO"]);
 
 	$conexion = crearConexionBD();
-    //$filas = consultarTodosProveedores($conexion);
     
     $total_registros = total_consulta($conexion);
 	$total_paginas = (int) ($total_registros / $pag_tam);
@@ -48,29 +47,7 @@
 </head>
 <body>
 <body>
-    <a href="../../../html/log.html" ><img class="imagen" src="../../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
-   
-    <div class="block">
-        <a href="../../../html/about-us.html" class="acerca">Acerca de nosotros</a>
-        <!-- Estos bloques definen las id que se usan para el js de la hora -->
-        <div id="box">
-            <div id="box-date"></div>
-            <div id="box-time"></div>
-        </div>
-        
-        <img class="calendario" src="../../../../images/calendario.png" width="1%" height="11%">
-        <img class="reloj" src="../../../../images/reloj.png" width="1%" height="11%">
-        
-        <img class="usuario" src="../../../../images/user.png" width="1.5%" height="13%">
-        
-        <img class="flechaA" src="../../../images/flechaA.png" width="20" height="20">
-        
-        <select class="botonUsuario">
-            <option value="1">Usuario</option>
-            <option value="2">Opcion 2</option>
-            <option value="3">Opcion 3</option>
-        </select>
-    </div>
+    <?php include_once ("../cabecera.php"); ?>
 
     <a href="../../formularios/form_alta_pedido.php" class="botonNuevoPedido">Nuevo Pedido</a>
     <a href= "../../formularios/form_alta_material.php" class="botonNuevoMaterial">Nuevo Material</a>
