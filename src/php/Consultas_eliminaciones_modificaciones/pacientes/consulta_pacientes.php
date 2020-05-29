@@ -12,6 +12,15 @@
 		$paciente = $_SESSION["paciente"];
 		unset($_SESSION["paciente"]);
     }
+
+    if (isset($_REQUEST['filtro']) && $_REQUEST["filtro"]!="") {
+        $_SESSION['filtro'] = $_REQUEST['filtro'];
+        $_SESSION['filterValue'] = $_REQUEST['filterValue'];
+    }else if(isset($_REQUEST['filtro']) && $_REQUEST['filtro']==""){
+        unset($_SESSION['filtro']);
+        unset($_SESSION['filterValue']);
+        unset($_SESSION['clinicasPacientes']);
+    }
     
     if (isset($_SESSION["PAG_PAC"])) $paginacion = $_SESSION["PAG_PAC"]; 
 		$pagina_seleccionada = isset($_GET["PAG_NUMPC"])? (int)$_GET["PAG_NUMPC"]:
@@ -23,18 +32,27 @@
 	
 	unset($_SESSION["PAG_PAC"]);
 
-	$conexion = crearConexionBD();
+    $conexion = crearConexionBD();
     
-    $total_registros = total_consulta($conexion);
+    if (isset($_SESSION['filtro']) && $_SESSION['filtro']!="") {
+        $total_registros = total_consulta_filtrada($conexion,$_SESSION['filtro'],$_SESSION['filterValue']);
+    } else {
+        $total_registros = total_consulta($conexion);
+    }   
+    
 	$total_paginas = (int) ($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0) $total_paginas++; 
 	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
 	$paginacion["PAG_NUMPC"] = $pagina_seleccionada;
 	$paginacion["PAG_TAMPC"] = $pag_tam;
-	$_SESSION["PAG_PAC"] = $paginacion;
-	
-	$filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
-
+    $_SESSION["PAG_PAC"] = $paginacion;
+    
+    if(isset($_SESSION['filtro']) && $_SESSION['filtro']!=""){
+        $filas = consulta_paginada_filtrado($conexion,$_SESSION['filtro'],$_SESSION['filterValue'],$pagina_seleccionada,$pag_tam);
+    }else{
+        $filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
+    }
+    
 	cerrarConexionBD($conexion);
 ?>
 
@@ -44,7 +62,8 @@
     <meta charset="UTF-8">
     <title>Gestión de Pacientes</title>
     <link rel="stylesheet", type="text/css", href="../../../css/consultaPDP.css">
-    
+    <script src="../../../js/filtro_pacientes.js"></script>
+    <script src="../../../js/jquery-3.1.1.min.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -125,7 +144,7 @@
                             <?php
                                 if(isset($paciente) and ($paciente["OID_PC"] == $fila["OID_PC"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                        <td><input id="DNI" name="DNI" type="text" value="<?php echo $fila["DNI"];?>"></td>
+                                        <td><input id="DNI" name="DNI" type="text" maxlength="9" value="<?php echo $fila["DNI"];?>"></td>
                                         <td><input id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO" type="date" value="<?php echo $fila["FECHA_NACIMIENTO"];?>"></td>
                                         <td>Sexo:
                                             <input type="radio" name="E_SEXO" id="E_SEXO" <?php if (isset($fila["E_SEXO"]) && $fila["E_SEXO"]=="Hombre") echo "checked";?> value="H">Hombre
@@ -156,6 +175,35 @@
             </article>
                     <?php } ?>
         </table>
+        <form id="filterForm" action="consulta_pacientes.php" method="post">
+            <select class="filtro" name="filtro" id="filtro"" oninput="auto(document.getElementById('filtro').value)">
+                <option value="" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']==""){ echo "selected='selected'";}?>>---</option>
+                <option value="DNI" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="DNI"){ echo "selected='selected'";}?>>DNI</option>
+                <option value="E_Sexo" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="E_Sexo"){ echo "selected='selected'";}?>>Sexo</option>
+                <option value="OID_C" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="OID_C"){ echo "selected='selected'";}?>>Clinica</option>
+            </select>
+            <div id="filterValueDiv">
+            Valor:
+            <?php
+                if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="DNI"){?>
+                    <input class="filterValue" maxlength="1" type="text" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
+                    <input class="filterButton" type="submit" value="FILTRAR">
+              <?php  }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="E_Sexo") { ?>
+                <select class="filterValue" name="filterValue" id="filterValue">
+                    <option value="H" <?php if(isset($_SESSION['filterValue']) && $_SESSION['filterValue']=="H"){ echo "selected='selected'";}?>>H</option>
+                    <option value="M" <?php if(isset($_SESSION['filterValue']) && $_SESSION['filterValue']=="M"){ echo "selected='selected'";}?>>M</option>
+                </select>
+                <input class="filterButton" type="submit" value="FILTRAR">
+             <?php }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="OID_C"){ ?>
+                 <select name="filterValue" id="filterValue">
+                     <?php foreach ($_SESSION['clinicasPacientes'] as $clinica) { ?>
+                         <option value="<?php echo $clinica['OID_C'] ?>" <?php if($clinica['OID_C'] == $_SESSION['filterValue']){echo "selected='selected'";} ?>><?php echo $clinica['NOMBRE']; ?></option>
+                  <?php   } ?>
+                 </select>
+                 <input class="filterButton" type="submit" value="FILTRAR">
+           <?php  } ?>
+            </div>
+        </form>
     </main>
 </body>
 </html>

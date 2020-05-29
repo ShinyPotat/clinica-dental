@@ -13,6 +13,7 @@ BEGIN
 END;
 /
 
+
 --insertar clinica
 CREATE OR REPLACE PROCEDURE crear_clinica (
     w_nombre IN Clinicas.nombre%TYPE,

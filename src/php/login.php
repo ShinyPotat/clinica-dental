@@ -16,7 +16,7 @@
           $login = "error";	
       else {
           $_SESSION['login'] = $user;
-          Header("Location: ../html/accesorapido.html");
+          Header("Location: accesorapido.php");
       }	
   }
 
