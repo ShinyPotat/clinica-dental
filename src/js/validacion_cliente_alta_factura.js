@@ -16,3 +16,18 @@ function dateValidation(fechaCobro, fechaVencimiento, fechaFactura) {
     }
     return error;
 }
+
+function dateValidation(fecha) {
+    
+    var date = new Date(fecha);
+    var now = new Date();
+
+    if (dates.compare(date,now) == 1) {
+        console.error("Fecha inválida");
+        var error = "&emsp;Fecha no válida";
+    } else {
+        var error = "";
+    }
+    
+    return error;
+}

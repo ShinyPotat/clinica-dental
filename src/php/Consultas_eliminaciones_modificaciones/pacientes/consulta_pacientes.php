@@ -182,7 +182,7 @@
                 <option value="OID_C" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="OID_C"){ echo "selected='selected'";}?>>Clinica</option>
             </select>
             <div id="filterValueDiv">
-            Valor:
+            Filtrado de la consulta:
             <?php
                 if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="DNI"){?>
                     <input class="filterValue" maxlength="1" type="text" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">

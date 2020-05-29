@@ -1,13 +1,6 @@
-<!DOCTYPE HTML>  
-<html>
-<head>
-    <meta charset="UTF-8" lang="es">
-    <title>Alta clínicas</title>
-    <link rel="stylesheet", type="text/css", href="../../css/formClinicas.css">
-    <script src="../../js/validacion_cliente_alta_clinica.js" type="text/javascript"></script>
-</head>
-<body>
 <?php 
+
+  session_start();
 
 if(!isset($_SESSION["login"])){
   header("Location: ../login.php");
@@ -69,8 +62,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     return $data;
   }
 ?>
-
-
+<!DOCTYPE HTML>  
+<html>
+<head>
+    <meta charset="UTF-8" lang="es">
+    <title>Alta clínicas</title>
+    <link rel="stylesheet", type="text/css", href="../../css/formClinicas.css">
+    <script src="../../js/validacion_cliente_alta_clinica.js" type="text/javascript"></script>
+</head>
+<body>
 
 <a href="../../html/log.html" ><img class="imagen" src="../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
     <div class="block">
