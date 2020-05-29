@@ -47,7 +47,7 @@
     
 </head>
 <body>
-    <?php include_once ("../cabecera.php"); ?>
+    <?php include_once ("../../cabecera.php"); ?>
 
     <a href="../../formularios/form_alta_encargo.php" class="botonNuevoEncargo">Nuevo Encargo</a>
     <a href="consulta_encargos.php" class="botonEncargos">Encargos</a>
