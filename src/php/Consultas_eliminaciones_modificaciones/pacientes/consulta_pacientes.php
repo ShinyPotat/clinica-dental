@@ -103,6 +103,7 @@
 
                         <!-- joselu pon aqui la comprobacion de errores y que te salga el error encima de la tabla donde quema -->
                         
+                        
         </nav>
         <table class="blueTable">                  <!-- comienzo de la tabla -->
             <thead>
