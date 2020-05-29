@@ -66,7 +66,7 @@
                     <img src="../../../images/restringido.png" class="contraseña">
         
         <input type="submit" value="Registrarse">
-        <a href="../../html/login.html" class="newUser">Volver a la pantalla de login</a>       
+        <a href="../login.php" class="newUser">Volver a la pantalla de login</a>       
             </form>
         </div>
  

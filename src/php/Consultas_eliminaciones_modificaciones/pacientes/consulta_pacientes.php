@@ -55,6 +55,8 @@
 	cerrarConexionBD($conexion);
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +68,7 @@
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
-
+    
     <a href="../../formularios/form_alta_clinicas.php"class="botonNuevaClinica">Nueva Clinica</a>
     <a href="../../formularios/form_alta_paciente.php" class="botonNuevoPaciente">Nuevo Paciente</a>
     <a href="../../formularios/form_alta_producto.php" class="botonNuevoProducto">Nuevo Producto</a>

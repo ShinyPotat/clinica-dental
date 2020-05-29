@@ -60,8 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p><span class="error">&emsp;* campo requerido</span></p>
         <p>
           &emsp;
-          Fecha de cobro: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaCobro" id="fechaCobro" value="<?php echo $fechaCobro;?>">
-          <span class="error"> <?php echo $fechaCobroErr;?></span>
+          Fecha de cobro: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaCobro" id="fechaCobro" value="<?php echo $fechaCobro;?>"
+                            oninput="document.getElementById('errorFechaCobro').innerHTML = dateValidation(document.getElementById('fechaCobro').value);">
+          <span class="error" id="errorFechaCobro"> <?php echo $fechaCobroErr;?></span>
         </p>
           &emsp;
           Fecha de vencimiento: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaVencimiento" id="fechaVencimiento" value="<?php echo $fechaVencimiento;?>">

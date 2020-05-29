@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <span id="entregaError" class="error"> <?php echo $fechaEntregaErr;?></span> 
           </p>
           <p>
+          &emsp;
           Acciones: <input placeholder="Acciones" type="text" name="Acciones" id="Acciones" value="<?php echo $acciones;?>">
           </p>
           <p>
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $pacientes = $conexion->query($query);
               cerrarConexionBD($conexion);
           ?>
-          <div>Paciente: <select id="PacienteE" name="PacienteE">
+          <div>&emsp; Paciente: <select id="PacienteE" name="PacienteE">
               <option value="">Seleccionar paciente</option>
               <?php foreach($pacientes as $fila){ ?>
                 <option value="<?php echo $fila["OID_PC"]; ?>"><?php echo $fila["DNI"]; ?></option>
@@ -80,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $facturas = $conexion->query($query);
               cerrarConexionBD($conexion);
           ?>
-          <div>Factura: <select id="FacturaE" name="FacturaE">
+          <div>&emsp; Factura: <select id="FacturaE" name="FacturaE">
               <option value="">Seleccionar factura</option>
               <?php foreach($facturas as $fila){ ?>
                 <option value="<?php echo $fila["OID_F"]; ?>"><?php echo $fila["FECHA_FACTURA"]; ?></option>
