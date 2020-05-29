@@ -101,17 +101,16 @@ EXECUTE crear_linea(12,70,115,153);
 EXECUTE crear_linea(11,66,111,150);
 EXECUTE crear_linea(5,32,111,145);
 --insercion de productos
-EXECUTE crear_producto('producto1',200,127);
-EXECUTE crear_producto('producto2',100,128);
-EXECUTE crear_producto('producto3',150,129);
-EXECUTE crear_producto('producto4',350,130);
-EXECUTE crear_producto('producto5',500,131);
-EXECUTE crear_producto('producto6',75,132);
-EXECUTE crear_producto('producto7',275,133);
-EXECUTE crear_producto('producto8',160,134);
-EXECUTE crear_producto('producto9',590,135);
-EXECUTE crear_producto('producto10',300,135);
-EXECUTE crear_producto('producto11',900,135);
+EXECUTE crear_producto('producto1',200,1);
+EXECUTE crear_producto('producto2',100,2);
+EXECUTE crear_producto('producto3',150,3);
+EXECUTE crear_producto('producto4',350,4);
+EXECUTE crear_producto('producto5',500,5);
+EXECUTE crear_producto('producto6',75,6);
+EXECUTE crear_producto('producto7',275,7);
+EXECUTE crear_producto('producto8',160,8);
+EXECUTE crear_producto('producto9',590,9);
+EXECUTE crear_producto('producto10',300,10);
 --insercion de requieres
 EXECUTE crear_requiere(1,136,145);
 EXECUTE crear_requiere(4,137,146);

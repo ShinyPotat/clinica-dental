@@ -55,6 +55,8 @@
 	cerrarConexionBD($conexion);
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,8 +67,30 @@
     <script src="../../../js/jquery-3.1.1.min.js" type="text/javascript"></script>
 </head>
 <body>
-    <?php include_once ("../../cabecera.php"); ?>
 
+    <a href="../../../html/log.html" ><img class="imagen" src="../../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
+
+    <div class="block">
+        <a href="../../../html/about-us.html" class="acerca">Acerca de nosotros</a>
+        <!-- Estos bloques definen las id que se usan para el js de la hora -->
+        <div id="box">
+            <div id="box-date"></div>
+            <div id="box-time"></div>
+        </div>
+        
+        <img class="calendario" src="../../../../images/calendario.png" width="1%" height="11%">
+        <img class="reloj" src="../../../../images/reloj.png" width="1%" height="11%">
+        
+        <img class="usuario" src="../../../../images/user.png" width="1.5%" height="13%">
+        
+        <img class="flechaA" src="../../../images/flechaA.png" width="20" height="20">
+        
+        <select class="botonUsuario">
+            <option value="1">Usuario</option>
+            <option value="2">Opcion 2</option>
+            <option value="3">Opcion 3</option>
+        </select>
+    </div>
     <a href="../../formularios/form_alta_clinicas.php"class="botonNuevaClinica">Nueva Clinica</a>
     <a href="../../formularios/form_alta_paciente.php" class="botonNuevoPaciente">Nuevo Paciente</a>
     <a href="../../formularios/form_alta_producto.php" class="botonNuevoProducto">Nuevo Producto</a>
@@ -160,7 +184,7 @@
                 <option value="OID_C" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="OID_C"){ echo "selected='selected'";}?>>Clinica</option>
             </select>
             <div id="filterValueDiv">
-            Filtrado de la consulta:
+            Valor:
             <?php
                 if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="DNI"){?>
                     <input class="filterValue" maxlength="1" type="text" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
