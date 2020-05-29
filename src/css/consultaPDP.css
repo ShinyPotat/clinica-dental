@@ -359,3 +359,11 @@ table.blueTable {
     box-sizing: border-box;
     position: absolute;
 }
+/* Mensajes de Error */
+div.error {
+	color : red;	
+	border : 2px solid red;
+	padding : 10px;
+    margin: 10px;
+    z-index: 1;
+}

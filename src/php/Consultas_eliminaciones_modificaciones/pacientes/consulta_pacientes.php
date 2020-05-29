@@ -102,8 +102,21 @@
             </form>                                                        <!-- fin de formulario -->
 
                         <!-- joselu pon aqui la comprobacion de errores y que te salga el error encima de la tabla donde quema -->
-                        
-                        
+            
+            <?php
+            if(isset($errores)) {
+                echo "<div class='error'>";
+                //class: Sirve para enlazar el html con las hojas de estilo. 
+                
+                echo $errores;
+                echo "<ul>";
+                foreach($errores as $error){
+                    echo "<li>".$error."</li>";
+                }
+                
+                echo "</div>";
+            }
+            ?>         
         </nav>
         <table class="blueTable">                  <!-- comienzo de la tabla -->
             <thead>

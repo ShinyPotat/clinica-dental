@@ -12,8 +12,8 @@
 		
 		$error = validarDatosPaciente($paciente);
 
-		if($error !="") {
-			$_SESSION["errores"] = $error;
+		if($errores !="") {
+			$_SESSION["errores"] = $errores;
 			Header("Location: consulta_pacientes.php");
 		}
 
@@ -27,7 +27,7 @@
 	function validarDatosPaciente($paciente) {
 		$error="";
 
-		if(!preg_match("/^[0-9]{8}[A-Z]$/",$paciente["DNI"]) {
+		if(!preg_match("/^[0-9]{8}[A-Z]$/",$paciente["DNI"])) {
 			$error .= "<p>El NIF ". $paciente["DNI"] . "es incorrecto. Debe reescribirlo.</p>";
 		}
 
@@ -38,5 +38,7 @@
 		if(empty($paciente["E_SEXO"])) {
 			$error .= "<p>Debe de indicar el sexo</p>";
 		}
+
+		return $error;
 	}
 ?>
