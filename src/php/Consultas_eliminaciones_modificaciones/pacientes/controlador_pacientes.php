@@ -8,25 +8,21 @@
 		$paciente["E_SEXO"] = $_REQUEST["E_SEXO"];
 		$paciente["OID_C"] = $_REQUEST["OID_C"];
 		
+		$_SESSION["paciente"] = $paciente;
 		
-			
+		$error = validarDatosPaciente($paciente);
+
+		if($error !="") {
+			$_SESSION["errores"] = $error;
+			Header("Location: consulta_pacientes.php");
+		}
+
 		if (isset($_REQUEST["Editar"])) Header("Location: consulta_pacientes.php"); 
 		else if (isset($_REQUEST["Guardar"])) Header("Location: accion_modificar_paciente.php");
 		else if (isset($_REQUEST["Borrar"])) Header("Location: accion_borrar_paciente.php"); 
 	}
 	else 
 		Header("Location: consulta_pacientes.php");
-}
-	$_SESSION["paciente"] = $paciente;
-
-	$error = validarDatosPaciente($paciente);
-
-	if($error !="") {
-		$_SESSION["errores"] = $error;
-		Header("Location: consulta_pacientes.php");
-	}
-
-
 
 	function validarDatosPaciente($paciente) {
 		$error="";

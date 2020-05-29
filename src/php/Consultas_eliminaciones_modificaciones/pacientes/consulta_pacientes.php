@@ -68,7 +68,7 @@
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
-    
+
     <a href="../../formularios/form_alta_clinicas.php"class="botonNuevaClinica">Nueva Clinica</a>
     <a href="../../formularios/form_alta_paciente.php" class="botonNuevoPaciente">Nuevo Paciente</a>
     <a href="../../formularios/form_alta_producto.php" class="botonNuevoProducto">Nuevo Producto</a>
@@ -100,6 +100,9 @@
                 entradas de <?php echo $total_registros?>
                 <input type="submit" value="Cambiar"/>
             </form>                                                        <!-- fin de formulario -->
+
+                        <!-- joselu pon aqui la comprobacion de errores y que te salga el error encima de la tabla donde quema -->
+                        
         </nav>
         <table class="blueTable">                  <!-- comienzo de la tabla -->
             <thead>
@@ -155,7 +158,7 @@
                     <?php } ?>
         </table>
         <form id="filterForm" action="consulta_pacientes.php" method="post">
-            <select class="filtro" name="filtro" id="filtro"" oninput="auto(document.getElementById('filtro').value)">
+            <select class="filtro" name="filtro" id="filtro" oninput="auto(document.getElementById('filtro').value)">
                 <option value="" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']==""){ echo "selected='selected'";}?>>---</option>
                 <option value="DNI" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="DNI"){ echo "selected='selected'";}?>>DNI</option>
                 <option value="E_Sexo" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="E_Sexo"){ echo "selected='selected'";}?>>Sexo</option>
