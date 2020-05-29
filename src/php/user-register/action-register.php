@@ -24,6 +24,6 @@
 		header("Location: ../excepcion.php");
 	} else {  
 		$_SESSION['login'] = $nuevoUsuario;
-		Header("Location: accesorapido.php");
+		Header("Location: ../accesorapido.php");
 	}
 ?>

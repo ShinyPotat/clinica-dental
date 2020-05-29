@@ -44,24 +44,24 @@ if(!isset($_SESSION["login"])){
 
     <div class="columna1">
 
-        <a href="listaInventarioPedidos.html" class="button">Inventario</a>
+        <a href="Consultas_eliminaciones_modificaciones/materiales/consulta_materiales.php" class="button">Inventario</a>
 
-        <a href="listaEncargosTrabajos.html" class="button">Encargos</a>
+        <a href="Consultas_eliminaciones_modificaciones/encargos/consulta_encargos.php" class="button">Encargos</a>
 
-        <a href="listaInventarioPedidos.html" class="button">Pedidos</a>
+        <a href="Consultas_eliminaciones_modificaciones/pedidos/consulta_pedidos.php" class="button">Pedidos</a>
     
-        <a href="listaInventarioPedidos.html" class="button">Proveedores</a>
+        <a href="Consultas_eliminaciones_modificaciones/proveedores/consulta_proveedores.php" class="button">Proveedores</a>
 
     </div>
 
     <div class="columna3">
-        <a href="listaPDP.html" class="button">Clínicas</a>    
+        <a href="Consultas_eliminaciones_modificaciones/clinicas/consulta_clinica.php" class="button">Clínicas</a>    
 
-        <a href="listaPDP.html" class="button">Pacientes</a>
+        <a href="Consultas_eliminaciones_modificaciones/pacientes/consulta_pacientes.php" class="button">Pacientes</a>
 
-        <a href="listaFacturas.html" class="button">Facturas</a>
+        <a href="Consultas_eliminaciones_modificaciones/facturas/consulta_facturas.php" class="button">Facturas</a>
 
-        <a href="listaPDP.html" class="button">Productos</a>
+        <a href="Consultas_eliminaciones_modificaciones/productos/consulta_producto.php" class="button">Productos</a>
 
     </div>
 
