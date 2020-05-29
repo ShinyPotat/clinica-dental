@@ -1,7 +1,5 @@
 <?php
 
-    session_start();
-
     require_once("../../gestionBD.php");
 
     if(isset($_GET['filtro']) && $_GET['filtro']=='OID_C'){
@@ -9,8 +7,6 @@
 
         $query = "SELECT OID_C, Nombre FROM Clinicas ORDER BY Nombre ASC";
         $clinicas = $conexion->query($query);
-
-        $_SESSION['clinicasPacientes'] = $clinicas;
 
         if($clinicas != NULL){
             // Para cada municipio del listado devuelto

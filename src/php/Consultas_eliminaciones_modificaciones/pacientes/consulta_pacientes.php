@@ -19,7 +19,6 @@
     }else if(isset($_REQUEST['filtro']) && $_REQUEST['filtro']==""){
         unset($_SESSION['filtro']);
         unset($_SESSION['filterValue']);
-        unset($_SESSION['clinicasPacientes']);
     }
     
     if (isset($_SESSION["PAG_PAC"])) $paginacion = $_SESSION["PAG_PAC"]; 
@@ -194,9 +193,15 @@
                     <option value="M" <?php if(isset($_SESSION['filterValue']) && $_SESSION['filterValue']=="M"){ echo "selected='selected'";}?>>M</option>
                 </select>
                 <input class="filterButton" type="submit" value="FILTRAR">
-             <?php }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="OID_C"){ ?>
-                 <select name="filterValue" id="filterValue">
-                     <?php foreach ($_SESSION['clinicasPacientes'] as $clinica) { ?>
+             <?php }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="OID_C"){ 
+
+                        $conexion = crearConexionBD();
+                        $query = "SELECT OID_C, Nombre FROM Clinicas ORDER BY Nombre ASC";
+                        $clinicas = $conexion->query($query);
+                        cerrarConexionBD($conexion);
+                 ?>
+                 <select class="filterValue" name="filterValue" id="filterValue">
+                     <?php foreach ($clinicas as $clinica) { ?>
                          <option value="<?php echo $clinica['OID_C'] ?>" <?php if($clinica['OID_C'] == $_SESSION['filterValue']){echo "selected='selected'";} ?>><?php echo $clinica['NOMBRE']; ?></option>
                   <?php   } ?>
                  </select>
