@@ -46,7 +46,7 @@
     <link rel="stylesheet", type="text/css", href="../../../css/consultaFacturas.css">
 </head>
 <body>
-    <?php include_once ("../../cabecera.php"); ?>
+    <?php include_once ("../../cabeceraC.php"); ?>
     
     <a href= "../../formularios/form_alta_facturas.php" class="botonNuevaFactura">Nueva factura</a>
     <a href= "../facturas/consulta_facturas.php" class="botonFactura">Facturas</a>

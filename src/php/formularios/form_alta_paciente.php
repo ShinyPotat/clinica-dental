@@ -42,9 +42,8 @@ function test_input($data) {
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-
-    include_once ("../cabecera.php");
   }
+  include_once ("../cabecera.php");
 ?>
 
     <div class="bloque">
