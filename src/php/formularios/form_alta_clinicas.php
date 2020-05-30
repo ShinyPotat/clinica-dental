@@ -1,12 +1,3 @@
-<!DOCTYPE HTML>  
-<html>
-<head>
-    <meta charset="UTF-8" lang="es">
-    <title>Alta clínicas</title>
-    <link rel="stylesheet", type="text/css", href="../../css/formClinicas.css">
-    <script src="../../js/validacion_cliente_alta_clinica.js" type="text/javascript"></script>
-</head>
-<body>
 <?php 
 
 session_start();
@@ -73,9 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   include_once ("../cabecera.php");
 ?>
-
-
-    
+<!DOCTYPE HTML>  
+<html>
+<head>
+    <meta charset="UTF-8" lang="es">
+    <title>Alta clínicas</title>
+    <link rel="stylesheet", type="text/css", href="../../css/formClinicas.css">
+    <script src="../../js/validacion_cliente_alta_clinica.js" type="text/javascript"></script>
+</head>
+<body>
 
     <div class="bloque">
         <form method="post" action="../Consultas_eliminaciones_modificaciones/clinica/accion_alta_clinica.php">  

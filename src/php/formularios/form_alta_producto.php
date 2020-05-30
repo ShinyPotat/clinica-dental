@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $encargos = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>Encargo: <select id="encargoPR" name="encargoPR">
+        <div>&emsp; Encargo: <select id="encargoPR" name="encargoPR">
             <option value="">Seleccionar encargo</option>
             <?php foreach($encargos as $fila){ ?>
               <option value="<?php echo $fila["OID_E"]; ?>"><?php echo $fila["FECHA_ENTRADA"]; ?></option>

@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $proveedor = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>proveedor: <select id="proveedorPD" name="proveedorPD">
+        <div>&emsp; Proveedor: <select id="proveedorPD" name="proveedorPD">
             <option value="">Seleccionar proveedor</option>
             <?php foreach($proveedor as $fila){ ?>
               <option value="<?php echo $fila["OID_PR"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $facturas = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>Factura: <select id="FacturaPD" name="FacturaPD">
+        <div>&emsp; Factura: <select id="FacturaPD" name="FacturaPD">
             <option value="">Seleccionar factura</option>
             <?php foreach($facturas as $fila){ ?>
               <option value="<?php echo $fila["OID_F"]; ?>"><?php echo $fila["FECHA_FACTURA"]; ?></option>
