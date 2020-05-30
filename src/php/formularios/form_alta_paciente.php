@@ -74,7 +74,7 @@ function test_input($data) {
             $clinicas = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>Clinica: <select id="clinicaP" name="clinicaP">
+        <div>&emsp; Clinica: <select id="clinicaP" name="clinicaP">
             <option value="">Seleccionar clinica</option>
             <?php foreach($clinicas as $fila){ ?>
               <option value="<?php echo $fila["OID_C"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>
