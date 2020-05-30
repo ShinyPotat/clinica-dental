@@ -2,20 +2,27 @@ var imported = document.createElement('script');
 imported.src = '../../js/dates.js';
 document.head.appendChild(imported);
 
-function dateValidation(fechaSolicitud, fechaEntrega) {
-    fechaSolicitud = new Date(fechaSolicitud);
+function entregaValidation(fechaEntrega) {
+
+    const fecha = document.getElementById('fechaEntrega');
+
+    var today = new Date();
     fechaEntrega = new Date(fechaEntrega);
 
-    if (dates.compare(fechaSolicitud,fechaEntrega) == 1) {
+    if (dates.compare(today,fechaEntrega) == 1) {
         console.error("Error con la fecha");
-        var error = "Error con la fecha";
+        var error = "Fecha menor al dia de hoy";
     } else {
         var error = "";
     }
+    fecha.setCustomValidity(error);
     return error;
 }
 
 function solicitudValidation(fechaSolicitud) {
+
+    const fecha = document.getElementById('fechaSolicitud');
+
     var today = new Date();
     fechaSolicitud = new Date(fechaSolicitud);
 
@@ -25,5 +32,6 @@ function solicitudValidation(fechaSolicitud) {
     }else{
         var error = "";
     }
+    fecha.setCustomValidity(error);
     return error;
 }

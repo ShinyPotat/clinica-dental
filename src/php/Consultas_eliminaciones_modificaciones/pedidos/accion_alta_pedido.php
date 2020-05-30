@@ -17,6 +17,15 @@
         Header("Location: ../../formularios/form_alta_pedido.php");
 	} 
 
+	$errores = validation($pedido);
+
+	if(isset($errores) && count($errores)>0) {
+		$_SESSION["errores"] = $errores;
+		$_SESSION["Fpedido"] = $pedido;
+		Header("Location: ../../formularios/form_alta_pedido.php");
+		die;
+	}
+
 	$conexion = crearConexionBD(); 
 
     $excepcion = crear_pedido($conexion, $pedido["fechaSolicitud"],$pedido["fechaEntrega"],$pedido["OID_PR"],$pedido["OID_F"]);
@@ -32,4 +41,33 @@
 	}
 
 	cerrarConexionBD($conexion);
+
+	function validation($pedido){
+		
+		$errores = [];
+
+		$now = new DateTime();
+		$fechaSolicitud = date_create($pedido["fechaSolicitud"]);
+		$fechaEntrega = date_create($pedido["fechaEntrega"]);
+        
+        $var1 = date_diff($now,$fechaSolicitud);
+        $var2 = date_diff($now,$fechaEntrega);
+        
+		if ($var1->format("%r%a") > 0) {
+			$errores[] = "<p>La fecha de solicitud no puede ser después del día de hoy</p>";
+		}
+		
+		if ($var2->format("%r%a") < 0) {
+			$errores[] = "<p>La fecha de entrega no puede ser antes del día de hoy</p>";
+		}
+	
+		return $errores;		
+	}
+
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 ?>

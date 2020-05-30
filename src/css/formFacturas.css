@@ -213,3 +213,10 @@ input[type=submit] {
     color: red;
 }
 
+div.error {
+	color : red;	
+    z-index: 1;
+    position: absolute;
+    top: 5%;
+    left: 30%;
+}
