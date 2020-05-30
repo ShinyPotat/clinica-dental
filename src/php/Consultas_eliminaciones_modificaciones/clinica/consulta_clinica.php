@@ -80,7 +80,6 @@
                     }
                 ?>
             </div>
-
             <form class="formulario" action="consulta_clinica.php" method="get">
                     <input type="hidden" name="PAG_NUMM" id="PAG_NUMM" value="<?php echo $pagina_seleccionada;?>">
                     Mostrando
@@ -89,7 +88,19 @@
                     <input type="submit" value="Cambiar">
             </form>
         </nav>
-
+        <?php
+            if(isset($_SESSION["errores"])) {
+                $errores=$_SESSION["errores"];
+                unset($_SESSION["errores"]);
+                echo "<div class='error'>";
+                echo "<ul>";
+                foreach($errores as $error){
+                    echo "<li>".$error."</li>";
+                }
+                echo "</ul>";
+                echo "</div>";
+            }
+            ?>
         <table class="blueTable">
                     <thead>
                         <tr>
@@ -114,10 +125,10 @@
                                                         <tr>
                                                             <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
                                                             <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
-                                                            <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
+                                                            <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" maxlength= 9 value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
                                                             <td><?php echo $fila["MOROSO"];?></td>
                                                             <td><input type="text" name="NOMBRE_DUEÑO" id="NOMBRE_DUEÑO" value="<?php echo $fila["NOMBRE_DUEÑO"];?>"></td>
-                                                            <td><input type="text" name="NUM_COLEGIADO" id="NUM_COLEGIADO" value="<?php echo $fila["NUM_COLEGIADO"];?>"></td>
+                                                            <td><input type="text" name="NUM_COLEGIADO" id="NUM_COLEGIADO" maxlength= 4 value="<?php echo $fila["NUM_COLEGIADO"];?>"></td>
                                               <?php } else { ?>
                                                         <input type="hidden" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>">
                                                         <tr>

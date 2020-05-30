@@ -16,9 +16,9 @@ if(!isset($_SESSION["login"])){
   header("../login.php");
 }
 if (!isset($_SESSION["Fpaciente"])) {
-  $Fpaciente['dni'] = "";
-  $Fpaciente['fechaNacimiento'] = "";
-  $Fpaciente['sexo'] = "";
+  $Fpaciente['DNI'] = "";
+  $Fpaciente['FECHA_NACIMIENTO'] = "";
+  $Fpaciente['E_SEXO'] = "";
 
   $_SESSION["Fpaciente"] = $Fpaciente;
 }else{

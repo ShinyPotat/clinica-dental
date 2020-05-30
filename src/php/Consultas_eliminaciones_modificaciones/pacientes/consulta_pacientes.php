@@ -99,16 +99,12 @@
                     value="<?php echo $pag_tam?>" autofocus="autofocus" /> 
                 entradas de <?php echo $total_registros?>
                 <input type="submit" value="Cambiar"/>
-            </form>                                                        <!-- fin de formulario -->
-
-                        <!-- joselu pon aqui la comprobacion de errores y que te salga el error encima de la tabla donde quema -->
-            
+            </form>                                                        <!-- fin de formulario -->      
             <?php
             if(isset($_SESSION["errores"])) {
                 $errores=$_SESSION["errores"];
                 unset($_SESSION["errores"]);
                 echo "<div class='error'>";
-                //class: Sirve para enlazar el html con las hojas de estilo. 
                 echo "<ul>";
                 foreach($errores as $error){
                     echo "<li>".$error."</li>";

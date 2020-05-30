@@ -19,6 +19,14 @@
         Header("Location: ../formularios/form_alta_clinica.php");
 	}  
 			
+	$errores = validarDatosClinicasF($paciente);
+
+	if(isset($errores) && count($errores)>0) {
+		$_SESSION["Fclinica"] = $clinica;
+		$_SESSION["errores"] = $errores;
+		Header("Location: ../../formularios/form_alta_clinicas.php");
+		die;
+	}
 
 	$conexion = crearConexionBD(); 
 
@@ -35,4 +43,59 @@
 	}
 
 	cerrarConexionBD($conexion);
+
+	function validarDatosClinicasF($paciente) {
+
+		$errores = [];
+
+		if (empty($clinica["name"])) {
+			$errores[] = "Este campo es obligatorio";
+		} else {
+			$name = test_input($clinica["name"]);
+			if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+				$errores[] = "Solo puedes introducir espacios y letras";
+			}
+		}
+		if (empty($clinica["local"])) {
+			$errores[] = "";
+		} else {
+			$local = test_input($clinica["local"]);
+			if (!preg_match("/^[a-zA-Z ]*$/",$local)) {
+				$errores[] = "Solo puedes introducir espacios y letras";
+			}
+		}
+		if (empty($clinica["phone"])) {
+			$errores[] = "";
+		} else {
+			$phone = test_input($clinica["phone"]);
+			if (!preg_match("^[0-9]{9}^",$phone)) {
+				$errores[] = "Escribe un número adecuado";
+			}
+		}
+		if (empty($clinica["nameD"])) {
+			$errores[] = "";
+		} else {
+			$nameD = test_input($clinica["nameD"]);
+			if (!preg_match("/^[a-zA-Z ]*$/",$nameD)) {
+				$errores[] = "Solo puedes introducir espacios y letras";
+			}
+		}
+		
+		if (empty($clinica["nCol"])) {
+			$errores[] = "";
+		} else {
+			$nCol = test_input($clinica["nCol"]);
+			if (!preg_match("^[0-9]{4}^",$nCol)) {
+				$errores[] = "Escribe un número adecuado";
+			}
+		}
+		return $errores;
+	}
+	
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 ?>
