@@ -19,7 +19,7 @@
         Header("Location: ../formularios/form_alta_clinica.php");
 	}  
 			
-	$errores = validarDatosClinicasF($paciente);
+	$errores = validarDatosClinicasF($clinica);
 
 	if(isset($errores) && count($errores)>0) {
 		$_SESSION["Fclinica"] = $clinica;
@@ -44,7 +44,7 @@
 
 	cerrarConexionBD($conexion);
 
-	function validarDatosClinicasF($paciente) {
+	function validarDatosClinicasF($clinica) {
 
 		$errores = [];
 

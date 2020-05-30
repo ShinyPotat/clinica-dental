@@ -8,33 +8,37 @@
 </head>
 <body>  
 <?php
+session_start();
+
 if(!isset($_SESSION["login"])){
   header("../login.php");
 }
-$fechaEntregaErr = $fechaEntradaErr = $accionesErr ="";
-$fechaEntrega = $fechaEntrada = $acciones ="";
+if (!isset($_SESSION["Fencargo"])) {
+  $Fencargo["FECHAENTRADA"] = "";
+  $Fencargo["FECHAENTREGA"] = "";
+  $Fencargo["ACCIONES"] = "";
+  $Fencargo["OID_PC"] = "";
+  $Fencargo["OID_F"] = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["fechaEntrega"])) {
-        $fechaEntregaErr = "";
-      } else {
-        $fechaEntrega = test_input($_POST["fechaEntrega"]);
-        }
-      }
+  $_SESSION["Fclinica"] = $Fencargo;
+}else{
+  $Fencargo = $_SESSION["Fencargo"];
+  unset($_SESSION["Fencargo"]);
+}
 
-      if (empty($_POST["fechaEntrada"])) {
-        $fechaEntradaErr = "";
-      } else {
-        $fechaEntrada = test_input($_POST["fechaEntrada"]);
-        }
+if(isset($_SESSION["errores"])) {
+  $errores=$_SESSION["errores"];
+  unset($_SESSION["errores"]);
+}
 
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
-
+if (isset($errores) && count($errores)>0) { 
+  echo "<div id=\"div_errores\" class=\"error\">";
+  echo "<h4> Errores en el formulario:</h4>";
+  foreach($errores as $error){
+    echo $error;
+} 
+  echo "</div>";
+}
       include_once ("../cabecera.php");
 ?>
     
@@ -43,19 +47,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p><span class="error">&emsp;* campo requerido</span></p>
           <p>
           &emsp;
-          Fecha de entrada: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaEntrada" id="fechaEntrada" value="<?php echo $fechaEntrada;?>"
+          Fecha de entrada: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaEntrada" id="fechaEntrada" value="<?php echo $Fencargo["FECHAENTRADA"];?>"
                                     oninput="document.getElementById('errorEntrada').innerHTML = entradaValidation(document.getElementById('fechaEntrada').value)">
-          <span id="errorEntrada" class="error"> <?php echo $fechaEntradaErr;?></span>
+          <span id="errorEntrada" class="error"></span>
           </p>
           <p>
           &emsp;
-          Fecha de entrega: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaEntrega" id="fechaEntrega" value="<?php echo $fechaEntrega;?>" 
+          Fecha de entrega: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaEntrega" id="fechaEntrega" value="<?php echo $Fencargo["FECHAENTREGA"];?>" 
               oninput="document.getElementById('entregaError').innerHTML = dateValidation(document.getElementById('fechaEntrada').value,document.getElementById('fechaEntrega').value);">
-          <span id="entregaError" class="error"> <?php echo $fechaEntregaErr;?></span> 
+          <span id="entregaError" class="error"></span> 
           </p>
           <p>
           &emsp;
-          Acciones: <input placeholder="Acciones" type="text" name="Acciones" id="Acciones" value="<?php echo $acciones;?>">
+          Acciones: <input placeholder="Acciones" type="text" name="Acciones" id="Acciones" value="<?php echo $Fencargo["ACCIONES"];?>">
           </p>
           <p>
           <?php 
@@ -93,14 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <a href="../../html/listaEncargosTrabajos.html" class="buttonAtras">Atrás</a>
           </p>
       </form>
-      <div class="results">
-        <?php
-        echo "<h2>Datos introducidos:</h2>";
-        echo $fechaEntrada;
-        echo "<br>";
-        echo $fechaEntrega;
-        ?>
-      </div>
     </div>
     <img src= "../../../images/elementoAdd.png" class="elementoAdd" width="10%" height="18%">
     <script src="../../js/hora.js"></script>

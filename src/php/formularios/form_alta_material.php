@@ -9,70 +9,38 @@
 
     <body>
     <?php 
+    session_start();
+    
     if(!isset($_SESSION["login"])){
       header("../login.php");
     }
-    $nameErr = $categoriaErr = $stockInicialErr = $stockMinErr = $stockCritErr = $unidadErr = "";
-    $name = $categoria = $stockInicial = $stockMin = $stockCrit = $unidad = "";
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["name"])) {
-          $nameErr = "Este campo es obligatorio";
-        } else {
-          $name = test_input($_POST["name"]);
-          if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-            $nameErr = "Solo puedes introducir espacios y letras";
-          }
-        }
-
-        if (empty($_POST["categoria"])) {
-            $categoriaErr = "Es necesario marcar una opcion";
-          } else {
-            $categoria = test_input($_POST["categoria"]);
-          }
-        }
-
-        if (empty($_POST["stockInicial"])) {
-            $stockInicialErr = "";
-          } else {
-            $stockInicial = test_input($_POST["stockInicial"]);
-            if ($_POST["stockInicial"] < 0) {
-              $stockInicialErr = "El valor debe de ser mayor o igual que 0";
-            }
-          }
-
-          if (empty($_POST["stockMin"])) {
-            $stockMinErr = "";
-          } else {
-            $stockMin = test_input($_POST["stockMin"]);
-            if ($_POST["stockMin"] < 0) {
-              $stockMinErr = "El valor debe de ser mayor o igual que 0";
-            }
-          }
-          if (empty($_POST["stockCrit"])) {
-            $stockCritErr = "";
-          } else {
-            $stockCrit = test_input($_POST["stockCrit"]);
-            if ($_POST["stockCrit"] < 0) {
-              $stockCritErr = "El valor debe de ser mayor o igual que 0";
-            }
-          }
-          if (empty($_POST["unidad"])) {
-            $unidadErr = "";
-          } else {
-            $unidad = test_input($_POST["unidad"]);
-            if ($_POST["unidad"] < 0) {
-              $unidadErr = "errror de unidad";
-            }
-          }
-        
-        function test_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-          }
-
+    if (!isset($_SESSION["Fmaterial"])) {
+      $Fmaterial["name"] = "";
+      $Fmaterial["categoria"] = "";
+      $Fmaterial["stockInicial"] = "";
+      $Fmaterial["stockMin"] = "";
+      $Fmaterial["stockCrit"] = "";
+      $Fmaterial["unidad"] = "";
+    
+      $_SESSION["Fmaterial"] = $Fmaterial;
+    }else{
+      $Fmaterial = $_SESSION["Fmaterial"];
+      unset($_SESSION["Fmaterial"]);
+    }
+    
+    if(isset($_SESSION["errores"])) {
+      $errores=$_SESSION["errores"];
+      unset($_SESSION["errores"]);
+    }
+    
+    if (isset($errores) && count($errores)>0) { 
+      echo "<div id=\"div_errores\" class=\"error\">";
+      echo "<h4> Errores en el formulario:</h4>";
+      foreach($errores as $error){
+        echo $error;
+    } 
+      echo "</div>";
+    }
           include_once ("../cabecera.php");
     ?>
     
@@ -82,13 +50,13 @@
                 
                     <p>
                     &emsp;
-                    Nombre: &emsp; <input required placeholder="Nombre" class = name type="text" id="name" name="name" value="<?php echo $name;?>"
+                    Nombre: &emsp; <input required placeholder="Nombre" class = name type="text" id="name" name="name" value="<?php echo $Fmaterial["name"];?>"
                                           onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name').value)">
-                    <span id="errorName" class="error"> <?php echo $nameErr;?></span>
+                    <span id="errorName" class="error"></span>
                     </p>
 
                     <label for="categoria">&emsp; Categoría:</label>
-                    <select required name="categoria" id="categoria" oninput="putUnitElements(document.getElementById('categoria').value)" value="<?php echo $categoria;?>">
+                    <select required name="categoria" id="categoria" oninput="putUnitElements(document.getElementById('categoria').value)" value="<?php echo $Fmaterial["categoria"];?>">
                         <option value="Alambre">Alambre</option>
                         <option value="Dientes">Dientes</option>
                         <option value="Empress">Empress</option>
@@ -99,50 +67,32 @@
                         <option value="Revestimiento">Revestimiento</option>
                         <option value="Ceramica Zirconio">Ceramica Zirconio</option>
                     </select>
-                    <span class="error">* <?php echo $categoriaErr;?></span>
+                    <span class="error"></span>
                     <p>
                         &emsp;
-                        Stock Inicial*: &emsp;<input required placeholder="Stock Inicial" type="number" name="stockInicial" id="stockInicial" value="<?php echo $stockInicial;?>" min="0">
-                        <span id="errorStockInicial" class="error"> <?php echo $stockInicialErr;?></span> 
+                        Stock Inicial*: &emsp;<input required placeholder="Stock Inicial" type="number" name="stockInicial" id="stockInicial" value="<?php echo $Fmaterial["stockInicial"];?>" min="0">
+                        <span id="errorStockInicial" class="error"></span> 
                     </p>
                     <p>
                         &emsp;
-                        Stock Mínimo*: &emsp;<input  required placeholder="Stock Mínimo" type="number" name="stockMin" id="stockMin" value="<?php echo $stockMin;?>" min="0">
-                        <span id="errorStockMin" class="error"> <?php echo $stockMinErr;?></span> 
+                        Stock Mínimo*: &emsp;<input  required placeholder="Stock Mínimo" type="number" name="stockMin" id="stockMin" value="<?php echo $Fmaterial["stockMin"];?>" min="0">
+                        <span id="errorStockMin" class="error"></span> 
                     </p>
                     <p>
                         &emsp;
-                        Stock Crítico*: &emsp;<input required placeholder="Stock Crítico" type="number" name="stockCrit" id="stockCrit" value="<?php echo $stockCrit;?>" min="0"
+                        Stock Crítico*: &emsp;<input required placeholder="Stock Crítico" type="number" name="stockCrit" id="stockCrit" value="<?php echo $Fmaterial["stockCrit"];?>" min="0"
                                                       oninput="document.getElementById('errorStockCrit').innerHTML = critValidation(document.getElementById('stockMin').value,document.getElementById('stockCrit').value)">
-                        <span id="errorStockCrit" class="error"> <?php echo $stockCritErr;?></span> 
+                        <span id="errorStockCrit" class="error"></span> 
                     </p>
                     <p>
                         &emsp;
-                        Unidad*: &emsp;<select required name="unidad" id="unidad" value="<?php echo $unidad;?>" >
+                        Unidad*: &emsp;<select required name="unidad" id="unidad" value="<?php echo $Fmaterial["unidad"];?>" >
                         </select>
-                        <span id="errorUnidad" class="error"> <?php echo $stockCritErr;?></span> 
+                        <span id="errorUnidad" class="error"></span> 
                     </p>
                 <input type="submit" name="submit" value="Enviar" class="enviar">
                 <a href="../../html/listaInventarioPedidos.html" class="buttonAtras">Atrás</a>
             </form>
-            <div class="results">
-                <?php
-                echo "<h2>Datos introducidos:</h2>";
-                echo $name;
-                echo "<br>";
-                echo $categoria;
-                echo "<br>";
-                echo $stockInicial;
-                echo "<br>";
-                echo $stockMin;
-                echo "<br>";
-                echo $stockCrit;
-                echo "<br>";
-                echo $unidad;
-                echo "<br>";
-
-                ?>
-            </div>
         </div>
         <img src= "../../../images/elementoAdd.png" class="elementoAdd" width="10%" height="18%">
         <script src="../../js/hora.js"></script>
