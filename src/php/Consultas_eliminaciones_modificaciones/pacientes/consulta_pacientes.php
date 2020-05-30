@@ -104,16 +104,17 @@
                         <!-- joselu pon aqui la comprobacion de errores y que te salga el error encima de la tabla donde quema -->
             
             <?php
-            if(isset($errores)) {
+            if(isset($_SESSION["errores"])) {
+                $errores=$_SESSION["errores"];
+                unset($_SESSION["errores"]);
                 echo "<div class='error'>";
                 //class: Sirve para enlazar el html con las hojas de estilo. 
-                
                 echo $errores;
                 echo "<ul>";
                 foreach($errores as $error){
                     echo "<li>".$error."</li>";
                 }
-                
+                echo "</ul>";
                 echo "</div>";
             }
             ?>         
@@ -179,7 +180,6 @@
                 <option value="OID_C" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="OID_C"){ echo "selected='selected'";}?>>Clinica</option>
             </select>
             <div id="filterValueDiv">
-            Valor:
             <?php
                 if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="DNI"){?>
                     <input class="filterValue" maxlength="1" type="text" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
