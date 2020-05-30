@@ -109,7 +109,6 @@
                 unset($_SESSION["errores"]);
                 echo "<div class='error'>";
                 //class: Sirve para enlazar el html con las hojas de estilo. 
-                echo $errores;
                 echo "<ul>";
                 foreach($errores as $error){
                     echo "<li>".$error."</li>";
