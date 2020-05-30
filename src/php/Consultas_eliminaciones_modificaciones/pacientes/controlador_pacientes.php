@@ -13,6 +13,7 @@
 		if(count($errores)>0) {
 			$_SESSION["errores"] = $errores;
 			Header("Location: consulta_pacientes.php");
+			die;
 		}
 
 		$_SESSION["paciente"] = $paciente;

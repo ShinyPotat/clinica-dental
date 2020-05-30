@@ -15,7 +15,15 @@
 	}
 	else{
         Header("Location: ../formularios/form_alta_paciente.php");
-	} 
+	}
+	
+	$errores = validarDatosPacienteF($paciente);
+
+	if(isset($errores) && count($errores)>0) {
+		$_SESSION["errores"] = $errores;
+		Header("Location: ../../formularios/form_alta_paciente.php");
+		die;
+	}
 
 	$conexion = crearConexionBD(); 
 
@@ -32,4 +40,36 @@
 	}
 
 	cerrarConexionBD($conexion);
+
+	function validarDatosPacienteF($paciente) {
+		$erroresF = [];
+
+		if (empty($paciente["DNI"])) {
+			$erroresF[] = "El campo dni es obligatorio";
+		} else {
+			$dni = test_input($paciente["DNI"]);
+			if (!preg_match("/^[0-9]{8,8}[A-Za-z]$/",$dni)) {
+				$erroresF[] = "Introduce un dni adecuado";
+			}
+		}
+		if (empty($paciente["FECHA_NACIMIENTO"])) {
+			$erroresF[] = "El campo Fecha de Nacimiento es obligatorio";
+		} else {
+			$fechaNacimiento = test_input($paciente["FECHA_NACIMIENTO"]);
+			// nacimiento futuro?-------------------------------------------------------------
+		}
+		if (empty($paciente["E_SEXO"])) {
+			$erroresF[] = "El campo sexo es obligatorio";
+		} else {
+			$sexo = test_input($paciente["E_SEXO"]);
+		}
+		return $erroresF;
+	}
+
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 ?>

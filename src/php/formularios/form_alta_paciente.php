@@ -12,37 +12,30 @@
 if(!isset($_SESSION["login"])){
   header("../login.php");
 }
-$dniErr = $fechaNacimientoErr = $sexoErr ="";
-$dni = $fechaNacimiento = $sexo = "";
+if (!isset($_SESSION["Fpaciente"])) {
+  $Fpaciente['dni'] = "";
+  $Fpaciente['fechaNacimiento'] = "";
+  $Fpaciente['sexo'] = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["dni"])) {
-        $dniErr = "Este campo es obligatorio";
-      } else {
-        $dni = test_input($_POST["dni"]);
-        if (!preg_match("/^[0-9]{8,8}[A-Za-z]$/",$dni)) {
-          $dniErr = "Introduce un dni adecuado";
-        }
-      }
+  $_SESSION["Fpaciente"] = $Fpaciente;
+}else{
+  $Fpaciente = $_SESSION["Fpaciente"];
+}
 
-      if (empty($_POST["fechaNacimiento"])) {
-        $fechaNacimientoErr = "";
-      } else {
-        $fechaNacimiento = test_input($_POST["fechaNacimiento"]);
-        }
-      } 
-      
-      if (empty($_POST["sexo"])) {
-        $sexoErr = "";
-      } else {
-        $sexo = test_input($_POST["sexo"]);
-      }
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
+if(isset($_SESSION["errores"])) {
+  $errores=$_SESSION["errores"];
+  unset($_SESSION["errores"]);
+}
+
+if (isset($errores) && count($errores)>0) { 
+  echo "<div id=\"div_errores\" class=\"error\">";
+  echo "<h4> Errores en el formulario:</h4>";
+  foreach($errores as $error){
+    echo $error;
+} 
+  echo "</div>";
+}
+
   include_once ("../cabecera.php");
 ?>
 
@@ -51,20 +44,20 @@ function test_input($data) {
         <p><span class="error">&emsp;* campo requerido</span></p>
       <p>
       &emsp;
-        DNI*:&emsp; <input  required placeholder="DNI" maxlength="9" type="text" id="dni" name="dni" value="<?php echo $dni;?>"
+        DNI*:&emsp; <input  required placeholder="DNI" maxlength="9" type="text" id="dni" name="dni" value="<?php echo $Fpaciente['dni'];?>"
                             onkeyup="document.getElementById('errorDni').innerHTML = dniValidate(document.getElementById('dni').value);">
-        <span id="errorDni" class="error"> <?php echo $dniErr;?></span>
+        <span id="errorDni" class="error"></span>
       </p>
       &emsp;
-        Fecha de Nacimiento*:&emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaNacimiento" required id="fechaNacimiento" value="<?php echo $fechaNacimiento;?>" 
+        Fecha de Nacimiento*:&emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaNacimiento" required id="fechaNacimiento" value="<?php echo $Fpaciente['fechaNacimiento'];?>" 
           oninput="document.getElementById('errorFechaNac').innerHTML = dateValidation(document.getElementById('fechaNacimiento').value);">
-        <span id="errorFechaNac" class="error"> <?php echo $fechaNacimientoErr;?></span>
+        <span id="errorFechaNac" class="error"></span>
       <p>
       &emsp;
         Sexo:
-        <input type="radio" name="sexo" <?php if (isset($sexo) && $sexo=="Hombre") echo "checked";?> value="H">Hombre
-        <input type="radio" name="sexo" <?php if (isset($sexo) && $sexo=="Mujer") echo "checked";?> value="M">Mujer
-        <span class="error"> <?php echo $sexoErr;?></span>
+        <input type="radio" name="sexo" <?php if (isset($Fpaciente['sexo']) && $Fpaciente['sexo']=="Hombre") echo "checked";?> value="H">Hombre
+        <input type="radio" name="sexo" <?php if (isset($Fpaciente['sexo']) && $Fpaciente['sexo']=="Mujer") echo "checked";?> value="M">Mujer
+        <span class="error"></span>
       </p>
       <p>
         <?php 
@@ -87,18 +80,6 @@ function test_input($data) {
         <input type="submit" name="submit" value="Enviar" class="enviar">
         <a href="../../html/listaPDP.html" class="buttonAtras">Atrás</a>
       </form>
-
-      <div class="results">
-        <?php
-        echo "<h2>Datos introducidos:</h2>";
-        echo $dni;
-        echo "<br>";
-        echo $fechaNacimiento;
-        echo "<br>";
-        echo $sexo;
-        echo"<br>";
-        ?>
-        </div>
     </div>
     <img src= "../../../images/elementoAdd.png" class="elementoAdd" width="10%" height="18%">
     <script src="../../js/hora.js"></script>
