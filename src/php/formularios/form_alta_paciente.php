@@ -57,7 +57,7 @@ if (isset($errores) && count($errores)>0) {
         <span id="errorFechaNac" class="error"></span>
       <p>
       &emsp;
-        Sexo:
+        Sexo*:
         <input type="radio" name="sexo" <?php if (isset($Fpaciente['sexo']) && $Fpaciente['sexo']=="Hombre") echo "checked";?> value="H">Hombre
         <input type="radio" name="sexo" <?php if (isset($Fpaciente['sexo']) && $Fpaciente['sexo']=="Mujer") echo "checked";?> value="M">Mujer
         <span class="error"></span>
@@ -70,7 +70,7 @@ if (isset($errores) && count($errores)>0) {
             $clinicas = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>&emsp; Clinica: <select id="clinicaP" name="clinicaP">
+        <div>&emsp; Clinica*: <select id="clinicaP" name="clinicaP">
             <option value="">Seleccionar clinica</option>
             <?php foreach($clinicas as $fila){ ?>
               <option value="<?php echo $fila["OID_C"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>

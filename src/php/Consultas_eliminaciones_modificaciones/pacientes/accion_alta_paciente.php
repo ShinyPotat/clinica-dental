@@ -63,6 +63,9 @@
 		} else {
 			$sexo = test_input($paciente["E_SEXO"]);
 		}
+		if($paciente["OID_C"]==""){
+			$erroresF[] = "<p>El campo clinica es obligatorio</p>";
+		}
 		return $erroresF;
 	}
 
