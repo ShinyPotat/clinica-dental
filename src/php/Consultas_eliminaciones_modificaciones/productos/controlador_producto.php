@@ -33,7 +33,7 @@
             $errores=[];
     
             if($producto["PRECIO"] <= 0) {
-                    $errores[] = "<p>El valor introducido debe de ser superior a 0</p>";
+                $errores[] = "<p>El precio introducido debe de ser superior a 0</p>";
             }
             return $errores;
         }

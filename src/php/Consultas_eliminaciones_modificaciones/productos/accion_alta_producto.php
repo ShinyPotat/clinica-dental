@@ -42,18 +42,14 @@
 		
 		$erroresF=[];
 
-		if (empty($producto["nombre"])) {
-			$erroresF[] = "";
-		} else {
-		  $name = test_input($producto["nombre"]);
-		  if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-			$erroresF[]= "<p>Solo puedes introducir espacios y letras</p>";
-		  }
+		if (isset($producto["nombre"])) {
+		  	$name = test_input($producto["nombre"]);
+		  	if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+				$erroresF[]= "<p>Solo puedes introducir espacios y letras en el nombre</p>";
+		  	}
 		}
 	
-		if (empty($producto["precio"])) {
-			$erroresF[] = "";
-		  } else {
+		if (isset($producto["precio"])) {
 			$precio = test_input($producto["precio"]);
 			if ($producto["precio"] <= 0) {
 				$erroresF[] = "<p>Introduce un precio adecuado</p>";

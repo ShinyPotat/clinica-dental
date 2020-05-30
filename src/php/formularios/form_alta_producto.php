@@ -40,8 +40,6 @@ if (isset($errores) && count($errores)>0) {
   echo "</div>";
 }
 
-
-
       include_once ("../cabecera.php");
 ?>
 
