@@ -14,7 +14,13 @@
 	else{
         Header("Location: ../formularios/form_alta_producto.php");
 	}  
-			
+	$errores = validation($producto);
+
+	if(isset($errores) && count($errores)>0) {
+		$_SESSION["errores"] = $errores;
+		Header("Location: ../../formularios/form_alta_producto.php");
+		die;
+	}
 
 	$conexion = crearConexionBD(); 
 
@@ -31,4 +37,35 @@
 	}
 
 	cerrarConexionBD($conexion);
+	
+	function validation($producto) {
+		
+		$erroresF=[];
+
+		if (empty($producto["nombre"])) {
+			$erroresF[] = "";
+		} else {
+		  $name = test_input($producto["nombre"]);
+		  if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+			$erroresF[]= "<p>Solo puedes introducir espacios y letras</p>";
+		  }
+		}
+	
+		if (empty($producto["precio"])) {
+			$erroresF[] = "";
+		  } else {
+			$precio = test_input($producto["precio"]);
+			if ($producto["precio"] <= 0) {
+				$erroresF[] = "<p>Introduce un precio adecuado</p>";
+			}
+		  }
+		  return $erroresF;
+		}
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+		
 ?>

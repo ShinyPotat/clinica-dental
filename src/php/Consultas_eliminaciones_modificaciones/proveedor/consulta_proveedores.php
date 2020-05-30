@@ -80,7 +80,21 @@
                     value="<?php echo $pag_tam?>" autofocus="autofocus" /> 
                 entradas de <?php echo $total_registros?>
                 <input type="submit" value="Cambiar"/>
-            </form>                                                        <!-- fin de formulario -->
+            </form>
+            <?php
+            if(isset($_SESSION["errores"])) {
+                $errores=$_SESSION["errores"];
+                unset($_SESSION["errores"]);
+                echo "<div class='error'>";
+                //class: Sirve para enlazar el html con las hojas de estilo. 
+                echo "<ul>";
+                foreach($errores as $error){
+                    echo "<li>".$error."</li>";
+                }
+                echo "</ul>";
+                echo "</div>";
+            }
+            ?>                                                         <!-- fin de formulario -->
         </nav>
 
         <table class="blueTable">                  <!-- comienzo de la tabla -->
@@ -109,7 +123,7 @@
                                     <tr>                        <!-- filas de la tabla -->
                                     <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
                                     <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
-                                    <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
+                                    <td><input type="text" name="TLF_CONTACTO" maxlength=9 id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
                         <?php }else{ ?>
                                     <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"];?>">
                                     <tr>

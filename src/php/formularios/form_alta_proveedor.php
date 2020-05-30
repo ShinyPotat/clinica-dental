@@ -22,14 +22,14 @@
       unset($_SESSION["errores"]);
     }
 
-    if (!isset($_SESSION["Fpaciente"])) {
-      $Fpaciente['dni'] = "";
-      $Fpaciente['fechaNacimiento'] = "";
-      $Fpaciente['sexo'] = "";
+    if (!isset($_SESSION["Fproveedor"])) {
+      $Fproveedor['NOMBRE'] = "";
+      $Fproveedor['LOCALIZACIÓN'] = "";
+      $Fproveedor['TLF_CONTACTO'] = "";
     
-      $_SESSION["Fpaciente"] = $Fpaciente;
+      $_SESSION["Fproveedor"] = $Fproveedor;
     }else{
-      $Fpaciente = $_SESSION["Fpaciente"];
+      $Fproveedor = $_SESSION["Fproveedor"];
     }
 
     if (isset($errores) && count($errores)>0) { 
@@ -49,34 +49,24 @@
           <p><span class="error">&emsp;* campo requerido</span></p>
         <p>
           &emsp;
-          Nombre*:&emsp; <input required placeholder="Nombre" type="text" name="name" id="name" value="<?php echo $name;?>"
+          Nombre*:&emsp; <input required placeholder="Nombre" type="text" name="name" id="name" value="<?php echo $Fproveedor["NOMBRE"];?>"
                                   onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name').value)">
-          <span id="errorName" class="error"> <?php echo $nameErr;?></span>
+          <span id="errorName" class="error"></span>
         </p>
           &emsp;
-          Localización:&emsp; <input placeholder="Localizacion" type="text" name="local" id="local" value="<?php echo $local;?>"
+          Localización:&emsp; <input placeholder="Localizacion" type="text" name="local" id="local" value="<?php echo $Fproveedor["LOCALIZACIÓN"];?>"
                                       onkeyup="document.getElementById('errorLocal').innerHTML = lettersValidation(document.getElementById('local').value)">
-          <span id="errorLocal" class="error"> <?php echo $localErr;?></span> 
+          <span id="errorLocal" class="error"></span> 
         <p>
         &emsp;
-          Telefono de contacto:&emsp;<input id="phone" name="phone" id="phone" type="text" maxlength="9" placeholder="123456789" value="<?php echo $phone;?>"
+          Telefono de contacto:&emsp;<input id="phone" name="phone" id="phone" type="text" maxlength="9" placeholder="123456789" value="<?php echo $Fproveedor["TLF_CONTACTO"];?>"
                                               onkeyup="document.getElementById('errorPhone').innerHTML = numberValidation(document.getElementById('phone').value)">
-          <span id="errorPhone" class="error"> <?php echo $phoneErr;?></span>
+          <span id="errorPhone" class="error"></span>
         </p>
         <input type="submit" name="submit" value="Enviar" class="enviar">
 	      <a href="../../html/listaInventarioPedidos.html" class="buttonAtras">Atrás</a>
       </form>
-      <div class="results">
-          <?php
-        echo "<h2>Datos introducidos:</h2>";
-        echo $name;
-        echo "<br>";
-        echo $local;
-        echo "<br>";
-        echo $phone;
-        ?>
-        </div>
-    </div>
+      </div>
     <img src= "../../../images/elementoAdd.png" class="elementoAdd" width="10%" height="18%">
     <script src="../../js/hora.js"></script>
   
