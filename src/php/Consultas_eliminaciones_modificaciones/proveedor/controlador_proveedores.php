@@ -33,7 +33,7 @@
 		$errores = [];
 
 		if (!isset($proveedor["name"])) {
-			$erroresF[] = "el campo nombre es obligatorio";
+			$erroresF[] = "<p>el campo nombre es obligatorio</p>";
 		} else {
 			$name = test_input($proveedor["name"]);
 			if (!preg_match("/^[a-zA-Z ]*$/",$name)) {

@@ -33,7 +33,7 @@ if(!isset($_SESSION["login"])){
     </div>
 
     <div class="columna3">
-        <a href="Consultas_eliminaciones_modificaciones/clinicas/consulta_clinica.php" class="button">Clínicas</a>    
+        <a href="Consultas_eliminaciones_modificaciones/clinica/consulta_clinica.php" class="button">Clínicas</a>    
 
         <a href="Consultas_eliminaciones_modificaciones/pacientes/consulta_pacientes.php" class="button">Pacientes</a>
 
