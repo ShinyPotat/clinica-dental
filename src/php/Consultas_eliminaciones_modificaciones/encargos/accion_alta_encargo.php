@@ -18,7 +18,15 @@
         Header("Location: ../../formularios/form_alta_encargo.php");
 	} 
 			
+	$errores = validarDatosEncargosF($encargo);
 
+	if(isset($errores) && count($errores)>0) {
+		$_SESSION["Fencargo"] = $encargo;
+		$_SESSION["errores"] = $errores;
+		Header("Location: ../../formularios/form_alta_encargo.php");
+		die;
+	}
+	
 	$conexion = crearConexionBD(); 
 
     $excepcion = crear_encargo($conexion, $encargo["FECHAENTRADA"], $encargo["FECHAENTREGA"], $encargo["ACCIONES"], $encargo["OID_PC"], $encargo["OID_F"]);
@@ -32,6 +40,24 @@
 		// EN OTRO CASO, VOLVER A "CONSULTA_ENCARGOS.PHP"
 		header("Location: consulta_encargos.php");
 	}
-
 	cerrarConexionBD($conexion);
+
+	function validarDatosEncargosF($encargo){
+		$errores = [];
+
+		if (isset($encargo["FECHAENTREGA"])) {
+			$fechaEntrega = test_input($encargo["FECHAENTREGA"]);
+		}
+	
+		if (isset($encargo["FECHAENTRADA"])) {
+			$fechaEntrada = test_input($encargo["FECHAENTRADA"]);
+		}
+	}
+	
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 ?>

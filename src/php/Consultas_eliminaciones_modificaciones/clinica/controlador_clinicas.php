@@ -20,7 +20,6 @@
 				Header("Location: consulta_clinica.php");
 				die;
 			}
-			
 		}
 
         if (isset($_REQUEST["Editar"]))

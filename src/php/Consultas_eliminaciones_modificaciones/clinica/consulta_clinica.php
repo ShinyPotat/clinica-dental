@@ -54,7 +54,6 @@
     <link rel="stylesheet" href="../../../css/consultaPDP.css">
 </head>
 <body>
-<body>
     <?php include_once ("../../cabeceraC.php"); ?>
 
     <a href="../../formularios/form_alta_clinicas.php"class="botonNuevaClinica">Nueva Clinica</a>

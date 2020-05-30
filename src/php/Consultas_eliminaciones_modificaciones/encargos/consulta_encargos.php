@@ -77,6 +77,19 @@
                 <input type="submit" value="Cambiar"/>
             </form>                                                        <!-- fin de formulario -->
         </nav>
+        <?php
+            if(isset($_SESSION["errores"])) {
+                $errores=$_SESSION["errores"];
+                unset($_SESSION["errores"]);
+                echo "<div class='error'>";
+                echo "<ul>";
+                foreach($errores as $error){
+                    echo "<li>".$error."</li>";
+                }
+                echo "</ul>";
+                echo "</div>";
+            }
+        ?>
         <table class="blueTable">                  <!-- comienzo de la tabla -->
             <thead>
             <tr>                        <!-- primera linea de la tabla -->
