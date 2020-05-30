@@ -15,7 +15,14 @@
 	else{
         Header("Location: ../formularios/form_alta_proveedor.php");
 	} 
-			
+	
+	$errores = validation($proveedor);
+
+	if(isset($errores) && count($errores)>0) {
+		$_SESSION["errores"] = $errores;
+		Header("Location: ../../formularios/form_alta_paciente.php");
+		die;
+	}
 
 	$conexion = crearConexionBD(); 
 
@@ -32,4 +39,45 @@
 	}
 
 	cerrarConexionBD($conexion);
+
+	function validation($proveedor){
+
+		$errores = [];
+
+		if (empty($proveedor["name"])) {
+			$nameErr = "Este campo es obligatorio";
+		} else {
+			$name = test_input($proveedor["name"]);
+			if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+			  $nameErr = "Solo puedes introducir espacios y letras";
+			}
+		}
+	  
+		if (empty($proveedor["local"])) {
+			  $local = "";
+		} else {
+			$local = test_input($proveedor["local"]);
+			if (!preg_match("/^[a-zA-Z ]*$/",$local)) {
+				$localErr = "Solo puedes introducir espacios y letras";
+			}
+		}
+	  
+		if (empty($proveedor["phone"])) {
+			$phone = "";
+		} else {
+			$phone = test_input($proveedor["phone"]);
+			if (!preg_match("^[0-9]{9}^",$phone)) {
+				$phoneErr = "Escribe un número adecuado";
+			}
+		}
+
+		return $errores;
+	}
+			
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 ?>

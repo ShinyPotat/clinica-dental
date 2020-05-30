@@ -21,6 +21,7 @@
 
 	if(isset($errores) && count($errores)>0) {
 		$_SESSION["errores"] = $errores;
+		$_SESSION["Fpaciente"] = $paciente;
 		Header("Location: ../../formularios/form_alta_paciente.php");
 		die;
 	}

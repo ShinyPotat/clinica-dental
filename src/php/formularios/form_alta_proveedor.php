@@ -10,48 +10,38 @@
 <body>  
 
 <?php
-if(!isset($_SESSION["login"])){
-  header("../login.php");
-}
-$nameErr = $localErr = $phoneErr = "";
-$name = $local = $phone =  "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["name"])) {
-      $nameErr = "Este campo es obligatorio";
-    } else {
-      $name = test_input($_POST["name"]);
-      if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-        $nameErr = "Solo puedes introducir espacios y letras";
-      }
+    session_start();
+
+    if(!isset($_SESSION["login"])){
+      header("../login.php");
     }
 
-    if (empty($_POST["local"])) {
-        $local = "";
-      } else {
-        $local = test_input($_POST["local"]);
-        if (!preg_match("/^[a-zA-Z ]*$/",$local)) {
-            $localErr = "Solo puedes introducir espacios y letras";
-          }
-        }
+    if(isset($_SESSION["errores"])) {
+      $errores=$_SESSION["errores"];
+      unset($_SESSION["errores"]);
+    }
 
-        if (empty($_POST["phone"])) {
-            $phone = "";
-          } else {
-            $phone = test_input($_POST["phone"]);
-            if (!preg_match("^[0-9]{9}^",$phone)) {
-                $phoneErr = "Escribe un número adecuado";
-              }
-            }
-        }
-        function test_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-          }
+    if (!isset($_SESSION["Fpaciente"])) {
+      $Fpaciente['dni'] = "";
+      $Fpaciente['fechaNacimiento'] = "";
+      $Fpaciente['sexo'] = "";
+    
+      $_SESSION["Fpaciente"] = $Fpaciente;
+    }else{
+      $Fpaciente = $_SESSION["Fpaciente"];
+    }
 
-          include_once ("../cabecera.php");
+    if (isset($errores) && count($errores)>0) { 
+      echo "<div id=\"div_errores\" class=\"error\">";
+      echo "<h4> Errores en el formulario:</h4>";
+      foreach($errores as $error){
+        echo $error;
+    } 
+      echo "</div>";
+    }
+
+    include_once ("../cabecera.php");
 ?>
 
     <div class="bloque">

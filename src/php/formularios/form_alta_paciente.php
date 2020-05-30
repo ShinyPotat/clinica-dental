@@ -23,6 +23,7 @@ if (!isset($_SESSION["Fpaciente"])) {
   $_SESSION["Fpaciente"] = $Fpaciente;
 }else{
   $Fpaciente = $_SESSION["Fpaciente"];
+  unset($_SESSION["Fpaciente"]);
 }
 
 if(isset($_SESSION["errores"])) {
@@ -47,19 +48,19 @@ if (isset($errores) && count($errores)>0) {
         <p><span class="error">&emsp;* campo requerido</span></p>
       <p>
       &emsp;
-        DNI*:&emsp; <input  required placeholder="DNI" maxlength="9" type="text" id="dni" name="dni" value="<?php echo $Fpaciente['dni'];?>"
+        DNI*:&emsp; <input  required placeholder="DNI" maxlength="9" type="text" id="dni" name="dni" value="<?php echo $Fpaciente['DNI'];?>"
                             onkeyup="document.getElementById('errorDni').innerHTML = dniValidate(document.getElementById('dni').value);">
         <span id="errorDni" class="error"></span>
       </p>
       &emsp;
-        Fecha de Nacimiento*:&emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaNacimiento" required id="fechaNacimiento" value="<?php echo $Fpaciente['fechaNacimiento'];?>" 
+        Fecha de Nacimiento*:&emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaNacimiento" required id="fechaNacimiento" value="<?php echo $Fpaciente['FECHA_NACIMIENTO'];?>" 
           oninput="document.getElementById('errorFechaNac').innerHTML = dateValidation(document.getElementById('fechaNacimiento').value);">
         <span id="errorFechaNac" class="error"></span>
       <p>
       &emsp;
         Sexo*:
-        <input type="radio" name="sexo" <?php if (isset($Fpaciente['sexo']) && $Fpaciente['sexo']=="Hombre") echo "checked";?> value="H">Hombre
-        <input type="radio" name="sexo" <?php if (isset($Fpaciente['sexo']) && $Fpaciente['sexo']=="Mujer") echo "checked";?> value="M">Mujer
+        <input type="radio" name="sexo" <?php if (isset($Fpaciente['E_SEXO']) && $Fpaciente['E_SEXO']=="Hombre") echo "checked";?> value="H">Hombre
+        <input type="radio" name="sexo" <?php if (isset($Fpaciente['E_SEXO']) && $Fpaciente['E_SEXO']=="Mujer") echo "checked";?> value="M">Mujer
         <span class="error"></span>
       </p>
       <p>
@@ -73,7 +74,7 @@ if (isset($errores) && count($errores)>0) {
         <div>&emsp; Clinica*: <select id="clinicaP" name="clinicaP">
             <option value="">Seleccionar clinica</option>
             <?php foreach($clinicas as $fila){ ?>
-              <option value="<?php echo $fila["OID_C"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>
+              <option value="<?php echo $fila["OID_C"]; ?>" <?php if(isset($Fpaciente['OID_C']) && $fila['OID_C']==$Fpaciente['OID_C']){ echo "selected='selected'";} ?>><?php echo $fila["NOMBRE"]; ?></option>
 
             <?php } ?>
           </select>
