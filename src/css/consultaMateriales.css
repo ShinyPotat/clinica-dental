@@ -318,3 +318,10 @@ table.blueTable {
 	overflow: visible; 
 	padding: 3px 8px 2px 6px; 
 }
+div.error {
+	color : red;	
+    z-index: 1;
+    position: absolute;
+    top: 5%;
+    left: 30%;
+}
