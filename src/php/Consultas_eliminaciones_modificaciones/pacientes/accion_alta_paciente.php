@@ -45,21 +45,21 @@
 		$erroresF = [];
 
 		if (empty($paciente["DNI"])) {
-			$erroresF[] = "El campo dni es obligatorio";
+			$erroresF[] = "<p>El campo dni es obligatorio</p>";
 		} else {
 			$dni = test_input($paciente["DNI"]);
 			if (!preg_match("/^[0-9]{8,8}[A-Za-z]$/",$dni)) {
-				$erroresF[] = "Introduce un dni adecuado";
+				$erroresF[] = "<p>Introduce un dni adecuado</p>";
 			}
 		}
 		if (empty($paciente["FECHA_NACIMIENTO"])) {
-			$erroresF[] = "El campo Fecha de Nacimiento es obligatorio";
+			$erroresF[] = "<p>El campo Fecha de Nacimiento es obligatorio</p>";
 		} else {
 			$fechaNacimiento = test_input($paciente["FECHA_NACIMIENTO"]);
 			// nacimiento futuro?-------------------------------------------------------------
 		}
 		if (empty($paciente["E_SEXO"])) {
-			$erroresF[] = "El campo sexo es obligatorio";
+			$erroresF[] = "<p>El campo sexo es obligatorio</p>";
 		} else {
 			$sexo = test_input($paciente["E_SEXO"]);
 		}
