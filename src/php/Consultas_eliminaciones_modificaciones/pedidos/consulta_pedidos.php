@@ -68,7 +68,7 @@
                     if($pagina == $pagina_seleccionada){	?>
                         <span><?php echo $pagina;?></span>
                     <?php }else{ ?>
-                        <a href="consulta_pedidos.php?PAG_NUMM=<?php echo $pagina; ?> &PAG_TAMP=<?php echo $pag_tam; ?>"><?php echo $pagina ?> </a>
+                        <a href="consulta_pedidos.php?PAG_NUMP=<?php echo $pagina; ?> &PAG_TAMP=<?php echo $pag_tam; ?>"><?php echo $pagina ?> </a>
             <?php }} ?>
             </div>            <!-- fin enlaces -->
             
