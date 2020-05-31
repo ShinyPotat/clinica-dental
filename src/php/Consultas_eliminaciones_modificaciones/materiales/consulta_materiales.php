@@ -12,6 +12,14 @@
 		$material = $_SESSION["material"];
 		unset($_SESSION["material"]);
     }
+
+    if (isset($_REQUEST['filtro']) && $_REQUEST["filtro"]!="") {
+        $_SESSION['filtro'] = $_REQUEST['filtro'];
+        $_SESSION['filterValue'] = $_REQUEST['filterValue'];
+    }else if(isset($_REQUEST['filtro']) && $_REQUEST['filtro']==""){
+        unset($_SESSION['filtro']);
+        unset($_SESSION['filterValue']);
+    }
     
     if (isset($_SESSION["PAG_MAT"])) $paginacion = $_SESSION["PAG_MAT"]; 
 		$pagina_seleccionada = isset($_GET["PAG_NUMM"])? (int)$_GET["PAG_NUMM"]:
@@ -23,17 +31,26 @@
 	
 	unset($_SESSION["PAG_MAT"]);
 
-	$conexion = crearConexionBD();
+    $conexion = crearConexionBD();
     
-    $total_registros = total_consulta($conexion);
+    if (isset($_SESSION['filtro']) && $_SESSION['filtro']!="") {
+        $total_registros = total_consulta_filtrada($conexion,$_SESSION['filtro'],$_SESSION['filterValue']);
+    } else {
+        $total_registros = total_consulta($conexion);
+    }
+    
 	$total_paginas = (int) ($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0) $total_paginas++; 
 	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
 	$paginacion["PAG_NUMM"] = $pagina_seleccionada;
 	$paginacion["PAG_TAMM"] = $pag_tam;
-	$_SESSION["PAG_MAT"] = $paginacion;
-	
-	$filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
+    $_SESSION["PAG_MAT"] = $paginacion;
+    
+    if(isset($_SESSION['filtro']) && $_SESSION['filtro']!=""){
+        $filas = consulta_paginada_filtrado($conexion,$_SESSION['filtro'],$_SESSION['filterValue'],$pagina_seleccionada,$pag_tam);
+    }else{
+        $filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
+    }
 
 	cerrarConexionBD($conexion);
 ?>
@@ -44,7 +61,7 @@
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
     <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
-    
+    <script src="../../../js/filtro_materiales.js"></script>
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
@@ -165,10 +182,7 @@
                 <option value="CATEGORIA" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CATEGORIA"){ echo "selected='selected'";}?>>categoria</option>
             </select>
             <div id="filterValueDiv">
-            <?php
-                if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="STOCK_MIN"){?>
-              <?php  }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="STOCK_CRITICO") { ?>
-             <?php }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CATEGORIA"){ ?>
+             <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CATEGORIA"){ ?>
                         <select class="filterValue" name="filterValue" id="filterValue">
                             <option value="Alambre">Alambre</option>
                             <option value="Dientes">Dientes</option>
@@ -180,7 +194,7 @@
                             <option value="Revestimiento">Revestimiento</option>
                             <option value="Ceramica Zirconio">Ceramica Zirconio</option>
                         </select>
-                 <input class="filterButton" type="submit" value="FILTRAR">
+                        <input class="filterButton" type="submit" value="FILTRAR">
            <?php  } ?>
             </div>
         </form>
