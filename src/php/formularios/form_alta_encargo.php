@@ -20,7 +20,7 @@ if (!isset($_SESSION["Fencargo"])) {
   $Fencargo["OID_PC"] = "";
   $Fencargo["OID_F"] = "";
 
-  $_SESSION["Fclinica"] = $Fencargo;
+  $_SESSION["Fencargo"] = $Fencargo;
 }else{
   $Fencargo = $_SESSION["Fencargo"];
   unset($_SESSION["Fencargo"]);
