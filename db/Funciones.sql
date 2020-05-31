@@ -89,12 +89,14 @@ END crear_proveedor;
 CREATE OR REPLACE PROCEDURE crear_pedido (
     w_fecha_solicitud IN pedidos.fecha_solicitud%TYPE,
     w_fecha_entrega IN pedidos.fecha_entrega%TYPE,
+    w_cantidad IN pedidos.cantidad%TYPE,
     w_oid_pr IN pedidos.oid_pr%TYPE,
+    w_oid_m IN pedidos.oid_m%TYPE,
     w_oid_f IN pedidos.oid_f%TYPE
 ) IS
 BEGIN
-INSERT INTO Pedidos (fecha_solicitud,fecha_entrega,oid_pr,oid_f)
-VALUES (w_fecha_solicitud,w_fecha_entrega,w_oid_pr,w_oid_f);
+INSERT INTO Pedidos (fecha_solicitud,fecha_entrega,cantidad,oid_pr,oid_m,oid_f)
+VALUES (w_fecha_solicitud,w_fecha_entrega,w_cantidad,w_oid_pr,w_oid_m,w_oid_f);
 COMMIT;
 END crear_pedido;
 /
@@ -115,44 +117,19 @@ COMMIT;
 END crear_material;
 /
 
---insertar linea pedido
-CREATE OR REPLACE PROCEDURE crear_linea (
-    w_cantidad IN linea_pedido.cantidad%TYPE,
-    w_coste IN linea_pedido.coste%TYPE,
-    w_oid_pd IN linea_pedido.oid_pd%TYPE,
-    w_oid_m IN linea_pedido.oid_m%TYPE
-) IS
-BEGIN
-INSERT INTO Linea_Pedido (cantidad,coste,oid_pd,oid_m)
-VALUES (w_cantidad,w_coste,w_oid_pd,w_oid_m);
-COMMIT;
-END crear_linea;
-/
-
 --insertar producto
 CREATE OR REPLACE PROCEDURE crear_producto(
     w_nombre IN productos.nombre%TYPE,
     w_precio IN productos.precio%TYPE,
+    w_cantidad IN productos.cantidad%TYPE,
+    w_oid_m IN productos.oid_m%TYPE,
     w_oid_e IN productos.oid_e%TYPE
 ) IS
 BEGIN
-INSERT INTO Productos (nombre,precio,oid_e)
-VALUES (w_nombre,w_precio,w_oid_e);
+INSERT INTO Productos (nombre,precio,cantidad,oid_m,oid_e)
+VALUES (w_nombre,w_precio,w_cantidad,w_oid_m,w_oid_e);
 COMMIT;
 END crear_producto;
-/
-
---insertar requiere
-CREATE OR REPLACE PROCEDURE crear_requiere (
-    w_cantidad IN requiere.cantidad%TYPE,
-    w_oid_p IN requiere.oid_p%TYPE,
-    w_oid_m IN requiere.oid_m%TYPE
-) IS
-BEGIN
-INSERT INTO Requiere (cantidad,oid_p,oid_m)
-VALUES (w_cantidad,w_oid_p,w_oid_m);
-COMMIT;
-END crear_requiere;
 /
 
 --ELIMINAR
@@ -226,16 +203,6 @@ COMMIT;
 END eliminar_material;
 /
 
---eliminar linea de la tabla linea de pedido
-CREATE OR REPLACE PROCEDURE eliminar_linea (
-    w_oid_lp IN linea_pedido.oid_lp%TYPE
-) IS
-BEGIN
-DELETE FROM Linea_pedido WHERE oid_lp = w_oid_lp;
-COMMIT;
-END eliminar_linea;
-/
-
 --eliminar linea de la tabla productos
 CREATE OR REPLACE PROCEDURE eliminar_producto (
     w_oid_p IN productos.oid_p%TYPE
@@ -244,16 +211,6 @@ BEGIN
 DELETE FROM Productos WHERE oid_p = w_oid_p;
 COMMIT;
 END eliminar_producto;
-/
-
---eliminar linea de la tabla requiere
-CREATE OR REPLACE PROCEDURE eliminar_requiere (
-    w_oid_r IN requiere.oid_r%TYPE
-) IS
-BEGIN
-DELETE FROM Requiere WHERE oid_r = w_oid_r;
-COMMIT;
-END eliminar_requiere;
 / 
 
 --REGLAS DE NEGOCIO
@@ -384,11 +341,13 @@ END;
 CREATE OR REPLACE PROCEDURE modifica_pedido(
     w_oid_pd IN pedidos.oid_pd%TYPE,
     w_fecha_solicitud IN pedidos.fecha_solicitud%TYPE,
-    w_fecha_entrega IN pedidos.fecha_entrega%TYPE
+    w_fecha_entrega IN pedidos.fecha_entrega%TYPE,
+    w_cantidad IN pedidos.cantidad%TYPE
 )IS
 BEGIN
     UPDATE pedidos SET fecha_solicitud=w_fecha_solicitud WHERE oid_pd=w_oid_pd;
     UPDATE pedidos SET fecha_entrega=w_fecha_entrega WHERE oid_pd=w_oid_pd;
+    UPDATE pedidos SET cantidad=w_cantidad WHERE oid_pd=w_oid_pd;
 END;
 /
 
@@ -396,11 +355,13 @@ END;
 CREATE OR REPLACE PROCEDURE modifica_producto(
     w_oid_p IN Productos.oid_p%TYPE,
     w_nombre IN Productos.nombre%TYPE,
-    w_precio IN Productos.precio%TYPE
+    w_precio IN Productos.precio%TYPE,
+    w_cantidad IN productos.cantidad%TYPE
 )IS
 BEGIN
     UPDATE Productos SET nombre=w_nombre WHERE oid_p=w_oid_p;
     UPDATE Productos SET precio=w_precio WHERE oid_p=w_oid_p;
+    UPDATE Productos SET cantidad=w_cantidad WHERE oid_p=w_oid_p;
 END;
 /
 

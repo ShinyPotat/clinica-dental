@@ -5,10 +5,8 @@ drop table Facturas CASCADE CONSTRAINTS;
 drop table Encargos CASCADE CONSTRAINTS;
 drop table Materiales CASCADE CONSTRAINTS;
 drop table Productos CASCADE CONSTRAINTS;
-drop table Requiere;
 drop table Proveedores CASCADE CONSTRAINTS;
 drop table Pedidos CASCADE CONSTRAINTS;
-drop table Linea_Pedido;
 DROP TABLE USUARIOS;
 
 -- Creaci�n de tablas
@@ -76,18 +74,6 @@ CREATE TABLE Proveedores(
     PRIMARY KEY (OID_PR)
 );
 
---pedidos
-CREATE TABLE Pedidos(
-    OID_PD NUMBER NOT NULL,
-    Fecha_Solicitud date DEFAULT SYSDATE,
-    Fecha_entrega date,
-    OID_PR NUMBER,
-    OID_F NUMBER,
-    PRIMARY KEY(OID_PD),
-    FOREIGN KEY(OID_PR) REFERENCES Proveedores ON DELETE CASCADE,
-    FOREIGN KEY(OID_F) REFERENCES Facturas ON DELETE SET NULL
-);
-
 --materiales
 CREATE table materiales(
     OID_M        NUMBER NOT NULL,
@@ -100,17 +86,20 @@ CREATE table materiales(
     unidad        varchar2(20),
     Primary Key(OID_M)
 );
- 
---linea_pedido
-CREATE TABLE Linea_Pedido (
-    OID_LP NUMBER NOT NULL,
-    Cantidad number(7,2) CHECK (cantidad > 0),
-    Coste number(7,2) CHECK (coste > 0),
-    OID_PD NUMBER,
+
+--pedidos
+CREATE TABLE Pedidos(
+    OID_PD NUMBER NOT NULL,
+    Fecha_Solicitud date DEFAULT SYSDATE,
+    Fecha_entrega date,
+    cantidad number,
+    OID_PR NUMBER,
     OID_M NUMBER,
-    PRIMARY KEY(OID_LP),
-    FOREIGN KEY(OID_PD) REFERENCES Pedidos on delete cascade,
-    FOREIGN KEY(OID_M) REFERENCES Materiales ON DELETE SET NULL
+    OID_F NUMBER,
+    PRIMARY KEY(OID_PD),
+    FOREIGN KEY(OID_PR) REFERENCES Proveedores ON DELETE CASCADE,
+    Foreign key(OID_M) references materiales ON DELETE SET NULL,
+    FOREIGN KEY(OID_F) REFERENCES Facturas ON DELETE SET NULL
 );
 
 --productos
@@ -118,21 +107,14 @@ Create table Productos(
     OID_P        NUMBER NOT NULL,
     nombre        varchar2(30),
     precio        number(7,2) CHECK (precio > 0),
-    OID_E    NUMBER,
+    cantidad number,
+    OID_M NUMBER,
+    OID_E NUMBER,
     Primary Key(OID_P),
+    Foreign key(OID_M) references materiales ON DELETE SET NULL,
     Foreign Key(OID_E) references Encargos ON DELETE SET NULL
 );
 
---requiere
-Create table requiere(
-    OID_R        NUMBER NOT NULL,
-    Cantidad     INT CHECK (cantidad > 0),
-    OID_P        NUMBER,
-    OID_M        NUMBER,
-    Primary Key(OID_R),
-    Foreign Key(OID_P) references productos ON DELETE CASCADE,
-    Foreign Key(OID_M) references materiales ON DELETE CASCADE
-);
     
 
 
