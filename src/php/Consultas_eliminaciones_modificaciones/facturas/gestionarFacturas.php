@@ -99,7 +99,7 @@
     function modificar_factura($conexion,$oidFactura,$fecha_cobro,$fecha_vencimiento,$fecha_factura,$precio_total){
         try{
             $stmt=$conexion->prepare('CALL Modifica_factura(:oidFactura,:fecha_cobro,:fecha_vencimiento,:fecha_factura,:precio_total)');
-            $stmt->bindParam(':oidFactura',$oidMaterial);
+            $stmt->bindParam(':oidFactura',$oidFactura);
             $stmt->bindParam(':fecha_cobro',getFechaFormateada($fecha_cobro));
             $stmt->bindParam(':fecha_vencimiento',getFechaFormateada($fecha_vencimiento));
             $stmt->bindParam(':fecha_factura',getFechaFormateada($fecha_factura));

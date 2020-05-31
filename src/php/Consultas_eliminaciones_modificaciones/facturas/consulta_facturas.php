@@ -127,10 +127,7 @@
                     <div>           <!-- datos de la tabla-->
                         <div>
                             <input id="OID_F" name="OID_F" type="hidden" value="<?php echo $fila["OID_F"]; ?>">
-                            <input id="FECHA_COBRO" name="FECHA_COBRO" type="hidden" required value="<?php echo $fila["FECHA_COBRO"];?>">
-                            <input name="FECHA_VENCIMIENTO" id="FECHA_VENCIMIENTO" type= "hidden" required value="<?php echo $fila["FECHA_VENCIMIENTO"];?>">
-                            <input id="FECHA_FACTURA" name="FECHA_FACTURA" type="hidden" required value="<?php echo $fila["FECHA_FACTURA"];?>">
-                            <input id="PRECIO_TOTAL" name="PRECIO_TOTAL" type="hidden" required value="<?php echo $fila["PRECIO_TOTAL"];?>">
+
                             <?php
                                 if(isset($factura) and ($factura["OID_F"] == $fila["OID_F"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
@@ -139,7 +136,7 @@
                                         <td><input id="FECHA_FACTURA" name="FECHA_FACTURA" type="date" value="<?php echo $fila["FECHA_FACTURA"];?>"></td>
                                         <td><input id="PRECIO_TOTAL" name="PRECIO_TOTAL" type="number" value="<?php echo $fila["PRECIO_TOTAL"];?>"></td>
                         <?php }else{ ?>
-                                    <input id="FECHA_FACTURA" name="FECHA_FACTURA" type="hidden" value="<?php echo $fila["FECHA_FACTURA"];?>">
+
                                     <tr>
                                         <td><?php echo $fila["FECHA_COBRO"];?></td>              <!-- columnas -->
                                         <td><?php echo $fila["FECHA_VENCIMIENTO"];?></td>
