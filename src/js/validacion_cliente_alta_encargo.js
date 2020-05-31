@@ -24,6 +24,43 @@ function dateValidation(entrada,entrega) {
     return error;
 }
 
+function fdateValidation(input1,input2) {
+
+    var dateEntrada = new Date(input1.value);
+    var dateEntrega = new Date(input2.value);
+    
+    
+    if(!dateEntrada){
+        dateEntrada = new Date();
+    }
+    
+    if(dates.compare(dateEntrada,dateEntrega) == 1){
+
+        var error = "La fecha de entrada debe ser antes que la fecha de entrega";
+        console.error("La fecha de entrada debe ser antes que la fecha de entrega");
+        
+    }else{
+        var error = ""
+    }  
+    input2.setCustomValidity(error);
+    return error;
+}
+
+function fentradaValidation(input) {
+
+    var today = new Date();
+    var fechaEntrada = new Date(input.value);
+
+    if(dates.compare(fechaEntrada,today) == 1){
+        console.error("Error con la fecha");
+        var error = "Fecha mayor al dia de hoy";
+    }else{
+        var error = "";
+    }
+    input.setCustomValidity(error);
+    return error;
+}
+
 function entradaValidation(fechaEntrada) {
     var today = new Date();
     fechaEntrada = new Date(fechaEntrada);

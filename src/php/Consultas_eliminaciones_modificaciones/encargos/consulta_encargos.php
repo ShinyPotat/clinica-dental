@@ -44,7 +44,7 @@
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
     <link rel="stylesheet", type="text/css", href="../../../css/consultaEncargos.css">
-    
+    <script src="../../../js/validacion_cliente_alta_encargo.js" type="text/javascript"></script>
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
@@ -52,6 +52,7 @@
     <a href="../../formularios/form_alta_encargo.php" class="botonNuevoEncargo">Nuevo Encargo</a>
     <a href="consulta_encargos.php" class="botonEncargos">Encargos</a>
     <script src="../../../js/hora.js"></script>
+    <script src="../../../js/dates.js"></script>
     <a href="../../accesorapido.php" class="buttonAtras">«</a> 
     <p class="volver">Volver</p>
     
@@ -113,8 +114,10 @@
                             <?php
                                 if(isset($encargo) and ($encargo["OID_E"] == $fila["OID_E"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                        <td><input id="FECHA_ENTRADA" name="FECHA_ENTRADA" type="date" value="<?php echo $fila["FECHA_ENTRADA"];?>"></td>
-                                        <td><input id="FECHA_ENTREGA" name="FECHA_ENTREGA" type="date" value="<?php echo $fila["FECHA_ENTREGA"];?>"></td>
+                                        <td><input id="FECHA_ENTRADA" name="FECHA_ENTRADA" type="date" value="<?php echo date_create($fila["FECHA_ENTRADA"])->format('Y-m-d');?>"
+                                        oninput="fentradaValidation(document.getElementById('FECHA_ENTRADA'))"></td>
+                                        <td><input id="FECHA_ENTREGA" name="FECHA_ENTREGA" type="date" value="<?php echo date_create($fila["FECHA_ENTREGA"])->format('Y-m-d');?>"
+                                        oninput="fdateValidation(document.getElementById('FECHA_ENTRADA'),fdateValidation(document.getElementById('FECHA_ENTREGA'))"></td>
                                         <td><input id="ACCIONES" name="ACCIONES" type="text" value="<?php echo $fila["ACCIONES"];?>"></td>
                         <?php }else{ ?>
                                     <tr>

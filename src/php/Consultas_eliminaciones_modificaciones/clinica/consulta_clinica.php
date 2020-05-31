@@ -52,6 +52,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de clínicas</title>
     <link rel="stylesheet" href="../../../css/consultaPDP.css">
+    <script src="../../../js/validacion_cliente_alta_clinica.js" type="text/javascript"></script>
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
@@ -122,14 +123,18 @@
                                                 <?php
                                                     if (isset($clinica) and ($clinica["OID_C"] == $fila["OID_C"])) { ?>
                                                         <tr>
-                                                            <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
-                                                            <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
-                                                            <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" maxlength= 9 value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
+                                                            <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"
+                                                            onkeyup="lettersValidation(document.getElementById('NOMBRE'))"></td>
+                                                            <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"
+                                                            onkeyup="lettersValidation(document.getElementById('LOCALIZACIÓN'))"></td>
+                                                            <td><input type="text" name="TLF_CONTACTO" id="TLF_CONTACTO" maxlength= 9 value="<?php echo $fila["TLF_CONTACTO"];?>"
+                                                            onkeyup="tlfValidation(document.getElementById('TLF_CONTACTO'))"></td>
                                                             <td><?php echo $fila["MOROSO"];?></td>
-                                                            <td><input type="text" name="NOMBRE_DUEÑO" id="NOMBRE_DUEÑO" value="<?php echo $fila["NOMBRE_DUEÑO"];?>"></td>
-                                                            <td><input type="text" name="NUM_COLEGIADO" id="NUM_COLEGIADO" maxlength= 4 value="<?php echo $fila["NUM_COLEGIADO"];?>"></td>
+                                                            <td><input type="text" name="NOMBRE_DUEÑO" id="NOMBRE_DUEÑO" value="<?php echo $fila["NOMBRE_DUEÑO"];?>"
+                                                            onkeyup="lettersValidation(document.getElementById('NOMBRE_DUEÑO'))"></td>
+                                                            <td><input type="text" name="NUM_COLEGIADO" id="NUM_COLEGIADO" maxlength= 4 value="<?php echo $fila["NUM_COLEGIADO"];?>"
+                                                            onkeyup="numColValidation(document.getElementById('NUM_COLEGIADO'))"></td>
                                               <?php } else { ?>
-                                                        <input type="hidden" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>">
                                                         <tr>
                                                             <td><?php echo $fila["NOMBRE"]?></td>
                                                             <td><?php echo $fila["LOCALIZACIÓN"]?></td>
