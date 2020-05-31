@@ -157,6 +157,33 @@
             </article>
                     <?php } ?>
         </table>
+        <form id="filterForm" action="consulta_materiales.php" method="post">
+            <select class="filtro" name="filtro" id="filtro" oninput="auto(document.getElementById('filtro').value)">
+                <option value="" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']==""){ echo "selected='selected'";}?>>---</option>
+                <option value="STOCK_MIN" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="STOCK_MIN"){ echo "selected='selected'";}?>>stock minimo</option>
+                <option value="STOCK_CRITICO" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="STOCK_CRITICO"){ echo "selected='selected'";}?>>stock crítico</option>
+                <option value="CATEGORIA" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CATEGORIA"){ echo "selected='selected'";}?>>categoria</option>
+            </select>
+            <div id="filterValueDiv">
+            <?php
+                if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="STOCK_MIN"){?>
+              <?php  }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="STOCK_CRITICO") { ?>
+             <?php }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CATEGORIA"){ ?>
+                        <select class="filterValue" name="filterValue" id="filterValue">
+                            <option value="Alambre">Alambre</option>
+                            <option value="Dientes">Dientes</option>
+                            <option value="Empress">Empress</option>
+                            <option value="Ferula">Ferula</option>
+                            <option value="Metal Ceramica">Metal Ceramica</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Resina">Resina</option>
+                            <option value="Revestimiento">Revestimiento</option>
+                            <option value="Ceramica Zirconio">Ceramica Zirconio</option>
+                        </select>
+                 <input class="filterButton" type="submit" value="FILTRAR">
+           <?php  } ?>
+            </div>
+        </form>
     </main>
 </body>
 </html>
