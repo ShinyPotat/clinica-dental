@@ -28,4 +28,15 @@ function consultarUsuario($conexion,$user,$pass) {
 	
 }
 
+function borrarUsuario($conexion, $user){
+	try{
+		$stmt=$conexion->prepare('CALL eliminar_usuario(:usuario)');
+		$stmt->bindParam(':usuario',$user);
+		$stmt->execute();
+		return "";
+	}catch(PDOException $e) {
+		return $e->getMessage();
+	}
+}
+
 ?>
