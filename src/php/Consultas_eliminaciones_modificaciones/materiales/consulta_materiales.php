@@ -62,6 +62,7 @@
     <title>Gestión de inventario</title>
     <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
     <script src="../../../js/filtro_materiales.js"></script>
+    <script src="../../../js/validacion_cliente_alta_material.js" type="text/javascript"></script>
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
@@ -141,9 +142,11 @@
                                     <tr>                        <!-- filas de la tabla -->
                                         <td><?php echo $fila["NOMBRE"];?></td>
                                         <td><?php echo $fila["CATEGORIA"];?></td>
-                                        <td><input id="STOCK" name="STOCK" type="number" value="<?php echo $fila["STOCK"];?>" min="0"></td>
-                                        <td><input id="STOCK_MIN" name="STOCK_MIN" type="number" value="<?php echo $fila["STOCK_MIN"];?>" min="0"></td>
-                                        <td><input id="STOCK_CRITICO" name="STOCK_CRITICO" type="number" value="<?php echo $fila["STOCK_CRITICO"];?>" min="0"></td>
+                                        <td><input id="STOCK"required name="STOCK" type="number" value="<?php echo $fila["STOCK"];?>" min="0"></td>
+                                        <td><input id="STOCK_MIN" required name="STOCK_MIN" type="number" value="<?php echo $fila["STOCK_MIN"];?>" min="0"
+                                        oninput="critValidation(document.getElementById('STOCK_MIN'),document.getElementById('STOCK_CRITICO'))"></td>
+                                        <td><input id="STOCK_CRITICO" required name="STOCK_CRITICO" type="number" value="<?php echo $fila["STOCK_CRITICO"];?>" min="0"
+                                        oninput="critValidation(document.getElementById('STOCK_MIN'),document.getElementById('STOCK_CRITICO'))"></td>
                                         <td><?php echo $fila["UNIDAD"];?></td>
                         <?php }else{ ?>
                                     <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"];?>">

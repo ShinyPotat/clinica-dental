@@ -15,15 +15,15 @@ function lettersValidation(name) {
     return error;
 }
 
-function critValidation(stockMin,stockCrit) {
+function critValidation(inputstockMin,inputstockCrit) {
     
-    if (stockMin<stockCrit) {
+    if (inputstockMin.value<inputstockCrit.value) {
         console.error("El stock crítico debe ser menor que el stock mínimo");
         var error = "El stock crítico debe ser menor que el stock mínimo";
     } else {
         var error = "";        
     }
-    document.getElementById('stockCrit').setCustomValidity(error);
+    inputstockCrit.setCustomValidity(error);
     return error;
 }
 
