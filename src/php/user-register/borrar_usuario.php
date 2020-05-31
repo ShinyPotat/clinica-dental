@@ -7,7 +7,7 @@
     if (isset($_SESSION['login'])){
         $conexion = crearConexionBD();
         $login = $_SESSION['login'];
-        $excepcion = alta_usuario($conexion, $login["user"]);
+        $excepcion = borrarUsuario($conexion, $login["user"]);
         cerrarConexionBD($conexion);
         if($excepcion<>""){							
             $_SESSION["excepcion"] = $excepcion;
