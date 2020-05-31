@@ -71,7 +71,7 @@ if (isset($errores) && count($errores)>0) {
             $clinicas = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>&emsp; Clinica*: <select id="clinicaP" name="clinicaP">
+        <div>&emsp; Clinica*: <select required id="clinicaP" name="clinicaP">
             <option value="">Seleccionar clinica</option>
             <?php foreach($clinicas as $fila){ ?>
               <option value="<?php echo $fila["OID_C"]; ?>" <?php if(isset($Fpaciente['OID_C']) && $fila['OID_C']==$Fpaciente['OID_C']){ echo "selected='selected'";} ?>><?php echo $fila["NOMBRE"]; ?></option>

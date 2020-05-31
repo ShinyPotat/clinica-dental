@@ -69,7 +69,7 @@ if (isset($errores) && count($errores)>0) {
               $pacientes = $conexion->query($query);
               cerrarConexionBD($conexion);
           ?>
-          <div>&emsp; Paciente: <select id="PacienteE" name="PacienteE">
+          <div>&emsp; Paciente: <select required id="PacienteE" name="PacienteE">
               <option value="">Seleccionar paciente</option>
               <?php foreach($pacientes as $fila){ ?>
                 <option value="<?php echo $fila["OID_PC"]; ?>"><?php echo $fila["DNI"]; ?></option>
@@ -85,7 +85,7 @@ if (isset($errores) && count($errores)>0) {
               $facturas = $conexion->query($query);
               cerrarConexionBD($conexion);
           ?>
-          <div>&emsp; Factura: <select id="FacturaE" name="FacturaE">
+          <div>&emsp; Factura: <select required id="FacturaE" name="FacturaE">
               <option value="">Seleccionar factura</option>
               <?php foreach($facturas as $fila){ ?>
                 <option value="<?php echo $fila["OID_F"]; ?>"><?php echo $fila["FECHA_FACTURA"]; ?></option>

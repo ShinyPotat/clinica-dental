@@ -74,7 +74,7 @@
             $material = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>&emsp; Material: <select id="materialPD" name="materialPD">
+        <div>&emsp; Material: <select required id="materialPD" name="materialPD">
             <option value="">Seleccionar material</option>
             <?php foreach($material as $fila){ ?>
               <option value="<?php echo $fila["OID_M"]; ?>" <?php if($fila["OID_M"] == $pedido["materialPD"]){ echo "selected='selected'";} ?>><?php echo $fila["NOMBRE"]; ?></option>
@@ -91,7 +91,7 @@
             $proveedor = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>&emsp; Proveedor: <select id="proveedorPD" name="proveedorPD">
+        <div>&emsp; Proveedor: <select required id="proveedorPD" name="proveedorPD">
             <option value="">Seleccionar proveedor</option>
             <?php foreach($proveedor as $fila){ ?>
               <option value="<?php echo $fila["OID_PR"]; ?>" <?php if($fila["OID_PR"] == $pedido["proveedorPD"]){ echo "selected='selected'";} ?>><?php echo $fila["NOMBRE"]; ?></option>
@@ -108,7 +108,7 @@
             $facturas = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
-        <div>&emsp; Factura: <select id="FacturaPD" name="FacturaPD">
+        <div>&emsp; Factura: <select required id="FacturaPD" name="FacturaPD">
             <option value="">Seleccionar factura</option>
             <?php foreach($facturas as $fila){ ?>
               <option value="<?php echo $fila["OID_F"]; ?>"<?php if($fila["OID_F"] == $pedido["facturaPD"]){ echo "selected='selected'";} ?>><?php echo $fila["FECHA_FACTURA"]; ?></option>

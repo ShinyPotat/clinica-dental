@@ -72,7 +72,7 @@ if (isset($errores) && count($errores)>0) {
             cerrarConexionBD($conexion);
         ?>
         <p>
-        <div>&emsp; Material: <select id="materialPR" name="materialPR">
+        <div>&emsp; Material: <select required id="materialPR" name="materialPR">
             <option value="">Seleccionar material</option>
             <?php foreach($encargos as $fila){ ?>
               <option value="<?php echo $fila["OID_M"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>
@@ -89,7 +89,7 @@ if (isset($errores) && count($errores)>0) {
             cerrarConexionBD($conexion);
         ?>
         <p>
-        <div>&emsp; Encargo: <select id="encargoPR" name="encargoPR">
+        <div>&emsp; Encargo: <select required id="encargoPR" name="encargoPR">
             <option value="">Seleccionar encargo</option>
             <?php foreach($encargos as $fila){ ?>
               <option value="<?php echo $fila["OID_E"]; ?>"><?php echo $fila["FECHA_ENTRADA"]; ?></option>
