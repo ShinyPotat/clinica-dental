@@ -75,13 +75,14 @@
                     </p>
                     <p>
                         &emsp;
-                        Stock Mínimo*: &emsp;<input  required placeholder="Stock Mínimo" type="number" name="stockMin" id="stockMin" value="<?php echo $Fmaterial["stockMin"];?>" min="0">
+                        Stock Mínimo*: &emsp;<input  required placeholder="Stock Mínimo" type="number" name="stockMin" id="stockMin" value="<?php echo $Fmaterial["stockMin"];?>" min="0"
+                                                      oninput="document.getElementById('errorStockCrit').innerHTML = critValidation(document.getElementById('stockMin'),document.getElementById('stockCrit'))">
                         <span id="errorStockMin" class="error"></span> 
                     </p>
                     <p>
                         &emsp;
                         Stock Crítico*: &emsp;<input required placeholder="Stock Crítico" type="number" name="stockCrit" id="stockCrit" value="<?php echo $Fmaterial["stockCrit"];?>" min="0"
-                                                      oninput="document.getElementById('errorStockCrit').innerHTML = critValidation(document.getElementById('stockMin').value,document.getElementById('stockCrit').value)">
+                                                      oninput="document.getElementById('errorStockCrit').innerHTML = critValidation(document.getElementById('stockMin'),document.getElementById('stockCrit'))">
                         <span id="errorStockCrit" class="error"></span> 
                     </p>
                     <p>

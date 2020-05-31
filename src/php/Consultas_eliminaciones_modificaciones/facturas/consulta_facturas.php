@@ -133,11 +133,12 @@
                                 if(isset($factura) and ($factura["OID_F"] == $fila["OID_F"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
                                         <td><input id="FECHA_COBRO" name="FECHA_COBRO" type="date" value="<?php echo $fila["FECHA_COBRO"];?>"
-                                        ></td>
+                                        oninput="cobroValidation(document.getElementById('FECHA_COBRO'));"></td>
                                         <td><input id="FECHA_VENCIMIENTO" name="FECHA_VENCIMIENTO" type="date" value="<?php echo $fila["FECHA_VENCIMIENTO"];?>"
-                                        ></td>
+                                        oninput="vencimientoValidation(document.getElementById('FECHA_VENCIMIENTO'))"></td>
                                         <td><input id="FECHA_FACTURA" name="FECHA_FACTURA" type="date" value="<?php echo $fila["FECHA_FACTURA"];?>"
-                                        ></td>
+                                        oninput="dateValidation(document.getElementById('FECHA_COBRO'),
+                                                                document.getElementById('FECHA_FACTURA'));"></td>
                                         <td><input id="PRECIO_TOTAL" required min="0" name="PRECIO_TOTAL" type="number" value="<?php echo $fila["PRECIO_TOTAL"];?>"></td>
                         <?php }else{ ?>
                                     <tr>
