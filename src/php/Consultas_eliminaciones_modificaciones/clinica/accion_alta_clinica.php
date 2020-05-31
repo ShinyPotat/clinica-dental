@@ -16,7 +16,7 @@
 		$_SESSION["errores"] = null;
 	}
 	else{
-        Header("Location: ../formularios/form_alta_clinica.php");
+        Header("Location: ../formularios/form_alta_clinicas.php");
 	}  
 			
 	$errores = validarDatosClinicasF($clinica);
@@ -35,7 +35,7 @@
     // SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 	if($excepcion<>""){
 		$_SESSION["excepcion"] = $excepcion;
-		$_SESSION["destino"]= "formularios/form_alta_clinica.php";
+		$_SESSION["destino"]= "formularios/form_alta_clinicas.php";
 		header("Location: ../../excepcion.php");
 	}else{
 		// EN OTRO CASO, VOLVER A "CONSULTA_CLINICAS.PHP"
