@@ -7,7 +7,7 @@
     if (isset($_SESSION['login'])){
         $conexion = crearConexionBD();
         $login = $_SESSION['login'];
-        $excepcion = borrarUsuario($conexion, $login["user"]);
+        $excepcion = borrarUsuario($conexion, $login);
         cerrarConexionBD($conexion);
         if($excepcion<>""){							
             $_SESSION["excepcion"] = $excepcion;
@@ -17,5 +17,7 @@
             unset($_SESSION['login']);
             Header("Location: ../login.php");
         }
+    }else{
+        Header("Location: ../login.php");
     }
 ?>
