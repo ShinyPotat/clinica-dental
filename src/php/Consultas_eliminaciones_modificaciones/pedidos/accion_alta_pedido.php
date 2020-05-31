@@ -47,25 +47,25 @@
 		$errores = [];
 
 		$now = new DateTime();
-		if(isset($pedido["FECHA_SOLICITUD"])){
-			$fechaSolicitud = date_create($factura["FECHA_SOLICITUD"]);
+		if(isset($pedido["fechaSolicitud"])){
+			$fechaSolicitud = date_create($factura["fechaSolicitud"]);
 			$var1 = date_diff($now,$fechaSolicitud);
 			if ($var1->format("%r%a") < 0) {
 				$errores[] = "<p>La fecha de solicitud no puede ser antes del día de hoy</p>";
 			}
 		}
 
-		if(isset($pedido["FECHA_ENTREGA"])){
-			$fechaEntrega = date_create($factura["FECHA_ENTREGA"]);
+		if(isset($pedido["fechaEntrega"])){
+			$fechaEntrega = date_create($factura["fechaEntrega"]);
 			$var2 = date_diff($now,$fechaEntrega);
 			if ($var2->format("%r%a") < 0) {
 				$errores[] = "<p>La fecha de entrega no puede ser antes del día de hoy</p>";
 			}
 		}
 		
-		if(isset($pedido["FECHA_ENTREGA"]) && isset($factura["FECHA_SOLICITUD"])){
-			$fechaEntrega2 = date_create($pedido["FECHA_ENTREGA"]);
-			$fechaSolicitud2 = date_create($pedido["FECHA_SOLICITUD"]);
+		if(isset($pedido["fechaEntrega"]) && isset($factura["fechaSolicitud"])){
+			$fechaEntrega2 = date_create($pedido["fechaEntrega"]);
+			$fechaSolicitud2 = date_create($pedido["fechaSolicitud"]);
 			$var4 = date_diff($fechaEntrega2,$fechaSolicitud2);
 			if ($var4->format("%r%a") > 0) {
 				$errores[] = "<p>La fecha de Solicitud debe ser antes de la de entrega</p>";
