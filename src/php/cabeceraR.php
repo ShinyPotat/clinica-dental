@@ -16,4 +16,5 @@
         <img class="flechaA" src="../../images/flechaA.png" width="20" height="20">
         
         <a href=logaut.php class="botonUsuario">Desconectarse</a>
+        <a href= user-register/borrar_usuario.php class="botonBorrar">Eliminar usuario</a>
     </div>
