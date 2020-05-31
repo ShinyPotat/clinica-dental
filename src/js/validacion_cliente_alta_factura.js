@@ -2,12 +2,10 @@ var imported = document.createElement('script');
 imported.src = '../../js/dates.js';
 document.head.appendChild(imported);
 
-function dateValidation(fechaCobro, fechaFactura) {
+function dateValidation(inputCobro, inputFactura) {
 
-    const inputFecha = document.getElementById('fechaFactura');
-
-    fechaCobro = new Date(fechaCobro);
-    fechaFactura = new Date(fechaFactura);
+    fechaCobro = new Date(inputCobro.value);
+    fechaFactura = new Date(inputFactura.value);
     var now = new Date();
 
     if (dates.compare(fechaFactura,now) == 1) {
@@ -19,15 +17,13 @@ function dateValidation(fechaCobro, fechaFactura) {
     } else {
         var error = "";
     }
-    inputFecha.setCustomValidity(error);
+    inputFactura.setCustomValidity(error);
     return error;
 }
 
-function cobroValidation(fecha) {
-
-    const inputFecha = document.getElementById('fechaCobro');
+function cobroValidation(inputFecha) {
     
-    var date = new Date(fecha);
+    var date = new Date(inputFecha.value);
     var now = new Date();
 
     if (dates.compare(date,now) == 1) {
@@ -40,11 +36,9 @@ function cobroValidation(fecha) {
     return error;
 }
 
-function vencimientoValidation(fecha) {
+function vencimientoValidation(inputFecha) {
 
-    const inputFecha = document.getElementById('fechaVencimiento');
-    
-    var date = new Date(fecha);
+    var date = new Date(inputFecha.value);
     var now = new Date();
 
     if (dates.compare(now,date) == 1) {

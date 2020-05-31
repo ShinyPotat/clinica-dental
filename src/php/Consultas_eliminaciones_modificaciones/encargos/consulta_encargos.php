@@ -114,10 +114,10 @@
                             <?php
                                 if(isset($encargo) and ($encargo["OID_E"] == $fila["OID_E"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                        <td><input id="FECHA_ENTRADA" name="FECHA_ENTRADA" type="date" value="<?php echo date_create($fila["FECHA_ENTRADA"])->format('Y-m-d');?>"
-                                        oninput="fentradaValidation(document.getElementById('FECHA_ENTRADA'))"></td>
-                                        <td><input id="FECHA_ENTREGA" name="FECHA_ENTREGA" type="date" value="<?php echo date_create($fila["FECHA_ENTREGA"])->format('Y-m-d');?>"
-                                        oninput="fdateValidation(document.getElementById('FECHA_ENTRADA'),fdateValidation(document.getElementById('FECHA_ENTREGA'))"></td>
+                                        <td><input id="FECHA_ENTRADA" name="FECHA_ENTRADA" type="date" value="<?php echo $fila["FECHA_ENTRADA"];?>"
+                                        oninput="fentradaValidation(document.getElementById('FECHA_ENTRADA'));"></td>
+                                        <td><input id="FECHA_ENTREGA" name="FECHA_ENTREGA" type="date" value="<?php echo $fila["FECHA_ENTREGA"];?>"
+                                        oninput="fdateValidation(document.getElementById('FECHA_ENTRADA'),document.getElementById('FECHA_ENTREGA'))"></td>
                                         <td><input id="ACCIONES" name="ACCIONES" type="text" value="<?php echo $fila["ACCIONES"];?>"></td>
                         <?php }else{ ?>
                                     <tr>

@@ -13,7 +13,7 @@ BEGIN
 END;
 /
 
-
+SELECT COUNT(*) AS TOTAL FROM materiales WHERE CATEGORIA = 'Alambre'
 --insertar clinica
 CREATE OR REPLACE PROCEDURE crear_clinica (
     w_nombre IN Clinicas.nombre%TYPE,
@@ -158,15 +158,6 @@ END crear_requiere;
 /
 
 --ELIMINAR
---eliminar linea de la tabla usuarios
-CREATE OR REPLACE PROCEDURE eliminar_usuario (
-    w_usuario IN usuarios.usuario%TYPE
-) IS
-BEGIN
-DELETE FROM usuarios WHERE usuario = w_usuario;
-COMMIT;
-END eliminar_usuario;
-/
 --eliminar linea de la tabla clinicas
 CREATE OR REPLACE PROCEDURE eliminar_clinica (
     w_oid_c IN clinicas.oid_c%TYPE

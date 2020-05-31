@@ -51,19 +51,19 @@
         <p>
           &emsp;
           Fecha de cobro: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaCobro" id="fechaCobro" value="<?php echo $factura["fechaCobro"];?>"
-                            oninput="document.getElementById('errorFechaCobro').innerHTML = cobroValidation(document.getElementById('fechaCobro').value);">
+                            oninput="document.getElementById('errorFechaCobro').innerHTML = cobroValidation(document.getElementById('fechaCobro'));">
           <span class="error" id="errorFechaCobro"></span>
         </p>
           &emsp;
           Fecha de vencimiento: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaVencimiento" id="fechaVencimiento" value="<?php echo $factura["fechaVencimiento"];?>"
-                              oninput="document.getElementById('errorVencimiento').innerHTML = vencimientoValidation(document.getElementById('fechaVencimiento').value);">
+                              oninput="document.getElementById('errorVencimiento').innerHTML = vencimientoValidation(document.getElementById('fechaVencimiento'));">
           <span class="error" id="errorVencimiento"></span>
         <p>
           &emsp;
           Fecha de factura: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaFactura" id="fechaFactura" value="<?php echo $factura["fechaFactura"];?>"
                                     oninput="document.getElementById('errorFecha').innerHTML = dateValidation(
-                                      document.getElementById('fechaCobro').value,
-                                      document.getElementById('fechaFactura').value);">
+                                      document.getElementById('fechaCobro'),
+                                      document.getElementById('fechaFactura'));">
           <span id="errorFecha" class="error"></span>
         </p>
           &emsp;
