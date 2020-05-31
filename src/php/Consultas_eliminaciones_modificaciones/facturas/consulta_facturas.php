@@ -22,7 +22,7 @@
     }
     
     if (isset($_SESSION["PAG_FAC"])) $paginacion = $_SESSION["PAG_FAC"]; 
-		$pagina_seleccionada = isset($_GET["PAG_NUMF"])? (int)$_GET["PAG_NUMMF"]:
+		$pagina_seleccionada = isset($_GET["PAG_NUMF"])? (int)$_GET["PAG_NUMF"]:
 													(isset($paginacion)? (int)$paginacion["PAG_NUMF"]: 1);
 		$pag_tam = isset($_GET["PAG_TAMF"])? (int)$_GET["PAG_TAMF"]:
 											(isset($paginacion)? (int)$paginacion["PAG_TAMF"]: 10);
