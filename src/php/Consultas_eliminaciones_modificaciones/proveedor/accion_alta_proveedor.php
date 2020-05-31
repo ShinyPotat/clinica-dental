@@ -44,8 +44,8 @@
 
 		$erroresF = [];
 
-		if (empty($proveedor["name"])) {
-			$erroresF[] = "Este campo es obligatorio";
+		if (!isset($proveedor["name"])) {
+			$erroresF[] = "<p>el campo nombre es obligatorio</p>";
 		} else {
 			$name = test_input($proveedor["name"]);
 			if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
@@ -53,21 +53,17 @@
 			}
 		}
 	  
-		if (empty($proveedor["local"])) {
-			  $local = "";
-		} else {
+		if (isset($proveedor["local"])) {
 			$local = test_input($proveedor["local"]);
 			if (!preg_match("/^[a-zA-Z ]*$/",$local)) {
 				$erroresF[] = "<p>Solo puedes introducir espacios y letras en localizacion.</p>";
 			}
 		}
 	  
-		if (empty($proveedor["phone"])) {
-			$phone = "";
-		} else {
+		if (isset($proveedor["phone"])) {
 			$phone = test_input($proveedor["phone"]);
 			if (!preg_match("^[0-9]{9}^",$phone)) {
-				$erroresF[] = "<p>Escribe un número de telefono adecuado</p>";
+				$erroresF[] = "<p>Escriba un número de telefono adecuado</p>";
 			}
 		}
 

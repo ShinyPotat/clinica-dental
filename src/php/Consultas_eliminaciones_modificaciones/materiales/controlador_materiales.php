@@ -52,6 +52,13 @@
 				$errores = "<p>El stockcritico debe de ser mayor o igual que 0</p>";
 			}
 		}
+		if (isset($material["STOCK_CRITICO"]) && isset($material["STOCK_MIN"])) {
+			$stockCrit = test_input($material["STOCK_CRITICO"]);
+			$stockMin = test_input($material["STOCK_MIN"]);
+            if ($stockCrit > $stockMin) {
+              	$errores = "<p>El stockcritico debe de ser menor o igual que el stock minimo</p>";
+            }
+		}
 
 		return $errores;
 	}

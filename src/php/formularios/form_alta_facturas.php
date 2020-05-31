@@ -9,49 +9,39 @@
 <body>  
 
 <?php
-if(!isset($_SESSION["login"])){
-  header("../login.php");
-}
-$fechaCobroErr = $fechaVencimientoErr = $fechaFacturaErr = $precioTotalErr = "";
-$fechaCobro = $fechaVencimiento = $fechaFactura = $precioTotal = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["fechaCobro"])) {
-        $fechaCobroErr = "";
-      } else {
-        $fechaCobro = test_input($_POST["fechaCobro"]);
-        }
-      }
+  session_start();
 
-      if (empty($_POST["fechaVencimiento"])) {
-        $fechaVencimientoErr = "";
-      } else {
-        $fechaVencimiento = test_input($_POST["fechaVencimiento"]);
-        }
+  if(!isset($_SESSION["login"])){
+    header("Location: ../login.php");
+  }
 
-      if (empty($_POST["fechaFactura"])) {
-        $fechaFacturaErr = "";
-      } else {
-        $fechaFactura = test_input($_POST["fechaFactura"]);
-        }
+  if (!isset($_SESSION["Ffactura"])) {
+    $factura["fechaCobro"] = "";
+    $factura["fechaVencimiento"] = "";
+    $factura["fechaFactura"] = "";
+    $factura["precioTotal"] = "";
+  } else {
+    $factura = $_SESSION["Ffactura"];
+    unset($_SESSION["Ffactura"]);
+  }
 
-      if (empty($_POST["precioTotal"])) {
-        $precioTotalErr = "";
-      } else {
-        $precioTotal = test_input($_POST["precioTotal"]);
-        if ($_POST["precioTotal"] < 0) {
-          $precioTotalErr = "El valor debe de ser mayor o igual que 0";
-        }
-      }
+  if(isset($_SESSION["errores"])) {
+    $errores=$_SESSION["errores"];
+    unset($_SESSION["errores"]);
+  }
+  
+  if (isset($errores) && count($errores)>0) { 
+    echo "<div id=\"div_errores\" class=\"error\">";
+    echo "<h4> Errores en el formulario:</h4>";
+    foreach($errores as $error){
+      echo $error;
+  } 
+    echo "</div>";
+  }
+  
 
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
-
-      include_once ("../cabecera.php");
+   include_once ("../cabecera.php");
 ?>
 
     </div>
@@ -60,25 +50,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p><span class="error">&emsp;* campo requerido</span></p>
         <p>
           &emsp;
-          Fecha de cobro: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaCobro" id="fechaCobro" value="<?php echo $fechaCobro;?>"
-                            oninput="document.getElementById('errorFechaCobro').innerHTML = dateValidation(document.getElementById('fechaCobro').value);">
-          <span class="error" id="errorFechaCobro"> <?php echo $fechaCobroErr;?></span>
+          Fecha de cobro: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaCobro" id="fechaCobro" value="<?php echo $factura["fechaCobro"];?>"
+                            oninput="document.getElementById('errorFechaCobro').innerHTML = cobroValidation(document.getElementById('fechaCobro').value);">
+          <span class="error" id="errorFechaCobro"></span>
         </p>
           &emsp;
-          Fecha de vencimiento: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaVencimiento" id="fechaVencimiento" value="<?php echo $fechaVencimiento;?>">
-          <span class="error"> <?php echo $fechaVencimientoErr;?></span>
+          Fecha de vencimiento: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaVencimiento" id="fechaVencimiento" value="<?php echo $factura["fechaVencimiento"];?>"
+                              oninput="document.getElementById('errorVencimiento').innerHTML = vencimientoValidation(document.getElementById('fechaVencimiento').value);">
+          <span class="error" id="errorVencimiento"></span>
         <p>
           &emsp;
-          Fecha de factura: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaFactura" id="fechaFactura" value="<?php echo $fechaFactura;?>"
+          Fecha de factura: <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaFactura" id="fechaFactura" value="<?php echo $factura["fechaFactura"];?>"
                                     oninput="document.getElementById('errorFecha').innerHTML = dateValidation(
                                       document.getElementById('fechaCobro').value,
-                                      document.getElementById('fechaVencimiento').value,
                                       document.getElementById('fechaFactura').value);">
-          <span id="errorFecha" class="error"> <?php echo $fechaFacturaErr;?></span>
+          <span id="errorFecha" class="error"></span>
         </p>
           &emsp;
-          Precio total: <input required placeholder="Precio total" type="number" id="precioTotal" name="precioTotal" value="<?php echo $precioTotal;?>" min="0">
-          <span id="errorPrecio" class="error"> <?php echo $precioTotalErr;?></span> 
+          Precio total: <input required placeholder="Precio total" type="number" id="precioTotal" name="precioTotal" value="<?php echo $factura["precioTotal"];?>" min="0">
+          <span id="errorPrecio" class="error"></span> 
         <br>         
         <input type="submit" name="submit" value="Enviar" class="enviar">
         <a href="../Consultas_eliminaciones_modificaciones/facturas/consulta_facturas.php" class="buttonAtras">Atrás</a>

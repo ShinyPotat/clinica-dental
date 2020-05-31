@@ -10,7 +10,7 @@
 
 <?php
 if(!isset($_SESSION["login"])){
-  header("../login.php");
+  header("Location: ../login.php");
 }
 $cantidadErr = $costeErr = "";
 $cantidad = $coste = "";

@@ -33,7 +33,7 @@
 		$errores = [];
 
 		if(empty($paciente["DNI"])) {
-			$errores[] = "<p>El DNI es obligatorio"
+			$errores[] = "<p>El DNI es obligatorio";
 		}else if(!preg_match("/^[0-9]{8}[A-Z]$/",$paciente["DNI"])){
 			$errores[] = "<p>El NIF ". $paciente["DNI"] . " es incorrecto. Debe reescribirlo.</p>";
 		}

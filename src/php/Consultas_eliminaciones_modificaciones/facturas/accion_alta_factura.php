@@ -16,7 +16,15 @@
 	else{
         Header("Location: ../formularios/form_alta_factura.php");
 	} 
-			
+		
+	$errores = validation($factura);
+
+	if(isset($errores) && count($errores)>0) {
+		$_SESSION["errores"] = $errores;
+		$_SESSION["Ffactura"] = $factura;
+		Header("Location: ../../formularios/form_alta_facturas.php");
+		die;
+	}
 
 	$conexion = crearConexionBD(); 
 
@@ -33,4 +41,44 @@
 	}
 
 	cerrarConexionBD($conexion);
+
+	function validation($factura){
+
+		$errores = [];
+
+		$now = new DateTime();
+		if(isset($factura["fechaCobro"])){
+			$fechaCobro = date_create($factura["fechaCobro"]);
+			$var1 = date_diff($now,$fechaCobro);
+			if ($var1->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de cobro no puede ser despues del día de hoy</p>";
+			}
+		}
+
+		if(isset($factura["fechaVencimiento"])){
+			$fechaVencimiento = date_create($factura["fechaVencimiento"]);
+			$var2 = date_diff($now,$fechaVencimiento);
+			if ($var2->format("%r%a") < 0) {
+				$errores[] = "<p>La fecha de vencimiento no puede ser antes del día de hoy</p>";
+			}
+		}
+		
+		if(isset($factura["fechaFactura"])){
+			$fechaFactura = date_create($factura["fechaFactura"]);
+			$var3 = date_diff($now,$fechaFactura);
+			if ($var3->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de factura no puede ser después del día de hoy</p>";
+			}
+		}
+		
+		if(isset($factura["fechaCobro"]) && isset($factura["fechaFactura"])){
+			$fechaCobro2 = date_create($factura["fechaCobro"]);
+			$fechaFactura2 = date_create($factura["fechaFactura"]);
+			$var4 = date_diff($fechaCobro2,$fechaFactura2);
+			if ($var4->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de factura debe ser antes de la de cobro</p>";
+			}
+		}
+		return $errores;	  
+	}
 ?>
