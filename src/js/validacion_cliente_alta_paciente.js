@@ -14,10 +14,11 @@ function dniValidate(dni) {
 
     if (!valid) {
         console.error("DNI no válido");
-        var error = "&emsp;Introduce un dni adecuado"
+        var error = "Introduce un dni adecuado"
     } else {
         var error = "";
     }
+    document.getElementById('dni').setCustomValidity(error);
     return error;
 }
 
@@ -28,24 +29,10 @@ function dateValidation(fechaNac) {
 
     if (dates.compare(fechaNac,now) == 1) {
         console.error("Fecha inválida");
-        var error = "&emsp;Fecha no válida";
+        var error = "Fecha no válida";
     } else {
         var error = "";
     }
-    
-    return error;
-}
-
-function ageValidation(fechaNac) {
-    
-    var date = new Date(fechaNac);
-    var now = new Date();
-    if(now.getFullYear()-date.getFullYear()<5){
-        console.error("Paciente no válido");
-        var error = "&emsp; La edad mínima es de 5 años";
-    } else {
-        var error = "";
-    }
-    
+    document.getElementById('fechaNacimiento').setCustomValidity(error);
     return error;
 }

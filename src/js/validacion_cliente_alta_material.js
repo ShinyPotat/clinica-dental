@@ -11,7 +11,7 @@ function lettersValidation(name) {
     } else {
         var error = "";
     }
-
+    document.getElementById('name').setCustomValidity(error);
     return error;
 }
 
@@ -23,6 +23,7 @@ function critValidation(stockMin,stockCrit) {
     } else {
         var error = "";        
     }
+    document.getElementById('stockCrit').setCustomValidity(error);
     return error;
 }
 

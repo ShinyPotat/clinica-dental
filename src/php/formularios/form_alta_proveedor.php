@@ -50,12 +50,12 @@
         <p>
           &emsp;
           Nombre*:&emsp; <input required placeholder="Nombre" type="text" name="name" id="name" value="<?php echo $Fproveedor["NOMBRE"];?>"
-                                  onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name').value)">
+                                  onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name'))">
           <span id="errorName" class="error"></span>
         </p>
           &emsp;
           Localización:&emsp; <input placeholder="Localizacion" type="text" name="local" id="local" value="<?php echo $Fproveedor["LOCALIZACIÓN"];?>"
-                                      onkeyup="document.getElementById('errorLocal').innerHTML = lettersValidation(document.getElementById('local').value)">
+                                      onkeyup="document.getElementById('errorLocal').innerHTML = lettersValidation(document.getElementById('local'))">
           <span id="errorLocal" class="error"></span> 
         <p>
         &emsp;

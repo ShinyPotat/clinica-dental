@@ -1,4 +1,7 @@
-function lettersValidation(name) {
+function lettersValidation(input) {
+
+    var name = input.value;
+
     var valid = true;
 
     var hasLetters = /^[a-zA-Z ]*$/;
@@ -11,7 +14,7 @@ function lettersValidation(name) {
     } else {
         var error = "";
     }
-
+    input.setCustomValidity(error);
     return error;
 }
 
@@ -30,6 +33,6 @@ function numberValidation(number) {
     } else {
         var error = "";
     }
-
+    document.getElementById('phone').setCustomValidity(error);
     return error;
 }

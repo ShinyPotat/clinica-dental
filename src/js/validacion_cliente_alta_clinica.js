@@ -1,4 +1,7 @@
-function lettersValidation(name) {
+function lettersValidation(input) {
+
+    var name = input.value;
+
     var valid = true;
 
     var hasLetters = /^[a-zA-Z ]*$/;
@@ -11,11 +14,14 @@ function lettersValidation(name) {
     } else {
         var error = "";
     }
-
+    input.setCustomValidity(error);
     return error;
 }
 
 function numberValidation(number) {
+
+    const input = document.getElementById('phone');
+
     var valid = true;
 
     valid = valid && number.length==9;
@@ -30,11 +36,14 @@ function numberValidation(number) {
     } else {
         var error = "";
     }
-
+    input.setCustomValidity(error);
     return error;
 }
 
 function nColValidation(number) {
+
+    const input = document.getElementById('nCol');
+
     var valid = true;
 
     valid = valid && number.length==4;
@@ -49,6 +58,6 @@ function nColValidation(number) {
     } else {
         var error = "";
     }
-
+    input.setCustomValidity(error);
     return error;
 }

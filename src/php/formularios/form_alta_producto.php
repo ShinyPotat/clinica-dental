@@ -54,7 +54,7 @@ if (isset($errores) && count($errores)>0) {
         </p>
         <p>
           &emsp;
-          Precio: &emsp; <input  placeholder="Precio" type="number" name="precio" id="precio" value="<?php echo $Fproducto["PRECIO"];?>" >
+          Precio: &emsp; <input required placeholder="Precio" type="number" min="0" name="precio" id="precio" value="<?php echo $Fproducto["PRECIO"];?>" >
           <span id="errorPrecio" class="error"></span> 
         </p>
         <?php 

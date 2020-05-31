@@ -14,14 +14,13 @@ function dateValidation(entrada,entrega) {
     
     if(dates.compare(dateEntrada,dateEntrega) == 1){
 
-        var error = "<br>&emsp;La fecha de entrada debe ser antes que la fecha de entrega";
+        var error = "La fecha de entrada debe ser antes que la fecha de entrega";
         console.error("La fecha de entrada debe ser antes que la fecha de entrega");
         
     }else{
         var error = ""
-    }
-    
-    
+    }  
+    document.getElementById('fechaEntrega').setCustomValidity(error);
     return error;
 }
 
@@ -35,5 +34,6 @@ function entradaValidation(fechaEntrada) {
     }else{
         var error = "";
     }
+    document.getElementById('fechaEntrada').setCustomValidity(error);
     return error;
 }

@@ -49,12 +49,12 @@ if (isset($errores) && count($errores)>0) {
       <p>
         &emsp;
         Nombre: &emsp; <input placeholder="Nombre" class=name type="text" name="name" id="name" value="<?php echo $Fclinica["name"];?>"
-                              onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name').value);">
+                              onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name'));">
         <span id="errorName" class="error"></span>
       </p>
         &emsp;
         Localización: &emsp;<input placeholder="Localizacion" class=local type="text" name="local" id="local" value="<?php echo $Fclinica["local"];?>"
-                                  onkeyup="document.getElementById('errorLocal').innerHTML = lettersValidation(document.getElementById('local').value);">
+                                  onkeyup="document.getElementById('errorLocal').innerHTML = lettersValidation(document.getElementById('local'));">
         <span id="errorLocal" class="error"></span> 
       <p>
        &emsp;
@@ -66,7 +66,7 @@ if (isset($errores) && count($errores)>0) {
       <p>
       &emsp;
       Nombre Dueño: &emsp;<input placeholder="Nombre del dueño" class="nameD" type="text" id="nameD" name="nameD" value="<?php echo $Fclinica["nameD"];?>"
-                                onkeyup="document.getElementById('errorNameD').innerHTML = lettersValidation(document.getElementById('nameD').value);">
+                                onkeyup="document.getElementById('errorNameD').innerHTML = lettersValidation(document.getElementById('nameD'));">
         <span id="errorNameD" class="error"></span>
       </p>
       &emsp;

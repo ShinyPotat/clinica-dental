@@ -11,6 +11,6 @@ function lettersValidation(name) {
     } else {
         var error = "";
     }
-
+    document.getElementById('name').setCustomValidity(error);
     return error;
 }

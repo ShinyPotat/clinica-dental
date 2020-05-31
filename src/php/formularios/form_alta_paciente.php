@@ -59,8 +59,8 @@ if (isset($errores) && count($errores)>0) {
       <p>
       &emsp;
         Sexo*:
-        <input type="radio" name="sexo" <?php if (isset($Fpaciente['E_SEXO']) && $Fpaciente['E_SEXO']=="Hombre") echo "checked";?> value="H">Hombre
-        <input type="radio" name="sexo" <?php if (isset($Fpaciente['E_SEXO']) && $Fpaciente['E_SEXO']=="Mujer") echo "checked";?> value="M">Mujer
+        <input type="radio" name="sexo" required <?php if (isset($Fpaciente['E_SEXO']) && $Fpaciente['E_SEXO']=="Hombre") echo "checked";?> value="H">Hombre
+        <input type="radio" name="sexo" required <?php if (isset($Fpaciente['E_SEXO']) && $Fpaciente['E_SEXO']=="Mujer") echo "checked";?> value="M">Mujer
         <span class="error"></span>
       </p>
       <p>

@@ -16,11 +16,11 @@
     }
     if (!isset($_SESSION["Fmaterial"])) {
       $Fmaterial["name"] = "";
-      $Fmaterial["categoria"] = "";
+      $Fmaterial["categoria"] = "Alambre";
       $Fmaterial["stockInicial"] = "";
       $Fmaterial["stockMin"] = "";
       $Fmaterial["stockCrit"] = "";
-      $Fmaterial["unidad"] = "";
+      $Fmaterial["unidad"] = "m";
     
       $_SESSION["Fmaterial"] = $Fmaterial;
     }else{
