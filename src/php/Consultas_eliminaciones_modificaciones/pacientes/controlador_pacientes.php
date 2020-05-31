@@ -32,16 +32,20 @@
 		
 		$errores = [];
 
-		if(empty($paciente["DNI"])) {
+		if(!isset($paciente["DNI"]) || $paciente["DNI"]=="") {
 			$errores[] = "<p>El DNI es obligatorio";
 		}else if(!preg_match("/^[0-9]{8}[A-Z]$/",$paciente["DNI"])){
 			$errores[] = "<p>El NIF ". $paciente["DNI"] . " es incorrecto. Debe reescribirlo.</p>";
 		}
 
-		if (empty($paciente["FECHA_NACIMIENTO"])) {
+		if (!isset($paciente["FECHA_NACIMIENTO"]) || $paciente["FECHA_NACIMIENTO"]=="") {
 		} else {
-			$fechaNacimiento = test_input($paciente["FECHA_NACIMIENTO"]);
-			// nacimiento futuro?-------------------------------------------------------------
+			$now = new DateTime();
+			$fechaCobro = date_create($factura["FECHA_NACIMIENTO"]);
+			$var1 = date_diff($now,$fechaCobro);
+			if ($var1->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de nacimiento no puede ser despues del día de hoy</p>";
+			}
 		}
 
 		return $errores;

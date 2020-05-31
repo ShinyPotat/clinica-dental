@@ -119,12 +119,12 @@
                             <?php
                                 if(isset($proveedor) and ($proveedor["OID_PR"] == $fila["OID_PR"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                    <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"
-                                    onkeyup="lettersValidation(document.getElementById('NOMBRE'))"></td>
-                                    <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"
-                                    onkeyup="lettersValidation(document.getElementById('LOCALIZACIÓN'))"></td>
-                                    <td><input type="text" name="TLF_CONTACTO" maxlength=9 id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"
-                                    onkeyup="numberValidation(document.getElementById('TLF_CONTACTO'))"></td>
+                                        <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"
+                                        onkeyup="lettersValidation(document.getElementById('NOMBRE'))"></td>
+                                        <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"
+                                        onkeyup="lettersValidation(document.getElementById('LOCALIZACIÓN'))"></td>
+                                        <td><input type="text" name="TLF_CONTACTO" maxlength=9 id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"
+                                        onkeyup="numberValidation(document.getElementById('TLF_CONTACTO'))"></td>
                         <?php }else{ ?>
                                     <tr>
                                         <td><?php echo $fila["NOMBRE"];?></td>              <!-- columnas -->
@@ -135,7 +135,7 @@
                                         <div>       <!-- columna de los botones -->
                                             <td>
                                                 <?php 
-                                                if (isset($proveedor) and ($proveedor["OID_PR"] == $proveedor["OID_PR"])) { ?>
+                                                if (isset($proveedor) and ($proveedor["OID_PR"] == $fila["OID_PR"])) { ?>
                                                     <button class="consulta" id="Guardar" name="Guardar" type="submit"><img src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/16/Save-as-icon.png" alt="x" />Guardar</button>
                                         <?php }else{ ?>
                                                     <button class="consulta" id="Editar" name="Editar" type="submit"><img src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/16/edit-icon.png" alt="x" />Editar</button>

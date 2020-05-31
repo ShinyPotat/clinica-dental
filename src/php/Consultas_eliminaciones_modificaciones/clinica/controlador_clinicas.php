@@ -36,24 +36,24 @@
 		
 		$errores = [];
 
-		if (empty($clinica["NOMBRE"])) {
+		if (!isset($clinica["NOMBRE"]) || $clinica["NOMBRE"]=="") {
 			$errores[] = "Nombre campo es obligatorio";
 		}
-		if (empty($clinica["LOCALIZACIÓN"])) {
+		if (!isset($clinica["LOCALIZACIÓN"]) || $clinica["LOCALIZACIÓN"]=="") {
 		} else {
 			$local = test_input($clinica["LOCALIZACIÓN"]);
 			if (!preg_match("/^[a-zA-Z ]*$/",$local)) {
 				$errores[] = "Solo puedes introducir espacios y letras";
 			}
 		}
-		if (empty($clinica["TLF_CONTACTO"])) {
+		if (!isset($clinica["TLF_CONTACTO"]) || $clinica["TLF_CONTACTO"]=="") {
 		} else {
 			$phone = test_input($clinica["TLF_CONTACTO"]);
 			if (!preg_match("^[0-9]{9}^",$phone)) {
 				$errores[] = "Escribe un número de telefono adecuado";
 			}
 		}
-		if (empty($clinica["NOMBRE_DUEÑO"])) {
+		if (!isset($clinica["NOMBRE_DUEÑO"]) || $clinica["NOMBRE_DUEÑO"]=="") {
 		} else {
 			$nameD = test_input($clinica["NOMBRE_DUEÑO"]);
 			if (!preg_match("/^[a-zA-Z ]*$/",$nameD)) {
@@ -61,7 +61,7 @@
 			}
 		}
 		
-		if (empty($clinica["NUM_COLEGIADO"])) {
+		if (!isset($clinica["NUM_COLEGIADO"]) || $clinica["NUM_COLEGIADO"]=="") {
 		} else {
 			$nCol = test_input($clinica["NUM_COLEGIADO"]);
 			if (!preg_match("^[0-9]{4}^",$nCol)) {

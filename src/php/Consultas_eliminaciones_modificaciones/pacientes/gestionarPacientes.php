@@ -50,10 +50,6 @@
             $stmt = $conexion->query($total_consulta);
 	    	$result = $stmt->fetch();
 	    	$total = $result['TOTAL'];
-            //$stmt->bindParam(':tipo',$tipo);
-            //$stmt->bindParam(':para',$param);
-	    	//$result = $stmt->execute();
-	    	//$total = $result['TOTAL'];
 	    	return  $total;
 	    }
 	    catch ( PDOException $e ) {
