@@ -156,7 +156,7 @@
                                                                     $materiales = $conexion->query($query);
                                                                     cerrarConexionBD($conexion);
                                                                 ?>
-                                                                <div><select id="MATERIAL" name="MATERIAL">
+                                                                <div><select required id="MATERIAL" name="MATERIAL">
                                                                     <option value="">Seleccionar material</option>
                                                                     <?php foreach($materiales as $filam){ ?>
                                                                     <option value="<?php echo $filam["OID_M"]; ?>" <?php if(isset($producto) && $fila['OID_M']==$filam["OID_M"]){ echo "selected='selected'";}?>><?php echo $filam["NOMBRE"]; ?></option>
