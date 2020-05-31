@@ -64,7 +64,8 @@
 	    	return  $total;
 	    }
 	    catch ( PDOException $e ) {
-            return $e->getMessage();
+            return "error del sistema";
+            //return $e->getMessage();
 	    }
     }
 

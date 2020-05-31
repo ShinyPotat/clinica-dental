@@ -14,11 +14,11 @@
     }
 
     if (isset($_REQUEST['filtro']) && $_REQUEST["filtro"]!="") {
-        $_SESSION['filtroFacturas'] = $_REQUEST['filtro'];
-        $_SESSION['filterValueFacturas'] = $_REQUEST['filterValue'];
+        $_SESSION['filtroFactura'] = $_REQUEST['filtro'];
+        $_SESSION['filterValueFactura'] = $_REQUEST['filterValue'];
     }else if(isset($_REQUEST['filtro']) && $_REQUEST['filtro']==""){
-        unset($_SESSION['filtroFacturas']);
-        unset($_SESSION['filterValueFacturas']);
+        unset($_SESSION['filtroFactura']);
+        unset($_SESSION['filterValueFactura']);
     }
     
     if (isset($_SESSION["PAG_FAC"])) $paginacion = $_SESSION["PAG_FAC"]; 
