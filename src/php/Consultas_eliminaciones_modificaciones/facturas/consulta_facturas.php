@@ -174,7 +174,7 @@
             <div id="filterValueDiv">
             <?php
                 if(isset($_SESSION['filtro']) && $_SESSION['filtro']!=""){?>
-                    <input class="filterValue" maxlength="1" type="number" required min="0" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
+                    <input class="filterValue" type="number" required min="0" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
                     <input class="filterButton" type="submit" value="FILTRAR">
            <?php  } ?>
             </div>
