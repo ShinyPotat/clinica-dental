@@ -67,7 +67,7 @@
           <span id="errorFecha" class="error"></span>
         </p>
           &emsp;
-          Precio total: <input required placeholder="Precio total" type="number" id="precioTotal" name="precioTotal" value="<?php echo $factura["precioTotal"];?>" min="0">
+          Precio total: <input required placeholder="Precio total" type="number" id="precioTotal" name="precioTotal" value="<?php echo $factura["precioTotal"];?>" min="1">
           <span id="errorPrecio" class="error"></span> 
         <br>         
         <input type="submit" name="submit" value="Enviar" class="enviar">

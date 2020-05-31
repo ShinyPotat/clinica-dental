@@ -45,7 +45,7 @@
 	function validarDatosPacienteF($paciente) {
 		$erroresF = [];
 
-		if (empty($paciente["DNI"])) {
+		if (!isset($paciente["DNI"]) || $paciente["DNI"]=="") {
 			$erroresF[] = "<p>El campo dni es obligatorio</p>";
 		} else {
 			$dni = test_input($paciente["DNI"]);
@@ -53,13 +53,13 @@
 				$erroresF[] = "<p>Introduce un dni adecuado</p>";
 			}
 		}
-		if (empty($paciente["FECHA_NACIMIENTO"])) {
+		if (!isset($paciente["FECHA_NACIMIENTO"]) || $paciente["FECHA_NACIMIENTO"]=="") {
 			$erroresF[] = "<p>El campo Fecha de Nacimiento es obligatorio</p>";
 		} else {
 			$fechaNacimiento = test_input($paciente["FECHA_NACIMIENTO"]);
 			// nacimiento futuro?-------------------------------------------------------------
 		}
-		if (empty($paciente["E_SEXO"])) {
+		if (!isset($paciente["E_SEXO"]) || $paciente["E_SEXO"]=="") {
 			$erroresF[] = "<p>El campo sexo es obligatorio</p>";
 		} else {
 			$sexo = test_input($paciente["E_SEXO"]);

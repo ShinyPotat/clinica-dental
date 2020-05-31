@@ -16,7 +16,7 @@
 		$_SESSION["errores"] = null;
 	}
 	else{
-        Header("Location: ../formularios/form_alta_clinica.php");
+        Header("Location: ../formularios/form_alta_clinicas.php");
 	}  
 			
 	$errores = validarDatosClinicasF($clinica);
@@ -35,7 +35,7 @@
     // SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 	if($excepcion<>""){
 		$_SESSION["excepcion"] = $excepcion;
-		$_SESSION["destino"]= "formularios/form_alta_clinica.php";
+		$_SESSION["destino"]= "formularios/form_alta_clinicas.php";
 		header("Location: ../../excepcion.php");
 	}else{
 		// EN OTRO CASO, VOLVER A "CONSULTA_CLINICAS.PHP"
@@ -48,7 +48,7 @@
 
 		$errores = [];
 
-		if (empty($clinica["name"])) {
+		if (!isset($clinica["name"]) || $clinica["name"]=="") {
 			$errores[] = "Este campo es obligatorio";
 		} else {
 			$name = test_input($clinica["name"]);
@@ -56,7 +56,7 @@
 				$errores[] = "Solo puedes introducir espacios y letras";
 			}
 		}
-		if (empty($clinica["local"])) {
+		if (!isset($clinica["local"]) || $clinica["local"]=="") {
 			$errores[] = "";
 		} else {
 			$local = test_input($clinica["local"]);
@@ -64,7 +64,7 @@
 				$errores[] = "Solo puedes introducir espacios y letras";
 			}
 		}
-		if (empty($clinica["phone"])) {
+		if (!isset($clinica["phone"]) || $clinica["phone"]=="") {
 			$errores[] = "";
 		} else {
 			$phone = test_input($clinica["phone"]);
@@ -72,7 +72,7 @@
 				$errores[] = "Escribe un número adecuado";
 			}
 		}
-		if (empty($clinica["nameD"])) {
+		if (!isset($clinica["nameD"]) || $clinica["nameD"]=="") {
 			$errores[] = "";
 		} else {
 			$nameD = test_input($clinica["nameD"]);
@@ -81,7 +81,7 @@
 			}
 		}
 		
-		if (empty($clinica["nCol"])) {
+		if (!isset($clinica["nCol"]) || $clinica["nCol"]=="") {
 			$errores[] = "";
 		} else {
 			$nCol = test_input($clinica["nCol"]);
