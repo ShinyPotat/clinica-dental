@@ -33,12 +33,30 @@
 		
 		$errores = [];
 
-		if(!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$pedido["FECHA_SOLICITUD"])) {
-			$errores[] = "<p>La fecha introducida no tiene un formato adecuado</p>";
+		$now = new DateTime();
+		if(isset($pedido["FECHA_SOLICITUD"])){
+			$fechaSolicitud = date_create($factura["FECHA_SOLICITUD"]);
+			$var1 = date_diff($now,$fechaSolicitud);
+			if ($var1->format("%r%a") < 0) {
+				$errores[] = "<p>La fecha de solicitud no puede ser antes del día de hoy</p>";
+			}
 		}
 
-		if(!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$pedido["FECHA_ENTREGA"])) {
-			$errores[] = "<p>La fecha introducida no tiene un formato adecuado</p>";
+		if(isset($pedido["FECHA_ENTREGA"])){
+			$fechaEntrega = date_create($factura["FECHA_ENTREGA"]);
+			$var2 = date_diff($now,$fechaEntrega);
+			if ($var2->format("%r%a") < 0) {
+				$errores[] = "<p>La fecha de entrega no puede ser antes del día de hoy</p>";
+			}
+		}
+		
+		if(isset($pedido["FECHA_ENTREGA"]) && isset($factura["FECHA_SOLICITUD"])){
+			$fechaEntrega2 = date_create($pedido["FECHA_ENTREGA"]);
+			$fechaSolicitud2 = date_create($pedido["FECHA_SOLICITUD"]);
+			$var4 = date_diff($fechaEntrega2,$fechaSolicitud2);
+			if ($var4->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de Solicitud debe ser antes de la de entrega</p>";
+			}
 		}
 
 		return $errores;

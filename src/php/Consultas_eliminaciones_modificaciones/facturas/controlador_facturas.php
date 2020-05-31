@@ -33,7 +33,7 @@
 		$errores = [];
 	
 		$now = new DateTime();
-		if(isset($encargo["FECHA_COBRO"])){
+		if(isset($factura["FECHA_COBRO"])){
 			$fechaCobro = date_create($factura["FECHA_COBRO"]);
 			$var1 = date_diff($now,$fechaCobro);
 			if ($var1->format("%r%a") < 0) {
@@ -41,7 +41,7 @@
 			}
 		}
 	
-		if(isset($encargo["FECHA_VENCIMIENTO"])){
+		if(isset($factura["FECHA_VENCIMIENTO"])){
 			$fechaVencimiento = date_create($factura["FECHA_VENCIMIENTO"]);
 			$var2 = date_diff($now,$fechaVencimiento);
 			if ($var2->format("%r%a") < 0) {
@@ -49,7 +49,7 @@
 			}
 		}
 		
-		if(isset($encargo["FECHA_FACTURA"])){
+		if(isset($factura["FECHA_FACTURA"])){
 			$fechaFactura = date_create($factura["FECHA_FACTURA"]);
 			$var3 = date_diff($now,$fechaFactura);
 			if ($var3->format("%r%a") > 0) {
@@ -57,7 +57,7 @@
 			}
 		}
 			
-		if(isset($encargo["FECHA_COBRO"]) && isset($factura["FECHA_FACTURA"])){
+		if(isset($factura["FECHA_COBRO"]) && isset($factura["FECHA_FACTURA"])){
 			$fechaCobro2 = date_create($factura["FECHA_COBRO"]);
 			$fechaFactura2 = date_create($factura["FECHA_FACTURA"]);
 			$var4 = date_diff($fechaCobro2,$fechaFactura2);
