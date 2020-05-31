@@ -14,11 +14,11 @@
     }
 
     if (isset($_REQUEST['filtro']) && $_REQUEST["filtro"]!="") {
-        $_SESSION['filtro'] = $_REQUEST['filtro'];
-        $_SESSION['filterValue'] = $_REQUEST['filterValue'];
+        $_SESSION['filtroPedido'] = $_REQUEST['filtro'];
+        $_SESSION['filterValuePedido'] = $_REQUEST['filterValue'];
     }else if(isset($_REQUEST['filtro']) && $_REQUEST['filtro']==""){
-        unset($_SESSION['filtro']);
-        unset($_SESSION['filterValue']);
+        unset($_SESSION['filtroPedido']);
+        unset($_SESSION['filterValuePedido']);
     }
     
     if (isset($_SESSION["PAG_PED"])) $paginacion = $_SESSION["PAG_PED"]; 
@@ -33,8 +33,8 @@
 
 	$conexion = crearConexionBD();
     
-    if (isset($_SESSION['filtro']) && $_SESSION['filtro']!="") {
-        $total_registros = total_consulta_filtrada($conexion,$_SESSION['filtro'],$_SESSION['filterValue']);
+    if (isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']!="") {
+        $total_registros = total_consulta_filtrada($conexion,$_SESSION['filtroPedido'],$_SESSION['filterValuePedido']);
     } else {
         $total_registros = total_consulta($conexion);
     }
@@ -46,8 +46,8 @@
 	$paginacion["PAG_TAMP"] = $pag_tam;
 	$_SESSION["PAG_PED"] = $paginacion;
 	
-	if(isset($_SESSION['filtro']) && $_SESSION['filtro']!=""){
-        $filas = consulta_paginada_filtrado($conexion,$_SESSION['filtro'],$_SESSION['filterValue'],$pagina_seleccionada,$pag_tam);
+	if(isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']!=""){
+        $filas = consulta_paginada_filtrado($conexion,$_SESSION['filtroPedido'],$_SESSION['filterValuePedido'],$pagina_seleccionada,$pag_tam);
     }else{
         $filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
     }
@@ -193,24 +193,24 @@
         </table>
         <form id="filterForm" action="consulta_pedidos.php" method="post">
             <select class="filtro" name="filtro" id="filtro" style="left: 35%;" oninput="auto(document.getElementById('filtro').value)">
-                <option value="" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']==""){ echo "selected='selected'";}?>>---</option>
-                <option value="CantidadMayor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CantidadMayor"){ echo "selected='selected'";}?>>Cantidad mayor que</option>
-                <option value="CantidadMenor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CantidadMenor"){ echo "selected='selected'";}?>>Cantidad menor que</option>
-                <option value="Material" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="Material"){ echo "selected='selected'";}?>>Material</option>
+                <option value="" <?php if(isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']==""){ echo "selected='selected'";}?>>---</option>
+                <option value="CantidadMayor" <?php if(isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']=="CantidadMayor"){ echo "selected='selected'";}?>>Cantidad mayor que</option>
+                <option value="CantidadMenor" <?php if(isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']=="CantidadMenor"){ echo "selected='selected'";}?>>Cantidad menor que</option>
+                <option value="Material" <?php if(isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']=="Material"){ echo "selected='selected'";}?>>Material</option>
             </select>
             <div id="filterValueDiv">
             <?php
-                if(isset($_SESSION['filtro']) && $_SESSION['filtro']!="" && $_SESSION['filtro']!="Material"){?>
-                    <input class="filterValue" type="number" required min="0" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
+                if(isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']!="" && $_SESSION['filtroPedido']!="Material"){?>
+                    <input class="filterValue" type="number" required min="0" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValuePedido'];?>">
                     <input class="filterButton" type="submit" value="FILTRAR">
-           <?php  }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="Material"){
+           <?php  }else if(isset($_SESSION['filtroPedido']) && $_SESSION['filtroPedido']=="Material"){
                         $conexion = crearConexionBD();
                         $query = "SELECT OID_M, Nombre FROM materiales ORDER BY Nombre ASC";
                         $materiales = $conexion->query($query);
                         cerrarConexionBD($conexion); ?>
                         <select class="filterValue" name="filterValue" id="filterValue">
                         <?php foreach ($materiales as $material) { ?>
-                                <option value="<?php echo $material['OID_M'] ?>" <?php if($material['OID_M'] == $_SESSION['filterValue']){echo "selected='selected'";} ?>><?php echo $material['NOMBRE']; ?></option>
+                                <option value="<?php echo $material['OID_M'] ?>" <?php if($material['OID_M'] == $_SESSION['filterValuePedido']){echo "selected='selected'";} ?>><?php echo $material['NOMBRE']; ?></option>
                         <?php   } ?>
                         </select>
                         <input class="filterButton" type="submit" value="FILTRAR">
