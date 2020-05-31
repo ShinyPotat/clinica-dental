@@ -71,6 +71,7 @@ if (isset($errores) && count($errores)>0) {
             $encargos = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
+        <p>
         <div>&emsp; Material: <select id="materialPR" name="materialPR">
             <option value="">Seleccionar material</option>
             <?php foreach($encargos as $fila){ ?>
@@ -79,6 +80,7 @@ if (isset($errores) && count($errores)>0) {
             <?php } ?>
           </select>
         </div>
+        </p>
         <?php 
             require_once("../gestionBD.php");
             $conexion = crearConexionBD();
@@ -86,6 +88,7 @@ if (isset($errores) && count($errores)>0) {
             $encargos = $conexion->query($query);
             cerrarConexionBD($conexion);
         ?>
+        <p>
         <div>&emsp; Encargo: <select id="encargoPR" name="encargoPR">
             <option value="">Seleccionar encargo</option>
             <?php foreach($encargos as $fila){ ?>
@@ -94,6 +97,7 @@ if (isset($errores) && count($errores)>0) {
             <?php } ?>
           </select>
         </div>
+        </p>
       <p>         
         <input type="submit" name="submit" value="Enviar" class="enviar">
 	      <a href="../Consultas_eliminaciones_modificaciones/productos/consulta_producto.php" class="buttonAtras">Atrás</a>
