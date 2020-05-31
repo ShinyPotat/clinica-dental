@@ -213,6 +213,7 @@ input[type=submit] {
     color: red;
 }
 
+/* Mensajes de Error */
 div.error {
 	color : red;	
     z-index: 1;

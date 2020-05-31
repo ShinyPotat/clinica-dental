@@ -36,8 +36,8 @@
 		if(isset($factura["FECHA_COBRO"])){
 			$fechaCobro = date_create($factura["FECHA_COBRO"]);
 			$var1 = date_diff($now,$fechaCobro);
-			if ($var1->format("%r%a") < 0) {
-				$errores[] = "<p>La fecha de cobro no puede ser antes del día de hoy</p>";
+			if ($var1->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de cobro no puede ser despues del día de hoy</p>";
 			}
 		}
 	
