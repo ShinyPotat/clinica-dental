@@ -139,7 +139,7 @@
                                         <td><input id="FECHA_FACTURA" name="FECHA_FACTURA" type="date" value="<?php echo $fila["FECHA_FACTURA"];?>"
                                         oninput="dateValidation(document.getElementById('FECHA_COBRO'),
                                                                 document.getElementById('FECHA_FACTURA'));"></td>
-                                        <td><input id="PRECIO_TOTAL" required min="0" name="PRECIO_TOTAL" type="number" value="<?php echo $fila["PRECIO_TOTAL"];?>"></td>
+                                        <td><input id="PRECIO_TOTAL" required min="1" name="PRECIO_TOTAL" type="number" value="<?php echo $fila["PRECIO_TOTAL"];?>"></td>
                         <?php }else{ ?>
                                     <tr>
                                         <td><?php echo $fila["FECHA_COBRO"];?></td>              <!-- columnas -->
