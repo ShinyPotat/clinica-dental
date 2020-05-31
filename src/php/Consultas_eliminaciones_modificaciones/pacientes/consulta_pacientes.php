@@ -195,7 +195,7 @@
                         $clinicas = $conexion->query($query);
                         cerrarConexionBD($conexion);
                  ?>
-                 <select class="filterValue" name="filterValue" id="filterValue">
+                 <select required class="filterValue" name="filterValue" id="filterValue">
                      <?php foreach ($clinicas as $clinica) { ?>
                          <option value="<?php echo $clinica['OID_C'] ?>" <?php if($clinica['OID_C'] == $_SESSION['filterValuePaciente']){echo "selected='selected'";} ?>><?php echo $clinica['NOMBRE']; ?></option>
                   <?php   } ?>
