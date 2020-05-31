@@ -180,7 +180,7 @@
             <div id="filterValueDiv">
             <?php
                 if(isset($_SESSION['filtroPaciente']) && $_SESSION['filtroPaciente']=="DNI"){?>
-                    <input class="filterValue" maxlength="1" type="text" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
+                    <input class="filterValue" maxlength="1" type="text" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValuePaciente'];?>">
                     <input class="filterButton" type="submit" value="FILTRAR">
               <?php  }else if(isset($_SESSION['filtroPaciente']) && $_SESSION['filtroPaciente']=="E_Sexo") { ?>
                 <select class="filterValue" name="filterValue" id="filterValue">
