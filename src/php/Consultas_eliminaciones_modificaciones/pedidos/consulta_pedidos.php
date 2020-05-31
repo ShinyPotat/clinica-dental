@@ -44,7 +44,8 @@
     <meta charset="UTF-8">
     <title>Gestión de pedidos</title>
     <link rel="stylesheet", type="text/css", href="../../../css/consultaMateriales.css">
-    
+    <script src="../../../js/validacion_cliente_alta_pedido.js" type="text/javascript"></script>
+    <script src="../../../js/dates.js" type="text/javascript"></script>
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
@@ -117,10 +118,11 @@
                             <?php
                                 if(isset($pedido) and ($pedido["OID_PD"] == $fila["OID_PD"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                        <td><input id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" type="date" value="<?php echo $fila["FECHA_SOLICITUD"];?>"></td>
-                                        <td><input id="FECHA_ENTREGA" name="FECHA_ENTREGA" type="date" value="<?php echo $fila["FECHA_ENTREGA"];?>"></td>
+                                        <td><input id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" type="date" value="<?php echo $fila["FECHA_SOLICITUD"];?>"
+                                        oninput="solicitudValidation(document.getElementById('FECHA_SOLICITUD'))"></td>
+                                        <td><input id="FECHA_ENTREGA" name="FECHA_ENTREGA" type="date" value="<?php echo $fila["FECHA_ENTREGA"];?>"
+                                        oninput="entregaValidation(document.getElementById('FECHA_ENTREGA'));"></td>
                         <?php }else{ ?>
-                                    <input id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" type="hidden" value="<?php echo $fila["FECHA_SOLICITUD"];?>">
                                     <tr>
                                         <td><?php echo $fila["FECHA_SOLICITUD"];?></td>              <!-- columnas -->
                                         <td><?php echo $fila["FECHA_ENTREGA"];?></td>

@@ -18,7 +18,10 @@ function lettersValidation(input) {
     return error;
 }
 
-function numberValidation(number) {
+function numberValidation(inputnumber) {
+
+    var number = inputnumber.value;
+
     var valid = true;
 
     valid = valid && number.length==9;
@@ -29,10 +32,10 @@ function numberValidation(number) {
 
     if (!valid) {
         console.error("Número no válido");
-        var error = "Escribe un número adecuado"
+        var error = "Escribe un número adecuado";
     } else {
         var error = "";
     }
-    document.getElementById('phone').setCustomValidity(error);
+    inputnumber.setCustomValidity(error);
     return error;
 }

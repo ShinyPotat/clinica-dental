@@ -2,12 +2,10 @@ var imported = document.createElement('script');
 imported.src = '../../js/dates.js';
 document.head.appendChild(imported);
 
-function entregaValidation(fechaEntrega) {
-
-    const fecha = document.getElementById('fechaEntrega');
+function entregaValidation(inputfechaEntrega) {
 
     var today = new Date();
-    fechaEntrega = new Date(fechaEntrega);
+    var fechaEntrega = new Date(inputfechaEntrega.value);
 
     if (dates.compare(today,fechaEntrega) == 1) {
         console.error("Error con la fecha");
@@ -15,16 +13,14 @@ function entregaValidation(fechaEntrega) {
     } else {
         var error = "";
     }
-    fecha.setCustomValidity(error);
+    inputfechaEntrega.setCustomValidity(error);
     return error;
 }
 
-function solicitudValidation(fechaSolicitud) {
-
-    const fecha = document.getElementById('fechaSolicitud');
+function solicitudValidation(inputfechaSolicitud) {
 
     var today = new Date();
-    fechaSolicitud = new Date(fechaSolicitud);
+    var fechaSolicitud = new Date(inputfechaSolicitud.value);
 
     if(dates.compare(fechaSolicitud,today) == 1){
         console.error("Error con la fecha");
@@ -32,6 +28,6 @@ function solicitudValidation(fechaSolicitud) {
     }else{
         var error = "";
     }
-    fecha.setCustomValidity(error);
+    inputfechaSolicitud.setCustomValidity(error);
     return error;
 }

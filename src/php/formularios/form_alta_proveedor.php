@@ -60,7 +60,7 @@
         <p>
         &emsp;
           Telefono de contacto:&emsp;<input id="phone" name="phone" id="phone" type="text" maxlength="9" placeholder="123456789" value="<?php echo $Fproveedor["TLF_CONTACTO"];?>"
-                                              onkeyup="document.getElementById('errorPhone').innerHTML = numberValidation(document.getElementById('phone').value)">
+                                              onkeyup="document.getElementById('errorPhone').innerHTML = numberValidation(document.getElementById('phone'))">
           <span id="errorPhone" class="error"></span>
         </p>
         <input type="submit" name="submit" value="Enviar" class="enviar">

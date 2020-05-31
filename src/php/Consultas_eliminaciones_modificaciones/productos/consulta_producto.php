@@ -70,6 +70,7 @@
     <title>Gestión de productos</title>
     <link rel="stylesheet" href="../../../css/consultaPDP.css">
     <script src="../../../js/filtro_facturas.js"></script>
+    <script src="../../../js/validacion_cliente_alta_producto.js" type="text/javascript"></script>
 </head>
 <body>
 <body>
@@ -140,10 +141,10 @@
                                                 <?php
                                                     if (isset($producto) and ($producto["OID_P"] == $fila["OID_P"])) { ?>
                                                         <tr>
-                                                            <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
-                                                            <td><input type="text" name="PRECIO" id="PRECIO" value="<?php echo $fila["PRECIO"];?>"></td>
+                                                            <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"
+                                                            onkeyup="lettersValidation(document.getElementById('NOMBRE'))"></td>
+                                                            <td><input required min="0" type="number" name="PRECIO" id="PRECIO" value="<?php echo $fila["PRECIO"];?>"></td>
                                               <?php } else { ?>
-                                                        <input type="hidden" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>">
                                                         <tr>
                                                             <td><?php echo $fila["NOMBRE"]?></td>
                                                             <td><?php echo $fila["PRECIO"]?></td>

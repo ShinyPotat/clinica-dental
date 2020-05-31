@@ -44,6 +44,7 @@
     <meta charset="UTF-8">
     <title>Gestión de proveedores</title>
     <link rel="stylesheet" href="../../../css/consultaMateriales.css">
+    <script src="../../../js/validacion_cliente_alta_proveedor.js" type="text/javascript"></script>
 </head>
 <body>
 <body>
@@ -115,17 +116,16 @@
                     <div>           <!-- datos de la tabla-->
                         <div>
                             <input id="OID_PR" name="OID_PR" type="hidden" value="<?php echo $fila["OID_PR"]; ?>">
-                            <input id="NOMBRE" name="NOMBRE" type="hidden" required value="<?php echo $fila["NOMBRE"];?>">
-                            <input name="LOCALIZACION" id="LOCALIZACION" type= "hidden" required value="<?php echo $fila["LOCALIZACIÓN"];?>">
-                            <input id="TLF_CONTACTO" name="TLF_CONTACTO" type="hidden" required value="<?php echo $fila["TLF_CONTACTO"];?>">
                             <?php
                                 if(isset($proveedor) and ($proveedor["OID_PR"] == $fila["OID_PR"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                    <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"></td>
-                                    <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"></td>
-                                    <td><input type="text" name="TLF_CONTACTO" maxlength=9 id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"></td>
+                                    <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"
+                                    onkeyup="lettersValidation(document.getElementById('NOMBRE'))"></td>
+                                    <td><input type="text" name="LOCALIZACIÓN" id="LOCALIZACIÓN" value="<?php echo $fila["LOCALIZACIÓN"];?>"
+                                    onkeyup="lettersValidation(document.getElementById('LOCALIZACIÓN'))"></td>
+                                    <td><input type="text" name="TLF_CONTACTO" maxlength=9 id="TLF_CONTACTO" value="<?php echo $fila["TLF_CONTACTO"];?>"
+                                    onkeyup="numberValidation(document.getElementById('TLF_CONTACTO'))"></td>
                         <?php }else{ ?>
-                                    <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"];?>">
                                     <tr>
                                         <td><?php echo $fila["NOMBRE"];?></td>              <!-- columnas -->
                                         <td><?php echo $fila["LOCALIZACIÓN"];?></td>

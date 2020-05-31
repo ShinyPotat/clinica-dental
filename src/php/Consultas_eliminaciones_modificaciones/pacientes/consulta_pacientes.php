@@ -65,6 +65,8 @@
     <link rel="stylesheet", type="text/css", href="../../../css/consultaPDP.css">
     <script src="../../../js/filtro_pacientes.js"></script>
     <script src="../../../js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="../../../js/validacion_cliente_alta_paciente.js" type="text/javascript"></script>
+    <script src="../../../js/dates.js" type="text/javascript"></script>
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
@@ -136,13 +138,14 @@
                             <?php
                                 if(isset($paciente) and ($paciente["OID_PC"] == $fila["OID_PC"])){ ?>
                                     <tr>                        <!-- filas de la tabla -->
-                                        <td><input id="DNI" name="DNI" type="text" maxlength="9" value="<?php echo $fila["DNI"];?>"></td>
-                                        <td><input id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO" type="date" value="<?php echo $fila["FECHA_NACIMIENTO"];?>"></td>
+                                        <td><input id="DNI" name="DNI" type="text" maxlength="9" value="<?php echo $fila["DNI"];?>"
+                                        onkeyup="dniValidate(document.getElementById('DNI'));"></td>
+                                        <td><input id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO" type="date" value="<?php echo $fila["FECHA_NACIMIENTO"];?>"
+                                        oninput="dateValidation(document.getElementById('FECHA_NACIMIENTO'));"></td>
                                         <td>Sexo:
-                                            <input type="radio" name="E_SEXO" id="E_SEXO" <?php if (isset($fila["E_SEXO"]) && $fila["E_SEXO"]=="Hombre") echo "checked";?> value="H">Hombre
-                                            <input type="radio" name="E_SEXO" id="E_SEXO" <?php if (isset($fila["E_SEXO"]) && $fila["E_SEXO"]=="Mujer") echo "checked";?> value="M">Mujer
+                                            <input type="radio" required name="E_SEXO" id="E_SEXO" <?php if (isset($fila["E_SEXO"]) && $fila["E_SEXO"]=="H") echo "checked";?> value="H">Hombre
+                                            <input type="radio" required name="E_SEXO" id="E_SEXO" <?php if (isset($fila["E_SEXO"]) && $fila["E_SEXO"]=="M") echo "checked";?> value="M">Mujer
                         <?php }else{ ?>
-                                    <input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["DNI"];?>">
                                     <tr>
                                         <td><?php echo $fila["DNI"];?></td>              <!-- columnas -->
                                         <td><?php echo $fila["FECHA_NACIMIENTO"];?></td>

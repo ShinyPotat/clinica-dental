@@ -1,4 +1,7 @@
-function lettersValidation(name) {
+function lettersValidation(inputname) {
+
+    var name = inputname.value;
+
     var valid = true;
 
     var hasLetters = /^[a-zA-Z ]*$/;
@@ -11,6 +14,6 @@ function lettersValidation(name) {
     } else {
         var error = "";
     }
-    document.getElementById('name').setCustomValidity(error);
+    inputname.setCustomValidity(error);
     return error;
 }

@@ -50,12 +50,12 @@
         <p>
         &emsp;
         Fecha de solicitud: &emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" id="fechaSolicitud" name="fechaSolicitud" value="<?php echo $pedido["fechaSolicitud"];?>"
-                                            oninput="document.getElementById('errorSolicitud').innerHTML = solicitudValidation(document.getElementById('fechaSolicitud').value)">
+                                            oninput="document.getElementById('errorSolicitud').innerHTML = solicitudValidation(document.getElementById('fechaSolicitud'))">
         <span id="errorSolicitud" class="error"></span>
         </p>
         &emsp;
         Fecha de de entrega:&emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" id="fechaEntrega" name="fechaEntrega" value="<?php echo $pedido["fechaEntrega"];?>"
-                                        oninput="document.getElementById('errorFecha').innerHTML = entregaValidation(document.getElementById('fechaEntrega').value);">
+                                        oninput="document.getElementById('errorFecha').innerHTML = entregaValidation(document.getElementById('fechaEntrega'));">
         <span id="errorFecha" class="error"></span>
         <p>
         <?php 

@@ -12,8 +12,6 @@ BEGIN
   VALUES (P_NOM,P_APE,P_EMAIL,P_USUARIO,P_PASS,P_PERFIL);
 END;
 /
-
-SELECT COUNT(*) AS TOTAL FROM materiales WHERE CATEGORIA = 'Alambre'
 --insertar clinica
 CREATE OR REPLACE PROCEDURE crear_clinica (
     w_nombre IN Clinicas.nombre%TYPE,

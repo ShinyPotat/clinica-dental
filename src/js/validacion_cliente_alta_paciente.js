@@ -2,7 +2,10 @@ var imported = document.createElement('script');
 imported.src = '../../js/dates.js';
 document.head.appendChild(imported);
 
-function dniValidate(dni) {
+function dniValidate(inputdni) {
+
+    var dni = inputdni.value;
+
     var valid = true;
 
     valid = valid && dni.length==9;
@@ -18,21 +21,21 @@ function dniValidate(dni) {
     } else {
         var error = "";
     }
-    document.getElementById('dni').setCustomValidity(error);
+    inputdni.setCustomValidity(error);
     return error;
 }
 
-function dateValidation(fechaNac) {
+function dateValidation(inputfechaNac) {
     
-    var date = new Date(fechaNac);
+    var date = new Date(inputfechaNac.value);
     var now = new Date();
 
-    if (dates.compare(fechaNac,now) == 1) {
+    if (dates.compare(date,now) == 1) {
         console.error("Fecha inválida");
         var error = "Fecha no válida";
     } else {
         var error = "";
     }
-    document.getElementById('fechaNacimiento').setCustomValidity(error);
+    inputfechaNac.setCustomValidity(error);
     return error;
 }

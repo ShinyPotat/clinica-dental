@@ -49,12 +49,12 @@ if (isset($errores) && count($errores)>0) {
       <p>
       &emsp;
         DNI*:&emsp; <input  required placeholder="DNI" maxlength="9" type="text" id="dni" name="dni" value="<?php echo $Fpaciente['DNI'];?>"
-                            onkeyup="document.getElementById('errorDni').innerHTML = dniValidate(document.getElementById('dni').value);">
+                            onkeyup="document.getElementById('errorDni').innerHTML = dniValidate(document.getElementById('dni'));">
         <span id="errorDni" class="error"></span>
       </p>
       &emsp;
         Fecha de Nacimiento*:&emsp; <input placeholder="dd/mm/yyyy" maxlength="10" type="date" name="fechaNacimiento" required id="fechaNacimiento" value="<?php echo $Fpaciente['FECHA_NACIMIENTO'];?>" 
-          oninput="document.getElementById('errorFechaNac').innerHTML = dateValidation(document.getElementById('fechaNacimiento').value);">
+          oninput="document.getElementById('errorFechaNac').innerHTML = dateValidation(document.getElementById('fechaNacimiento'));">
         <span id="errorFechaNac" class="error"></span>
       <p>
       &emsp;

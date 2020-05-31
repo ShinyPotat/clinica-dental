@@ -49,7 +49,7 @@ if (isset($errores) && count($errores)>0) {
         <p>
           &emsp;
           Nombre: &emsp; <input  placeholder="Nombre" type="text" name="name" id="name" value="<?php echo $Fproducto["NOMBRE"];?>"
-                                    onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name').value)">
+                                    onkeyup="document.getElementById('errorName').innerHTML = lettersValidation(document.getElementById('name'))">
           <span id="errorName" class="error"></span>
         </p>
         <p>
