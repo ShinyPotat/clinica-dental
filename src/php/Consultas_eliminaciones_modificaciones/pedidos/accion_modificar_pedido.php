@@ -11,7 +11,7 @@
 		// CREAR LA CONEXIÓN A LA BASE DE DATOS
 		$conexion = crearConexionBD();
 		// INVOCAR "MODIFICAR_PEDIDO" EN GESTIONPEDIDO
-		$excepcion = modificar_pedido($conexion,$pedido["OID_PD"],$pedido["Fecha_Solicitud"],$pedido["Fecha_entrega"]);
+		$excepcion = modificar_pedido($conexion,$pedido["OID_PD"],$pedido["Fecha_Solicitud"],$pedido["Fecha_entrega"],$pedido["cantidad"],$pedido["material"]);
 		// CERRAR LA CONEXIÓN
 		cerrarConexionBD($conexion);
 		

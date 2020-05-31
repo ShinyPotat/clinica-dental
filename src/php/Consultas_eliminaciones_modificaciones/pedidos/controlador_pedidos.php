@@ -5,6 +5,8 @@
 		$pedido["OID_PD"] = $_REQUEST["OID_PD"];
 		$pedido["Fecha_Solicitud"] = $_REQUEST["FECHA_SOLICITUD"];
 		$pedido["Fecha_entrega"] = $_REQUEST["FECHA_ENTREGA"];
+		$pedido["cantidad"] = $_REQUEST["CANTIDAD"];
+		$pedido["material"] = $_REQUEST["MATERIAL"];
 		$pedido["OID_PR"] = $_REQUEST["OID_PR"];
 		$pedido["OID_F"] = $_REQUEST["OID_F"];
 		

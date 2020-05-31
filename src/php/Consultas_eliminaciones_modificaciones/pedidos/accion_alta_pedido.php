@@ -7,7 +7,9 @@
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_REQUEST["fechaSolicitud"])) {
         $pedido["fechaSolicitud"] = $_REQUEST["fechaSolicitud"];
-        $pedido["fechaEntrega"] = $_REQUEST["fechaEntrega"];
+		$pedido["fechaEntrega"] = $_REQUEST["fechaEntrega"];
+		$pedido["cantidad"] = $_REQUEST["cantidad"];
+		$pedido["material"] = $_REQUEST["materialPD"];
         $pedido["OID_PR"] = $_REQUEST["proveedorPD"];
         $pedido["OID_F"] = $_REQUEST["FacturaPD"];
 		$_SESSION["pedido"] = null;
@@ -28,7 +30,7 @@
 
 	$conexion = crearConexionBD(); 
 
-    $excepcion = crear_pedido($conexion, $pedido["fechaSolicitud"],$pedido["fechaEntrega"],$pedido["OID_PR"],$pedido["OID_F"]);
+    $excepcion = crear_pedido($conexion, $pedido["fechaSolicitud"],$pedido["fechaEntrega"],$pedido["cantidad"],$pedido["OID_PR"],$pedido["material"],$pedido["OID_F"]);
 
     // SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 	if($excepcion<>""){
