@@ -75,7 +75,7 @@ if (isset($errores) && count($errores)>0) {
         <span id="errorNumCol" class="error"></span>
       <br>
       <input type="submit" name="submit" value="Enviar" class="enviar">
-	    <a href="../../html/listaPDP.html" class="buttonAtras">Atrás</a> 
+	    <a href="../Consultas_eliminaciones_modificaciones/clinica/consulta_clinica.php" class="buttonAtras">Atrás</a> 
 
       </form>
     </div>

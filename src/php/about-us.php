@@ -26,13 +26,7 @@ session_start();
         Javier Pacheco Marquez        pachecomarquezjavier@gmail.com
         Jaime Ramos Lara              j23rl07@gmail.com
         Alberto Antonio Tokos Matas   belatm12@gmail.com</pre>
-        <a href="#" class="link1">Link a red social</a>
-        <a href="#" class="link2">Link a red social</a>
-        <a href="#" class="link3">Link a red social</a>
-
-        <img class="twitter" src="../../images/twitter.png" width=2% height=4%>
-        <img class="facebook" src="../../images/facebook.png" width=2% height=4%>
-        <img class="instagram" src="../../images/instagram.png" width=2% height=4%>
+        
     </div>
     <script src="../js/hora.js"></script>
 </body>

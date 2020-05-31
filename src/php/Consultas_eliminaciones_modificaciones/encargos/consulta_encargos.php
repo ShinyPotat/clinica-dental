@@ -52,7 +52,7 @@
     <a href="../../formularios/form_alta_encargo.php" class="botonNuevoEncargo">Nuevo Encargo</a>
     <a href="consulta_encargos.php" class="botonEncargos">Encargos</a>
     <script src="../../../js/hora.js"></script>
-    <a href="../../../html/accesorapido.html" class="buttonAtras">«</a> 
+    <a href="../../accesorapido.php" class="buttonAtras">«</a> 
     <p class="volver">Volver</p>
     
     <main>

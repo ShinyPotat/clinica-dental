@@ -91,16 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </p><br>
         <br>
         <input type="submit" name="submit" value="Enviar" class="enviar">
-        <a href="../../html/listaInventarioPedidos.html" class="buttonAtras">Atrás</a>
+        <a href="../Consultas_eliminaciones_modificaciones/pedidos/consulta_pedidos.php" class="buttonAtras">Atrás</a>
       </form>
-      <div class="results">
-        <?php
-        echo "<h2>Datos introducidos:</h2>";
-        echo $fechaSolicitud;
-        echo "<br>";
-        echo $fechaEntrega;
-          ?>
-        </div>
       </div>
     <img src= "../../../images/elementoAdd.png" class="elementoAdd" width="10%" height="18%">
     <script src="../../js/hora.js"></script>

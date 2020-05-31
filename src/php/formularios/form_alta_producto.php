@@ -77,7 +77,7 @@ if (isset($errores) && count($errores)>0) {
       </p>
       <p>         
         <input type="submit" name="submit" value="Enviar" class="enviar">
-	      <a href="../../html/listaPDP.html" class="buttonAtras">Atrás</a>
+	      <a href="../Consultas_eliminaciones_modificaciones/productos/consulta_producto.php" class="buttonAtras">Atrás</a>
       </form>
     </div>
     <img src= "../../../images/elementoAdd.png" class="elementoAdd" width="10%" height="18%">

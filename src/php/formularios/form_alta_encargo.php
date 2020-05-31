@@ -94,7 +94,7 @@ if (isset($errores) && count($errores)>0) {
           </div>
         </p><br>         
           <input type="submit" name="submit" value="Enviar" class="enviar">
-          <a href="../../html/listaEncargosTrabajos.html" class="buttonAtras">Atrás</a>
+          <a href="../Consultas_eliminaciones_modificaciones/encargos/consulta_encargos.php" class="buttonAtras">Atrás</a>
           </p>
       </form>
     </div>

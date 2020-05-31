@@ -18,7 +18,6 @@ if(!isset($_SESSION["login"])){
     <?php include_once ("cabeceraR.php"); ?>
 
     <p class="textAcc">Acceso rápido</p>
-    <a class="textBack">Volver a Inicio</p>
 
     <div class="columna1">
 
@@ -28,12 +27,12 @@ if(!isset($_SESSION["login"])){
 
         <a href="Consultas_eliminaciones_modificaciones/pedidos/consulta_pedidos.php" class="button">Pedidos</a>
     
-        <a href="Consultas_eliminaciones_modificaciones/proveedores/consulta_proveedores.php" class="button">Proveedores</a>
+        <a href="Consultas_eliminaciones_modificaciones/proveedor/consulta_proveedores.php" class="button">Proveedores</a>
 
     </div>
 
     <div class="columna3">
-        <a href="Consultas_eliminaciones_modificaciones/clinicas/consulta_clinica.php" class="button">Clínicas</a>    
+        <a href="Consultas_eliminaciones_modificaciones/clinica/consulta_clinica.php" class="button">Clínicas</a>    
 
         <a href="Consultas_eliminaciones_modificaciones/pacientes/consulta_pacientes.php" class="button">Pacientes</a>
 
@@ -47,7 +46,6 @@ if(!isset($_SESSION["login"])){
     <img src="../../images/textoMascota.png" class="textoMascota" width="30%" height="30%">
     <p class="comentario"> ¡Bienvenido al sistema!</p>
     <p class="comentario2">Elija una opción para continuar</p>
-    <a href="log.html"  class="buttonAtras">«</a>
     <script src="../js/hora.js"></script>
 </body>
 </html>

@@ -81,20 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <span id="errorPrecio" class="error"> <?php echo $precioTotalErr;?></span> 
         <br>         
         <input type="submit" name="submit" value="Enviar" class="enviar">
-        <a href="../../html/listaFacturas.html" class="buttonAtras">Atrás</a>
+        <a href="../Consultas_eliminaciones_modificaciones/facturas/consulta_facturas.php" class="buttonAtras">Atrás</a>
       </form>
-      <div class="results">
-        <?php
-        echo "<h2>Datos introducidos:</h2>";
-        echo $fechaCobro;
-        echo "<br>";
-        echo $fechaVencimiento;
-        echo "<br>";  
-        echo $fechaFactura;
-        echo"<br>";
-        echo $precioTotal;
-        ?>
-        </div>
     </div>
     <img src= "../../../images/elementoAdd.png" class="elementoAdd" width="10%" height="18%">
     <script src="../../js/hora.js"></script>

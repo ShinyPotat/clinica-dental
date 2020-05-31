@@ -1,6 +1,6 @@
 <a href="../accesorapido.php" ><img class="imagen" src="../../../images/logo.png" alt="logo.png" width=23% height=23%></a>
     <div class="block">
-        <a href="../../html/about-us.html" class="acerca">Acerca de nosotros</a>
+        <a href="../about-us.php" class="acerca">Acerca de nosotros</a>
         <!-- Estos bloques definen las id que se usan para el js de la hora -->
         <div id="box">
             <div id="box-date"></div>
