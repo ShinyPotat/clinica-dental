@@ -32,7 +32,7 @@
 		
 		$errores = [];
 
-		if (!isset($proveedor["name"])) {
+		if (!isset($proveedor["name"]) || $proveedor["name"]==null) {
 			$erroresF[] = "<p>el campo nombre es obligatorio</p>";
 		} else {
 			$name = test_input($proveedor["name"]);
