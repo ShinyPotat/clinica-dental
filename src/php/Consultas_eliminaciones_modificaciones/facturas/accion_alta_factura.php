@@ -47,37 +47,38 @@
 		$errores = [];
 
 		$now = new DateTime();
-		$fechaCobro = date_create($factura["fechaCobro"]);
-		$fechaVencimiento = date_create($factura["fechaVencimiento"]);
-		$fechaFactura = date_create($factura["fechaFactura"]);
-
-		$var1 = date_diff($now,$fechaCobro);
-		$var2 = date_diff($now,$fechaVencimiento);
-		$var3 = date_diff($now,$fechaFactura);
-		$var4 = date_diff($fechaCobro,$fechaFactura);
-
-		if ($var1->format("%r%a") > 0) {
-			$errores[] = "<p>La fecha de cobro no puede ser después del día de hoy</p>";
+		if(isset($encargo["fechaCobro"])){
+			$fechaCobro = date_create($factura["fechaCobro"]);
+			$var1 = date_diff($now,$fechaCobro);
+			if ($var1->format("%r%a") < 0) {
+				$errores[] = "<p>La fecha de cobro no puede ser antes del día de hoy</p>";
+			}
 		}
-			  
-		if ($var2->format("%r%a") < 0) {
-			$errores[] = "<p>La fecha de vencimiento no puede ser antes del día de hoy</p>";
+
+		if(isset($encargo["fechaVencimiento"])){
+			$fechaVencimiento = date_create($factura["fechaVencimiento"]);
+			$var2 = date_diff($now,$fechaVencimiento);
+			if ($var2->format("%r%a") < 0) {
+				$errores[] = "<p>La fecha de vencimiento no puede ser antes del día de hoy</p>";
+			}
 		}
 		
-		if ($var3->format("%r%a") > 0) {
-			$errores[] = "<p>La fecha de factura no puede ser después del día de hoy</p>";
-		}else if ($var4->format("%r%a") > 0) {
-			$errores[] = "<p>La fecha de factura debe ser antes de la de cobro</p>";
+		if(isset($encargo["fechaFactura"])){
+			$fechaFactura = date_create($factura["fechaFactura"]);
+			$var3 = date_diff($now,$fechaFactura);
+			if ($var3->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de factura no puede ser después del día de hoy</p>";
+			}
 		}
-
-		return $errores;
-			  
+		
+		if(isset($encargo["fechaCobro"]) && isset($factura["fechaFactura"])){
+			$fechaCobro2 = date_create($factura["fechaCobro"]);
+			$fechaFactura2 = date_create($factura["fechaFactura"]);
+			$var4 = date_diff($fechaCobro2,$fechaFactura2);
+			if ($var4->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de factura debe ser antes de la de cobro</p>";
+			}
+		}
+		return $errores;	  
 	}
-
-	function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
 ?>

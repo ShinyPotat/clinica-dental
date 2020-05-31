@@ -45,19 +45,30 @@
 	function validarDatosEncargosF($encargo){
 		$errores = [];
 
-		if (isset($encargo["FECHAENTREGA"])) {
-			$fechaEntrega = test_input($encargo["FECHAENTREGA"]);
+		$now = new DateTime();
+		if(isset($encargo["FECHAENTREGA"])){
+			$fechaEntrega = date_create($encargo["FECHAENTREGA"]);
+			$var2 = date_diff($now,$fechaEntrega);
+			if ($var2->format("%r%a") < 0) {
+				$errores[] = "<p>La fecha de entrega no puede ser antes del día de hoy</p>";
+			}
 		}
-	
-		if (isset($encargo["FECHAENTRADA"])) {
-			$fechaEntrada = test_input($encargo["FECHAENTRADA"]);
+		
+		if(isset($encargo["FECHAENTRADA"])){
+			$fechaEntrada = date_create($encargo["FECHAENTRADA"]);
+			$var1 = date_diff($now,$fechaEntrada);
+			if ($var1->format("%r%a") < 0) {
+				$errores[] = "<p>La fecha de entrada no puede ser antes del día de hoy</p>";
+			}
 		}
-	}
-	
-	function test_input($data) {
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
+
+		if(isset($encargo["FECHAENTREGA"]) && isset($encargo["FECHAENTRADA"])){
+			$fechaEntrega2 = date_create($encargo["FECHAENTREGA"]);
+			$fechaEntrada2 = date_create($encargo["FECHAENTRADA"]);
+			$var3 = date_diff($fechaEntrega2,$fechaEntrada2);
+			if ($var3->format("%r%a") > 0) {
+				$errores[] = "<p>La fecha de entrada debe ser antes de la de entrega</p>";
+			}
+		}	
 	}
 ?>
