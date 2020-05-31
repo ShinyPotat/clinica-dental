@@ -69,7 +69,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de productos</title>
     <link rel="stylesheet" href="../../../css/consultaPDP.css">
-    <script src="../../../js/filtro_facturas.js"></script>
+    <script src="../../../js/filtro_productos.js"></script>
+    <script src="../../../js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="../../../js/validacion_cliente_alta_producto.js" type="text/javascript"></script>
 </head>
 <body>
@@ -158,7 +159,7 @@
                                                                 <div><select id="MATERIAL" name="MATERIAL">
                                                                     <option value="">Seleccionar material</option>
                                                                     <?php foreach($materiales as $filam){ ?>
-                                                                    <option value="<?php echo $filam["OID_M"]; ?>"><?php echo $filam["NOMBRE"]; ?></option>
+                                                                    <option value="<?php echo $filam["OID_M"]; ?>" <?php if(isset($producto) && $fila['OID_M']==$filam["OID_M"]){ echo "selected='selected'";}?>><?php echo $filam["NOMBRE"]; ?></option>
 
                                                                     <?php } ?>
                                                                 </select></td>
@@ -199,13 +200,27 @@
                 <option value="" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']==""){ echo "selected='selected'";}?>>---</option>
                 <option value="PrecioMayor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="PrecioMayor"){ echo "selected='selected'";}?>>Precio mayor que</option>
                 <option value="PrecioMenor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="PrecioMenor"){ echo "selected='selected'";}?>>Precio menor que</option>
+                <option value="CantidadMayor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CantidadMayor"){ echo "selected='selected'";}?>>Cantidad mayor que</option>
+                <option value="CantidadMenor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="CantidadMenor"){ echo "selected='selected'";}?>>Cantidad menor que</option>
+                <option value="Material" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="Material"){ echo "selected='selected'";}?>>Material</option>
             </select>
             <div id="filterValueDiv">
             <?php
-                if(isset($_SESSION['filtro']) && $_SESSION['filtro']!=""){?>
+                if(isset($_SESSION['filtro']) && $_SESSION['filtro']!="" && $_SESSION['filtro']!="Material"){?>
                     <input class="filterValue" type="number" required min="0" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
                     <input class="filterButton" type="submit" value="FILTRAR">
-           <?php  } ?>
+           <?php  }else if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="Material"){
+                        $conexion = crearConexionBD();
+                        $query = "SELECT OID_M, Nombre FROM materiales ORDER BY Nombre ASC";
+                        $materiales = $conexion->query($query);
+                        cerrarConexionBD($conexion); ?>
+                        <select class="filterValue" name="filterValue" id="filterValue">
+                        <?php foreach ($materiales as $material) { ?>
+                                <option value="<?php echo $material['OID_M'] ?>" <?php if($material['OID_M'] == $_SESSION['filterValue']){echo "selected='selected'";} ?>><?php echo $material['NOMBRE']; ?></option>
+                        <?php   } ?>
+                        </select>
+                        <input class="filterButton" type="submit" value="FILTRAR">
+         <?php  } ?>
             </div>
         </form>
     </main>

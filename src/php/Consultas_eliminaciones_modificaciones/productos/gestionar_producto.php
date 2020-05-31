@@ -1,4 +1,26 @@
 <?php
+
+    require_once("../../gestionBD.php");
+
+    if(isset($_GET['filtro']) && $_GET['filtro']=='Material'){
+        $conexion = crearConexionBD();
+
+        $query = "SELECT OID_M, Nombre FROM materiales ORDER BY Nombre ASC";
+        $materiales = $conexion->query($query);
+
+        if($materiales != NULL){
+            // Para cada municipio del listado devuelto
+            foreach($materiales as $material){
+                // Creamos options con valores = oid_municipio y label = nombre del municipio
+                echo "<option value='" . $material["OID_M"] . "'>" . $material["NOMBRE"] . "</option>";    
+            }
+        }
+
+        cerrarConexionBD($conexion);
+        unset($_GET['filtro']);
+    }
+
+
     function consultarClinicas($conexion)
     {
         $consulta = "SELECT * FROM productos ORDER BY OID_P";
@@ -22,8 +44,14 @@
 	    try {
             if($tipo=="PrecioMayor"){
                 $total_consulta = "SELECT COUNT(*) AS TOTAL FROM productos WHERE precio >= ".$param;
-            }else{
+            }else if ($tipo=="PrecioMenor"){
                 $total_consulta = "SELECT COUNT(*) AS TOTAL FROM productos WHERE precio <= ".$param;
+            }elseif ($tipo=="CantidadMayor") {
+                $total_consulta = "SELECT COUNT(*) AS TOTAL FROM productos WHERE cantidad >= ".$param;
+            }elseif ($tipo=="CantidadMenor") {
+                $total_consulta = "SELECT COUNT(*) AS TOTAL FROM productos WHERE cantidad <= ".$param;
+            }else{
+                $total_consulta = "SELECT COUNT(*) AS TOTAL FROM productos WHERE oid_m = ".$param;
             }
                  
             $stmt = $conexion->query($total_consulta);
@@ -47,9 +75,18 @@
             if ($tipo=="PrecioMayor") {
                 $consulta_paginada = 
 	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM productos WHERE precio >= ".$param." ORDER BY precio) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
-            } else {
+            } else if($tipo=="PrecioMenor"){
                 $consulta_paginada = 
 	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM productos WHERE precio <= ".$param." ORDER BY precio) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
+            }elseif ($tipo=="CantidadMayor") {
+                $consulta_paginada = 
+	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM productos WHERE cantidad >= ".$param." ORDER BY cantidad) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
+            }elseif ($tipo=="CantidadMenor") {
+                $consulta_paginada = 
+	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM productos WHERE cantidad <= ".$param." ORDER BY cantidad) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
+            }else{
+                $consulta_paginada = 
+	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM productos WHERE oid_m = ".$param." ORDER BY oid_p) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
             }
 
 	    	$stmt = $conn->prepare( $consulta_paginada );

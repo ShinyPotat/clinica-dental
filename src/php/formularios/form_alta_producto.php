@@ -24,6 +24,8 @@ if(isset($_SESSION["errores"])) {
 if (!isset($_SESSION["Fproducto"])) {
   $Fproducto['NOMBRE'] = "";
   $Fproducto['PRECIO'] = "";
+  $Fproducto['CANTIDAD'] = "";
+  $Fproducto['MATERIAL'] = "";
   
 
   $_SESSION["Fproducto"] = $Fproducto;
