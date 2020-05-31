@@ -61,8 +61,8 @@ CREATE TABLE Encargos(
     OID_PC NUMBER,
     OID_F NUMBER,
     PRIMARY KEY (OID_E),
-    FOREIGN KEY (OID_PC) REFERENCES Pacientes ON DELETE SET NULL,
-    FOREIGN KEY (OID_F) REFERENCES Facturas ON DELETE SET NULL
+    FOREIGN KEY (OID_PC) REFERENCES Pacientes ON DELETE cascade,
+    FOREIGN KEY (OID_F) REFERENCES Facturas ON DELETE cascade
 );
 
 --proveedores
@@ -98,8 +98,8 @@ CREATE TABLE Pedidos(
     OID_F NUMBER,
     PRIMARY KEY(OID_PD),
     FOREIGN KEY(OID_PR) REFERENCES Proveedores ON DELETE CASCADE,
-    Foreign key(OID_M) references materiales ON DELETE SET NULL,
-    FOREIGN KEY(OID_F) REFERENCES Facturas ON DELETE SET NULL
+    Foreign key(OID_M) references materiales ON DELETE cascade,
+    FOREIGN KEY(OID_F) REFERENCES Facturas ON DELETE cascade
 );
 
 --productos
@@ -111,8 +111,8 @@ Create table Productos(
     OID_M NUMBER,
     OID_E NUMBER,
     Primary Key(OID_P),
-    Foreign key(OID_M) references materiales ON DELETE SET NULL,
-    Foreign Key(OID_E) references Encargos ON DELETE SET NULL
+    Foreign key(OID_M) references materiales ON DELETE cascade,
+    Foreign Key(OID_E) references Encargos ON DELETE cascade
 );
 
     
