@@ -16,7 +16,52 @@
 	    catch ( PDOException $e ) {
             return $e->getMessage();
 	    }
-    } 
+    }
+    
+    function total_consulta_filtrada($conexion,$tipo,$param){
+	    try {
+            if($tipo=="PrecioMayor"){
+                $total_consulta = "SELECT COUNT(*) AS TOTAL FROM facturas WHERE precio_total >= ".$param;
+            }else{
+                $total_consulta = "SELECT COUNT(*) AS TOTAL FROM facturas WHERE precio_total <= ".$param;
+            }
+                 
+            $stmt = $conexion->query($total_consulta);
+	    	$result = $stmt->fetch();
+	    	$total = $result['TOTAL'];
+            //$stmt->bindParam(':tipo',$tipo);
+            //$stmt->bindParam(':para',$param);
+	    	//$result = $stmt->execute();
+	    	//$total = $result['TOTAL'];
+	    	return  $total;
+	    }
+	    catch ( PDOException $e ) {
+            return $e->getMessage();
+	    }
+    }
+    
+    function consulta_paginada_filtrado( $conn,$tipo,$param, $pag_num, $pag_size ){
+	    try {
+	    	$primera = ( $pag_num - 1 ) * $pag_size + 1;
+            $ultima  = $pag_num * $pag_size;
+            if ($tipo=="PrecioMayor") {
+                $consulta_paginada = 
+	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM facturas WHERE precio_total >= ".$param." ORDER BY precio_total) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
+            } else {
+                $consulta_paginada = 
+	    		 "SELECT * FROM ( SELECT ROWNUM RNUM, AUX.* FROM ( SELECT * FROM facturas WHERE precio_total <= ".$param." ORDER BY precio_total) AUX WHERE ROWNUM <= :ultima) WHERE RNUM >= :primera";
+            }
+
+	    	$stmt = $conn->prepare( $consulta_paginada );
+	    	$stmt->bindParam( ':primera', $primera );
+            $stmt->bindParam( ':ultima',  $ultima );
+	    	$stmt->execute();
+	    	return $stmt;
+	    }	
+	    catch ( PDOException $e ) {
+            return $e->getMessage();
+	    }
+    }
 
     function consulta_paginada( $conn, $pag_num, $pag_size ){
 	    try {
