@@ -51,12 +51,14 @@
 		return date('d/m/Y', strtotime($fecha));
 	}
 
-    function modificar_pedido($conexion,$oidPedido,$fecha_solicitud,$fecha_entrega){
+    function modificar_pedido($conexion,$oidPedido,$fecha_solicitud,$fecha_entrega,$cantidad,$material){
         try{
-            $stmt=$conexion->prepare('CALL Modifica_pedido(:oidPedido,:fecha_solicitud,:fecha_entrega)');
+            $stmt=$conexion->prepare('CALL Modifica_pedido(:oidPedido,:fecha_solicitud,:fecha_entrega,:cantidad,:material)');
             $stmt->bindParam(':oidPedido',$oidPedido);
             $stmt->bindParam(':fecha_solicitud',getFechaFormateada($fecha_solicitud));
             $stmt->bindParam(':fecha_entrega',getFechaFormateada($fecha_entrega));
+            $stmt->bindParam(':cantidad',$cantidad);
+            $stmt->bindParam(':material',$material);
             $stmt->execute();
             return "";
         }catch(PDOException $e) {
@@ -64,12 +66,14 @@
         }
     }
 
-    function crear_pedido($conexion,$fecha_solicitud,$fecha_entrega){
+    function crear_pedido($conexion,$fecha_solicitud,$fecha_entrega,$cantidad,$OID_PR,$material,$OID_F){
         try{
-            $stmt=$conexion->prepare('CALL crear_pedido(:fecha_solicitud,:fecha_entrega,:OID_PR,:OID_F)');
+            $stmt=$conexion->prepare('CALL crear_pedido(:fecha_solicitud,:fecha_entrega,:cantidad,:OID_PR,:material,:OID_F)');
             $stmt->bindParam(':fecha_solicitud',getFechaFormateada($fecha_solicitud));
             $stmt->bindParam(':fecha_entrega',getFechaFormateada($fecha_entrega));
+            $stmt->bindParam(':cantidad',$cantidad);
             $stmt->bindParam(':OID_PR',$OID_PR);
+            $stmt->bindParam(':material',$material);
             $stmt->bindParam(':OID_F',$OID_F);
             $stmt->execute();
             return "";

@@ -342,12 +342,14 @@ CREATE OR REPLACE PROCEDURE modifica_pedido(
     w_oid_pd IN pedidos.oid_pd%TYPE,
     w_fecha_solicitud IN pedidos.fecha_solicitud%TYPE,
     w_fecha_entrega IN pedidos.fecha_entrega%TYPE,
-    w_cantidad IN pedidos.cantidad%TYPE
+    w_cantidad IN pedidos.cantidad%TYPE,
+    w_material IN pedidos.oid_M%TYPE
 )IS
 BEGIN
     UPDATE pedidos SET fecha_solicitud=w_fecha_solicitud WHERE oid_pd=w_oid_pd;
     UPDATE pedidos SET fecha_entrega=w_fecha_entrega WHERE oid_pd=w_oid_pd;
     UPDATE pedidos SET cantidad=w_cantidad WHERE oid_pd=w_oid_pd;
+    UPDATE pedidos SET oid_m=w_material WHERE oid_pd=w_oid_pd;
 END;
 /
 
