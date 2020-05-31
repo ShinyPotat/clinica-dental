@@ -88,18 +88,6 @@ EXECUTE crear_material('material8','Revestimiento',10,2,1,'medida');
 EXECUTE crear_material('material9','Ceramica Zirconio',10,2,1,'medida');
 EXECUTE crear_material('material10','Empress',10,2,1,'medida');
 EXECUTE crear_material('material11','Revestimiento',10,2,1,'medida');
---insercion de linea de pedido
-EXECUTE crear_linea(5,50,107,145);
-EXECUTE crear_linea(10,70,108,146);
-EXECUTE crear_linea(100,45,109,147);
-EXECUTE crear_linea(13,55,110,148);
-EXECUTE crear_linea(13,60,111,149);
-EXECUTE crear_linea(11,78,112,150);
-EXECUTE crear_linea(23,130,113,151);
-EXECUTE crear_linea(20,50,114,152);
-EXECUTE crear_linea(12,70,115,153);
-EXECUTE crear_linea(11,66,111,150);
-EXECUTE crear_linea(5,32,111,145);
 --insercion de productos
 EXECUTE crear_producto('producto1',200,1);
 EXECUTE crear_producto('producto2',100,2);
@@ -111,15 +99,3 @@ EXECUTE crear_producto('producto7',275,7);
 EXECUTE crear_producto('producto8',160,8);
 EXECUTE crear_producto('producto9',590,9);
 EXECUTE crear_producto('producto10',300,10);
---insercion de requieres
-EXECUTE crear_requiere(1,136,145);
-EXECUTE crear_requiere(4,137,146);
-EXECUTE crear_requiere(2,138,147);
-EXECUTE crear_requiere(7,139,148);
-EXECUTE crear_requiere(8,140,149);
-EXECUTE crear_requiere(2,141,150);
-EXECUTE crear_requiere(1,142,151);
-EXECUTE crear_requiere(6,143,152);
-EXECUTE crear_requiere(1,144,153);
-EXECUTE crear_requiere(1,142,152);
-EXECUTE crear_requiere(1,143,151);

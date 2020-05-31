@@ -4,7 +4,9 @@
     if (isset($_REQUEST["OID_P"])) {
         $producto["OID_P"] = $_REQUEST["OID_P"];
         $producto["NOMBRE"] = $_REQUEST["NOMBRE"];
-        $producto["PRECIO"] = $_REQUEST["PRECIO"];;
+        $producto["PRECIO"] = $_REQUEST["PRECIO"];
+        $producto["CANTIDAD"] = $_REQUEST["CANTIDAD"];
+        $producto["MATERIAL"] = $_REQUEST["MATERIAL"];
         $producto["OID_E"] = $_REQUEST["OID_E"];
         $_SESSION["producto"] = $producto;
 

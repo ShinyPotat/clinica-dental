@@ -128,6 +128,8 @@
                         <tr>
                             <th>nombre</th>
                             <th>precio</th>
+                            <th>cantidad</th>
+                            <th>material</th>
                             <th>opciones</th>
                         </tr>
                     </thead>
@@ -138,16 +140,41 @@
                                             <div>
                                                 <input type="hidden" name="OID_P" id="OID_P" value="<?php echo $fila["OID_P"];?>">
                                                 <input type="hidden" name="OID_E" id="OID_E" value="<?php echo $fila["OID_E"];?>">
+                                                <input type="hidden" name="OID_M" id="OID_M" value="<?php echo $fila["OID_M"];?>">
                                                 <?php
                                                     if (isset($producto) and ($producto["OID_P"] == $fila["OID_P"])) { ?>
                                                         <tr>
                                                             <td><input type="text" name="NOMBRE" id="NOMBRE" value="<?php echo $fila["NOMBRE"];?>"
                                                             onkeyup="lettersValidation(document.getElementById('NOMBRE'))"></td>
                                                             <td><input required min="0" type="number" name="PRECIO" id="PRECIO" value="<?php echo $fila["PRECIO"];?>"></td>
+                                                            <td><input required min="0" type="number" name="CANTIDAD" id="CANTIDAD" value="<?php echo $fila["CANTIDAD"];?>"></td>
+                                                            <td><?php 
+                                                                    require_once("../../gestionBD.php");
+                                                                    $conexion = crearConexionBD();
+                                                                    $query = "SELECT OID_M, NOMBRE FROM Materiales ORDER BY NOMBRE ASC";
+                                                                    $materiales = $conexion->query($query);
+                                                                    cerrarConexionBD($conexion);
+                                                                ?>
+                                                                <div><select id="MATERIAL" name="MATERIAL">
+                                                                    <option value="">Seleccionar material</option>
+                                                                    <?php foreach($materiales as $filam){ ?>
+                                                                    <option value="<?php echo $filam["OID_M"]; ?>"><?php echo $filam["NOMBRE"]; ?></option>
+
+                                                                    <?php } ?>
+                                                                </select></td>
                                               <?php } else { ?>
                                                         <tr>
                                                             <td><?php echo $fila["NOMBRE"]?></td>
                                                             <td><?php echo $fila["PRECIO"]?></td>
+                                                            <td><?php echo $fila["CANTIDAD"]?></td>
+                                                            <?php 
+                                                                    require_once("../../gestionBD.php");
+                                                                    $conexion = crearConexionBD();
+                                                                    $query = "SELECT NOMBRE FROM Materiales WHERE oid_m = ". $fila["OID_M"];
+                                                                    $material = $conexion->query($query);
+                                                                    cerrarConexionBD($conexion);
+                                                                ?>
+                                                            <td><?php foreach($material as $filam){echo $filam["NOMBRE"];}?></td>
                                               <?php } ?>
                                             </div>
                                             <div>

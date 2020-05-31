@@ -7,7 +7,10 @@
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_REQUEST["name"])) {
         $producto["nombre"] = $_REQUEST["name"];
-        $producto["precio"] = $_REQUEST["precio"];
+		$producto["precio"] = $_REQUEST["precio"];
+		$producto["cantidad"] = $_REQUEST["cantidad"];
+		$producto["material"] = $_REQUEST["materialPR"];
+		$producto["encargo"] = $_REQUEST["encargoPR"];
 		$_SESSION["producto"] = null;
 		$_SESSION["errores"] = null;
 	}
@@ -24,7 +27,7 @@
 
 	$conexion = crearConexionBD(); 
 
-    $excepcion = crear_producto($conexion, $producto["nombre"], $producto["precio"]);
+    $excepcion = crear_producto($conexion, $producto["nombre"], $producto["precio"], $producto["cantidad"], $producto["material"], $producto["encargo"]);
 
     // SI LA FUNCIÓN RETORNÓ UN MENSAJE DE EXCEPCIÓN, ENTONCES REDIRIGIR A "EXCEPCION.PHP"
 	if($excepcion<>""){

@@ -90,12 +90,14 @@
         }
     }
 
-    function modificar_producto($conexion, $oidProducto, $nombre, $precio){
+    function modificar_producto($conexion, $oidProducto, $nombre, $precio, $cantidad, $material){
         try {
-            $stmt = $conexion->prepare('CALL modifica_producto(:oidProducto,:nombre, :precio)');
+            $stmt = $conexion->prepare('CALL modifica_producto(:oidProducto,:nombre, :precio, :cantidad, :material)');
             $stmt->bindParam(':oidProducto', $oidProducto);
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':precio', $precio);
+            $stmt->bindParam(':cantidad', $cantidad);
+            $stmt->bindParam(':material', $material);
             $stmt->execute();
             return "";
         } catch (PDOException $e) {
@@ -103,11 +105,13 @@
         }
     }
 
-    function crear_producto($conexion,$nombre,$precio,$OID_E){
+    function crear_producto($conexion,$nombre,$precio,$cantidad, $OID_M, $OID_E){
         try{
-            $stmt=$conexion->prepare('CALL crear_producto(:nombre,:precio,:OID_E)');
+            $stmt=$conexion->prepare('CALL crear_producto(:nombre,:precio, :cantidad, :OID_M, :OID_E)');
             $stmt->bindParam(':nombre',$nombre);
             $stmt->bindParam(':precio',$precio);
+            $stmt->bindParam(':cantidad',$cantidad);
+            $stmt->bindParam(':OID_M',$OID_M);
             $stmt->bindParam(':OID_E',$OID_E);
             $stmt->execute();
             return "";

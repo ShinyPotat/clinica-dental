@@ -9,7 +9,7 @@
         require_once("gestionar_producto.php");
 
         $conexion = crearConexionBD();
-        $excepcion = modificar_producto($conexion,$producto["OID_P"],$producto["NOMBRE"],$producto["PRECIO"]);
+        $excepcion = modificar_producto($conexion,$producto["OID_P"],$producto["NOMBRE"],$producto["PRECIO"], $producto["CANTIDAD"], $producto["MATERIAL"]);
 
         cerrarConexionBD($conexion);
 

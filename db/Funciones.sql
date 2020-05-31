@@ -356,12 +356,14 @@ CREATE OR REPLACE PROCEDURE modifica_producto(
     w_oid_p IN Productos.oid_p%TYPE,
     w_nombre IN Productos.nombre%TYPE,
     w_precio IN Productos.precio%TYPE,
-    w_cantidad IN productos.cantidad%TYPE
+    w_cantidad IN productos.cantidad%TYPE,
+    w_material IN productos.oid_M%TYPE
 )IS
 BEGIN
     UPDATE Productos SET nombre=w_nombre WHERE oid_p=w_oid_p;
     UPDATE Productos SET precio=w_precio WHERE oid_p=w_oid_p;
     UPDATE Productos SET cantidad=w_cantidad WHERE oid_p=w_oid_p;
+    UPDATE Productos SET oid_m=w_material WHERE oid_p=w_oid_p;
 END;
 /
 

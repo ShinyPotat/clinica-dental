@@ -57,6 +57,26 @@ if (isset($errores) && count($errores)>0) {
           Precio: &emsp; <input required placeholder="Precio" type="number" min="0" name="precio" id="precio" value="<?php echo $Fproducto["PRECIO"];?>" >
           <span id="errorPrecio" class="error"></span> 
         </p>
+        <p>
+          &emsp;
+          Cantidad: &emsp; <input required placeholder="Cantidad" type="number" min="0" name="cantidad" id="cantidad" value="<?php echo $Fproducto["CANTIDAD"];?>" >
+          <span id="errorCantidad" class="error"></span> 
+        </p>
+        <?php 
+            require_once("../gestionBD.php");
+            $conexion = crearConexionBD();
+            $query = "SELECT OID_M, NOMBRE FROM Materiales ORDER BY NOMBRE ASC";
+            $encargos = $conexion->query($query);
+            cerrarConexionBD($conexion);
+        ?>
+        <div>&emsp; Material: <select id="materialPR" name="materialPR">
+            <option value="">Seleccionar material</option>
+            <?php foreach($encargos as $fila){ ?>
+              <option value="<?php echo $fila["OID_M"]; ?>"><?php echo $fila["NOMBRE"]; ?></option>
+
+            <?php } ?>
+          </select>
+        </div>
         <?php 
             require_once("../gestionBD.php");
             $conexion = crearConexionBD();
@@ -72,7 +92,6 @@ if (isset($errores) && count($errores)>0) {
             <?php } ?>
           </select>
         </div>
-      </p>
       <p>         
         <input type="submit" name="submit" value="Enviar" class="enviar">
 	      <a href="../Consultas_eliminaciones_modificaciones/productos/consulta_producto.php" class="buttonAtras">Atrás</a>
