@@ -12,9 +12,17 @@
 		$factura = $_SESSION["factura"];
 		unset($_SESSION["factura"]);
     }
+
+    if (isset($_REQUEST['filtro']) && $_REQUEST["filtro"]!="") {
+        $_SESSION['filtro'] = $_REQUEST['filtro'];
+        $_SESSION['filterValue'] = $_REQUEST['filterValue'];
+    }else if(isset($_REQUEST['filtro']) && $_REQUEST['filtro']==""){
+        unset($_SESSION['filtro']);
+        unset($_SESSION['filterValue']);
+    }
     
     if (isset($_SESSION["PAG_FAC"])) $paginacion = $_SESSION["PAG_FAC"]; 
-		$pagina_seleccionada = isset($_GET["PAG_NUMF"])? (int)$_GET["PAG_NUMMF"]:
+		$pagina_seleccionada = isset($_GET["PAG_NUMF"])? (int)$_GET["PAG_NUMF"]:
 													(isset($paginacion)? (int)$paginacion["PAG_NUMF"]: 1);
 		$pag_tam = isset($_GET["PAG_TAMF"])? (int)$_GET["PAG_TAMF"]:
 											(isset($paginacion)? (int)$paginacion["PAG_TAMF"]: 10);
@@ -23,9 +31,14 @@
 	
 	unset($_SESSION["PAG_FAC"]);
 
-	$conexion = crearConexionBD();
+    $conexion = crearConexionBD();
     
-    $total_registros = total_consulta($conexion);
+    if (isset($_SESSION['filtro']) && $_SESSION['filtro']!="") {
+        $total_registros = total_consulta_filtrada($conexion,$_SESSION['filtro'],$_SESSION['filterValue']);
+    } else {
+        $total_registros = total_consulta($conexion);
+    }
+    
 	$total_paginas = (int) ($total_registros / $pag_tam);
 	if ($total_registros % $pag_tam > 0) $total_paginas++; 
 	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
@@ -33,7 +46,11 @@
 	$paginacion["PAG_TAMF"] = $pag_tam;
 	$_SESSION["PAG_FAC"] = $paginacion;
 	
-	$filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
+	if(isset($_SESSION['filtro']) && $_SESSION['filtro']!=""){
+        $filas = consulta_paginada_filtrado($conexion,$_SESSION['filtro'],$_SESSION['filterValue'],$pagina_seleccionada,$pag_tam);
+    }else{
+        $filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
+    }
 
 	cerrarConexionBD($conexion);
 ?>
@@ -44,6 +61,7 @@
     <meta charset="UTF-8">
     <title>Gestión de inventario</title>
     <link rel="stylesheet", type="text/css", href="../../../css/consultaFacturas.css">
+    <script src="../../../js/filtro_facturas.js"></script>
 </head>
 <body>
     <?php include_once ("../../cabeceraC.php"); ?>
@@ -147,6 +165,20 @@
             </article>
                     <?php } ?>
         </table>
+        <form id="filterForm" action="consulta_facturas.php" method="post">
+            <select class="filtro" name="filtro" id="filtro" oninput="auto(document.getElementById('filtro').value)">
+                <option value="" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']==""){ echo "selected='selected'";}?>>---</option>
+                <option value="PrecioMayor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="PrecioMayor"){ echo "selected='selected'";}?>>Precio mayor que</option>
+                <option value="PrecioMenor" <?php if(isset($_SESSION['filtro']) && $_SESSION['filtro']=="PrecioMenor"){ echo "selected='selected'";}?>>Precio menor que</option>
+            </select>
+            <div id="filterValueDiv">
+            <?php
+                if(isset($_SESSION['filtro']) && $_SESSION['filtro']!=""){?>
+                    <input class="filterValue" maxlength="1" type="number" required min="0" name="filterValue" id="filterValue" value="<?php echo $_SESSION['filterValue'];?>">
+                    <input class="filterButton" type="submit" value="FILTRAR">
+           <?php  } ?>
+            </div>
+        </form>
     </main>
 </body>
 </html>

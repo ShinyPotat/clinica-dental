@@ -273,6 +273,47 @@ table.blueTable {
 	padding: 3px 8px 2px 6px; 
 }
 
+.filtro{
+  background:    #ffffff;
+  border:        1% solid #2b86da;
+  border-radius: 1%;
+  padding:       0.5% 2%;
+  font:          normal bold 0.8vw/1 "Open Sans", sans-serif;
+  text-align:    right;
+  text-decoration: none;
+  position: absolute;
+  left: 35%;
+  top: 90%;
+  max-width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+.filterValue{
+  left: 52%;
+  top: 89%;
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.filterButton{
+  left: 67%;
+  top: 89%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: absolute;
+}
+
 div.error {
 	color : red;	
     z-index: 1;
