@@ -14,8 +14,6 @@
 	    	return  $total;
 	    }
 	    catch ( PDOException $e ) {
-	    	/*$_SESSION['excepcion'] = $e->GetMessage();
-            header("Location: excepcion.php");*/
             return $e->getMessage();
 	    }
     } 
@@ -34,8 +32,6 @@
 	    	return $stmt;
 	    }	
 	    catch ( PDOException $e ) {
-	    	/*$_SESSION['excepcion'] = $e->GetMessage();
-            header("Location: excepcion.php");*/
             return $e->getMessage();
 	    }
     } 
@@ -47,8 +43,6 @@
             $stmt->execute();
             return "";
         }catch(PDOException $e) {
-            /*$_SESSION['excepcion'] = $e->GetMessage();
-            header("Location: excepcion.php");*/
             return $e->getMessage();
         }
     }
@@ -63,8 +57,6 @@
             $stmt->execute();
             return "";
         }catch(PDOException $e) {
-            /*$_SESSION['excepcion'] = $e->GetMessage();
-            header("Location: excepcion.php");*/
             return $e->getMessage();
         }
     }
@@ -78,8 +70,6 @@
             $stmt->execute();
             return "";
         }catch(PDOException $e) {
-            /*$_SESSION['excepcion'] = $e->GetMessage();
-            header("Location: excepcion.php");*/
             return $e->getMessage();
         }
     }
