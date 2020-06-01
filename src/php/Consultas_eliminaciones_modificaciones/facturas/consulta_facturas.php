@@ -47,7 +47,7 @@
 	$_SESSION["PAG_FAC"] = $paginacion;
 	
 	if(isset($_SESSION['filtroFactura']) && $_SESSION['filtroFactura']!=""){
-        $filas = consulta_paginada_filtrado($conexion,$_SESSION['filtro'],$_SESSION['filterValueFactura'],$pagina_seleccionada,$pag_tam);
+        $filas = consulta_paginada_filtrado($conexion,$_SESSION['filtroFactura'],$_SESSION['filterValueFactura'],$pagina_seleccionada,$pag_tam);
     }else{
         $filas = consulta_paginada($conexion,$pagina_seleccionada,$pag_tam);
     }
